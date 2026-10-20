@@ -1,26 +1,275 @@
 @import "tailwindcss";
 
+/* ===========================
+   VIENNA DESIGN SYSTEM
+   CSS Custom Properties
+   =========================== */
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* ── Brand Pinks ── */
+  --vienna-rose: #C67D7D;          /* primary buttons, logo, accents */
+  --vienna-rose-dark: #B06A6A;     /* hover state for primary */
+  --vienna-rose-light: #D4A0A0;    /* secondary / lighter accents */
+  --vienna-blush: #F2D5D5;         /* pill tags, light pink fills */
+  --vienna-pink-circle: #F9E8E8;   /* icon circle backgrounds */
+  --vienna-pink-pastel: #FADCE2;   /* soft pink card backgrounds */
+
+  /* ── Backgrounds ── */
+  --vienna-cream: #FAF9F6;         /* main content bg (journal, article, footer) */
+  --vienna-paper-gray: #E8E4DF;    /* textured paper bg (hero home, people page) */
+  --vienna-white: #FFFFFF;         /* cards, polaroid frames */
+  --vienna-offwhite: #F5F3EF;      /* alternate section bg */
+
+  /* ── Lavender ── */
+  --vienna-lavender: #E8DFF0;      /* frames, accents, card borders */
+  --vienna-lavender-light: #F0EAF5; /* very light lavender tint */
+  --vienna-lavender-card: #ECDFF5; /* lavender card bg (community) */
+
+  /* ── Text ── */
+  --vienna-text-dark: #3D3D3D;     /* primary body text */
+  --vienna-text-heading: #2E2E2E;  /* headings, strong text */
+  --vienna-text-muted: #8A8A8A;    /* captions, secondary text */
+  --vienna-text-light: #B0A8A0;    /* footer links, watermarks */
+
+  /* ── Cards & UI ── */
+  --vienna-card-dark: #4A4A4A;     /* dark card bg (people behind) */
+  --vienna-card-shadow: rgba(0, 0, 0, 0.06);
+  --vienna-card-shadow-hover: rgba(0, 0, 0, 0.12);
+
+  /* ── Washi Tape ── */
+  --vienna-washi-pink: #F7D6D6;
+  --vienna-washi-yellow: #F7EAC4;
+  --vienna-washi-mint: #D4EDE1;
+  --vienna-washi-lavender: #E0D4F0;
+
+  /* ── CTA Gradient ── */
+  --vienna-gradient-start: #FADCE2;  /* pink */
+  --vienna-gradient-end: #E8DFF0;    /* lavender */
+
+  /* ── Radii ── */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --radius-xl: 28px;
+  --radius-pill: 999px;
+
+  /* ── Shadows ── */
+  --shadow-soft: 0 2px 12px rgba(0, 0, 0, 0.06);
+  --shadow-medium: 0 4px 20px rgba(0, 0, 0, 0.08);
+  --shadow-polaroid: 0 4px 16px rgba(0, 0, 0, 0.1);
+  --shadow-lift: 0 8px 30px rgba(0, 0, 0, 0.12);
+
+  /* ── Transitions ── */
+  --transition-fast: 150ms ease;
+  --transition-base: 250ms ease;
+  --transition-slow: 400ms ease;
 }
 
+/* ── Tailwind theme tokens ── */
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  /* Colors */
+  --color-vienna-rose: var(--vienna-rose);
+  --color-vienna-rose-dark: var(--vienna-rose-dark);
+  --color-vienna-rose-light: var(--vienna-rose-light);
+  --color-vienna-blush: var(--vienna-blush);
+  --color-vienna-pink-circle: var(--vienna-pink-circle);
+  --color-vienna-pink-pastel: var(--vienna-pink-pastel);
+  --color-vienna-cream: var(--vienna-cream);
+  --color-vienna-paper-gray: var(--vienna-paper-gray);
+  --color-vienna-white: var(--vienna-white);
+  --color-vienna-offwhite: var(--vienna-offwhite);
+  --color-vienna-lavender: var(--vienna-lavender);
+  --color-vienna-lavender-light: var(--vienna-lavender-light);
+  --color-vienna-lavender-card: var(--vienna-lavender-card);
+  --color-vienna-text-dark: var(--vienna-text-dark);
+  --color-vienna-text-heading: var(--vienna-text-heading);
+  --color-vienna-text-muted: var(--vienna-text-muted);
+  --color-vienna-text-light: var(--vienna-text-light);
+  --color-vienna-card-dark: var(--vienna-card-dark);
+  --color-vienna-washi-pink: var(--vienna-washi-pink);
+  --color-vienna-washi-yellow: var(--vienna-washi-yellow);
+  --color-vienna-washi-mint: var(--vienna-washi-mint);
+  --color-vienna-washi-lavender: var(--vienna-washi-lavender);
+
+  /* Fonts */
+  --font-outfit: var(--font-outfit);
+  --font-playfair: var(--font-playfair);
+  --font-fredoka: var(--font-fredoka);
+  --font-nunito: var(--font-nunito);
+  --font-comfortaa: var(--font-comfortaa);
+  --font-caveat: var(--font-caveat);
+
+  /* Radii */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --radius-xl: 28px;
+  --radius-pill: 999px;
+
+  /* Shadows */
+  --shadow-soft: 0 2px 12px rgba(0, 0, 0, 0.06);
+  --shadow-medium: 0 4px 20px rgba(0, 0, 0, 0.08);
+  --shadow-polaroid: 0 4px 16px rgba(0, 0, 0, 0.1);
+  --shadow-lift: 0 8px 30px rgba(0, 0, 0, 0.12);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* ===========================
+   BASE STYLES
+   =========================== */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: var(--vienna-cream);
+  color: var(--vienna-text-dark);
+  font-family: var(--font-nunito), sans-serif;
+  line-height: 1.6;
+}
+
+/* ── Paper Texture (CSS noise pattern) ── */
+.paper-texture {
+  position: relative;
+}
+.paper-texture::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: 0.035;
+  pointer-events: none;
+  z-index: 1;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 200px 200px;
+}
+
+.paper-texture-heavy::before {
+  opacity: 0.06;
+}
+
+/* ── Focus states for accessibility ── */
+:focus-visible {
+  outline: 2px solid var(--vienna-rose);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* ── Skip link for keyboard nav ── */
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: 16px;
+  z-index: 9999;
+  padding: 8px 16px;
+  background: var(--vienna-rose);
+  color: white;
+  border-radius: var(--radius-pill);
+  font-weight: 600;
+  text-decoration: none;
+  transition: top var(--transition-fast);
+}
+.skip-link:focus {
+  top: 16px;
+}
+
+/* ── Scroll-driven fade-in animations ── */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes gentleFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.6s ease-out both;
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.5s ease-out both;
+}
+
+/* Hover lift utility */
+.hover-lift {
+  transition: transform var(--transition-base), box-shadow var(--transition-base);
+}
+.hover-lift:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lift);
+}
+
+/* ── Reduced motion ── */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .hover-lift:hover {
+    transform: none;
+  }
+}
+
+/* ── Gradient backgrounds ── */
+.gradient-cta {
+  background: linear-gradient(135deg, var(--vienna-gradient-start) 0%, var(--vienna-gradient-end) 100%);
+}
+
+/* ── Typography helpers ── */
+.heading-accent {
+  font-family: var(--font-playfair), serif;
+  font-style: italic;
+  color: var(--vienna-rose);
+}
+
+.handwritten {
+  font-family: var(--font-caveat), cursive;
+}
+
+/* ── Selection color ── */
+::selection {
+  background: var(--vienna-blush);
+  color: var(--vienna-text-heading);
+}
+
+/* ── Scrollbar styling ── */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--vienna-cream);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--vienna-rose-light);
+  border-radius: var(--radius-pill);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--vienna-rose);
 }

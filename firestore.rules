@@ -1,0 +1,34 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Article documents: stores like count & comment count
+    match /articles/{articleId} {
+      allow read: if true;
+      // Only allow updating likes and commentCount fields
+      allow create: if false;
+      allow update: if request.resource.data.diff(resource.data)
+                      .affectedKeys().hasOnly(['likes', 'commentCount']);
+      allow delete: if false;
+
+      // Comments subcollection
+      match /comments/{commentId} {
+        allow read: if true;
+
+        // Allow creating comments with valid content (not empty, max 1000 chars)
+        allow create: if request.resource.data.keys().hasAll(['author', 'content', 'createdAt', 'likes'])
+                      && request.resource.data.content is string
+                      && request.resource.data.content.size() > 0
+                      && request.resource.data.content.size() <= 1000
+                      && request.resource.data.author is string
+                      && request.resource.data.author.size() <= 60;
+
+        // Only allow updating likes on existing comments
+        allow update: if request.resource.data.diff(resource.data)
+                        .affectedKeys().hasOnly(['likes']);
+
+        allow delete: if false;
+      }
+    }
+  }
+}
