@@ -21,15 +21,6 @@ const NAV_CARDS = [
     ),
   },
   {
-    title: "COMMUNITY",
-    href: "/community",
-    bgClass: "bg-vienna-cream border border-vienna-lavender hover:bg-vienna-offwhite text-vienna-text-heading",
-    iconBg: "bg-vienna-pink-circle text-vienna-rose",
-    icon: (
-      <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
-    ),
-  },
-  {
     title: "SHOP",
     href: "/shop",
     bgClass: "bg-vienna-card-dark hover:bg-black text-white",
@@ -51,7 +42,7 @@ export function NavigationGridSection() {
         </h2>
 
         {/* 4 Square Cards */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 max-w-5xl mx-auto">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 max-w-4xl mx-auto">
           {NAV_CARDS.map((card) => (
             <Link
               key={card.title}
