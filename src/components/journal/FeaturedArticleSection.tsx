@@ -1,14 +1,20 @@
+"use client";
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Article } from "@/data/articles";
 import { WashiTape } from "@/components/ui/WashiTape";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 interface FeaturedArticleSectionProps {
   article: Article;
 }
 
 export function FeaturedArticleSection({ article }: FeaturedArticleSectionProps) {
+  const { t, lang } = useLanguage();
+  const title = lang === "id" ? (t(`articles.${article.slug}.title`) || article.title) : article.title;
+  const excerpt = lang === "id" ? (t(`articles.${article.slug}.excerpt`) || article.excerpt) : article.excerpt;
+  const category = lang === "id" ? (t(`articles.${article.slug}.category`) || article.category) : article.category;
   return (
     <section className="bg-vienna-cream py-12 md:py-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -69,7 +75,7 @@ export function FeaturedArticleSection({ article }: FeaturedArticleSectionProps)
               {/* Category Pill Badge + Date & Read Time */}
               <div className="flex flex-wrap items-center gap-3">
                 <span className="bg-vienna-lavender-light text-vienna-rose text-xs font-outfit font-bold uppercase tracking-wider px-3.5 py-1 rounded-pill">
-                  {article.category}
+                  {category}
                 </span>
                 <span className="text-vienna-text-muted text-xs font-nunito">
                   {article.readTime} &bull; {article.date}
@@ -78,18 +84,18 @@ export function FeaturedArticleSection({ article }: FeaturedArticleSectionProps)
 
               {/* Title */}
               <h2 className="font-fredoka font-bold text-vienna-text-heading text-2xl sm:text-3xl lg:text-4xl leading-snug group-hover:text-vienna-rose transition-colors">
-                {article.title}
+                {title}
               </h2>
 
               {/* Excerpt */}
               <p className="font-nunito text-vienna-text-dark text-sm sm:text-base leading-relaxed">
-                {article.excerpt}
+                {excerpt}
               </p>
 
               {/* Read the Story link with short pink line */}
               <div className="pt-2 flex items-center gap-3">
                 <span className="font-outfit font-bold text-vienna-text-heading text-sm group-hover:text-vienna-rose transition-colors">
-                  Read the Story
+                  {t("journal.featuredCta")}
                 </span>
                 <span className="w-8 h-[2px] bg-vienna-rose rounded-full transition-all group-hover:w-12" aria-hidden="true" />
               </div>

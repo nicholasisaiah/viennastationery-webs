@@ -2,8 +2,10 @@
 
 import React, { useState } from "react";
 import { PaperTextureBackground } from "@/components/ui/PaperTextureBackground";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 export function LovelyLettersNewsletter() {
+  const { t } = useLanguage();
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [message, setMessage] = useState("");
@@ -49,12 +51,12 @@ export function LovelyLettersNewsletter() {
           <div className="max-w-xl mx-auto space-y-4">
             
             <h2 className="font-fredoka font-bold text-vienna-text-heading text-3xl sm:text-4xl">
-              Keep a little room for inspiration.{" "}
+              {t("journal.newsletter.headline")}{" "}
               <span className="text-vienna-rose-light" aria-hidden="true">♡</span>
             </h2>
 
             <p className="font-nunito text-vienna-text-muted text-sm sm:text-base leading-relaxed">
-              Join our &ldquo;Lovely Letters&rdquo; community for weekly creative prompts, stationery launches, and quiet inspiration delivered to your inbox.
+              {t("journal.newsletter.sub")}
             </p>
 
             <form
@@ -63,7 +65,7 @@ export function LovelyLettersNewsletter() {
               aria-label="Subscribe to Lovely Letters newsletter"
             >
               <label htmlFor="journal-newsletter-email" className="sr-only">
-                Your email address
+                {t("journal.newsletter.placeholder")}
               </label>
               <input
                 id="journal-newsletter-email"
@@ -73,7 +75,7 @@ export function LovelyLettersNewsletter() {
                   setEmail(e.target.value);
                   if (status !== "idle") setStatus("idle");
                 }}
-                placeholder="Your email address..."
+                placeholder={t("journal.newsletter.placeholder")}
                 className="
                   w-full sm:flex-1
                   px-6 py-3.5
@@ -102,7 +104,7 @@ export function LovelyLettersNewsletter() {
                   cursor-pointer disabled:opacity-50
                 "
               >
-                {status === "loading" ? "Joining..." : "Join the Journal"}
+                {status === "loading" ? t("common.loading") : t("journal.newsletter.cta")}
               </button>
             </form>
 

@@ -2,6 +2,7 @@
 
 import React from "react";
 import { useRouter, useSearchParams } from "next/navigation";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 export const CATEGORIES = [
   "ALL",
@@ -26,6 +27,17 @@ export function CategoryFilterBar({
 }: CategoryFilterBarProps) {
   const router = useRouter();
   const searchParams = useSearchParams();
+  const { t, lang } = useLanguage();
+
+  const CATEGORY_LABELS: Record<string, string> = {
+    ALL: t("journal.filterAll"),
+    STATIONERY: "Stationery",
+    STUDY: lang === "id" ? "Belajar" : "Study",
+    JOURNALING: lang === "id" ? "Jurnal" : "Journaling",
+    CREATIVE: lang === "id" ? "Kreatif" : "Creative",
+    LIFESTYLE: lang === "id" ? "Gaya Hidup" : "Lifestyle",
+    ORGANIZATION: lang === "id" ? "Organisasi" : "Organization",
+  };
 
   const handleCategoryClick = (category: string) => {
     onSelectCategory(category);
@@ -75,7 +87,7 @@ export function CategoryFilterBar({
                 `}
                 aria-current={isSelected ? "page" : undefined}
               >
-                {cat}
+                {CATEGORY_LABELS[cat] ?? cat}
                 {/* Active indicator pink underline */}
                 {isSelected && (
                   <span

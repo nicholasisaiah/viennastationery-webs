@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 export interface ProductVariant {
   label: string; // e.g. "BLUE", "PINK", "MIX"
@@ -40,6 +41,7 @@ export function ProductCard({
   badge,
   className = "",
 }: ProductCardProps) {
+  const { t } = useLanguage();
   const [activeImage, setActiveImage] = useState(image);
   const [activeVariant, setActiveVariant] = useState<string | null>(
     variants?.[0]?.label ?? null
@@ -174,7 +176,7 @@ export function ProductCard({
           "
           aria-label={`Buy ${name} on Shopee`}
         >
-          <span>Beli di Shopee</span>
+          <span>{t("shop.buyBtn")}</span>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="12"

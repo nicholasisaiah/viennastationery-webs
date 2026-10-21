@@ -6,29 +6,28 @@ import { PRODUCTS_DATA } from "@/data/products";
 import { CtaFooterSection } from "@/components/layout/CtaFooterSection";
 import { WashiTape } from "@/components/ui/WashiTape";
 import { Button } from "@/components/ui/Button";
+import { useLanguage } from "@/contexts/LanguageContext";
 
-const CATEGORIES = [
-  "ALL",
-  "NOTEBOOKS",
-  "PENS & WRITING",
-  "STICKERS & TAPES",
-  "DESK ACCESSORIES",
-  "ORGANIZERS",
-] as const;
-
-type Category = (typeof CATEGORIES)[number];
-
-const SORT_OPTIONS = [
-  { label: "Newest First", value: "newest" },
-  { label: "Price: Low to High", value: "price-asc" },
-  { label: "Price: High to Low", value: "price-desc" },
-] as const;
-
-type SortOption = (typeof SORT_OPTIONS)[number]["value"];
 
 export function ShopPageClient() {
-  const [activeCategory, setActiveCategory] = useState<Category>("ALL");
-  const [sortBy, setSortBy] = useState<SortOption>("newest");
+  const { t } = useLanguage();
+  const [activeCategory, setActiveCategory] = useState<string>("ALL");
+  const [sortBy, setSortBy] = useState<string>("newest");
+
+  const CATEGORIES = [
+    { key: "ALL", label: t("shop.categories.all") },
+    { key: "NOTEBOOKS", label: t("shop.categories.notebooks") },
+    { key: "PENS & WRITING", label: t("shop.categories.pens") },
+    { key: "STICKERS & TAPES", label: t("shop.categories.stickers") },
+    { key: "DESK ACCESSORIES", label: t("shop.categories.desk") },
+    { key: "ORGANIZERS", label: t("shop.categories.organizers") },
+  ];
+
+  const SORT_OPTIONS = [
+    { label: t("shop.sortNewest"), value: "newest" },
+    { label: t("shop.sortPriceAsc"), value: "price-asc" },
+    { label: t("shop.sortPriceDesc"), value: "price-desc" },
+  ];
 
   // Filter
   let filtered = PRODUCTS_DATA.filter((p) => {
@@ -38,9 +37,7 @@ export function ShopPageClient() {
 
   // Sort
   filtered = [...filtered].sort((a, b) => {
-    if (sortBy === "newest") {
-      return new Date(b.dateAdded).getTime() - new Date(a.dateAdded).getTime();
-    }
+    if (sortBy === "newest") return new Date(b.dateAdded).getTime() - new Date(a.dateAdded).getTime();
     if (sortBy === "price-asc") return a.price - b.price;
     if (sortBy === "price-desc") return b.price - a.price;
     return 0;
@@ -50,21 +47,21 @@ export function ShopPageClient() {
     <div className="min-h-screen bg-vienna-cream flex flex-col justify-between font-nunito">
       <div>
 
-        {/* ── 1. HERO ──────────────────────────────────────────────── */}
+        {/* ── 1. HERO ────────────────── */}
         <section
           className="relative overflow-hidden bg-vienna-paper-gray paper-texture py-16 md:py-24 text-center px-4"
           aria-label="Shop hero"
         >
           <div className="max-w-2xl mx-auto relative z-10 space-y-4">
             <span className="inline-block text-vienna-rose font-outfit text-xs font-bold uppercase tracking-widest px-4 py-1.5 bg-white/90 rounded-pill shadow-soft">
-              Vienna Collection
+              {t("shop.badge")}
             </span>
             <h1 className="font-fredoka font-bold text-vienna-text-heading text-4xl sm:text-5xl md:text-6xl">
-              Shop Stationery{" "}
+              {t("shop.headline1")}{" "}
               <span className="text-vienna-rose-light">♡</span>
             </h1>
             <p className="font-nunito text-vienna-text-muted text-sm sm:text-base max-w-md mx-auto leading-relaxed">
-              Bring a piece of Vienna into your daily life. Hand-picked essentials curated for dreamers and planners.
+              {t("shop.sub")}
             </p>
           </div>
           <div className="absolute bottom-0 left-1/2 -translate-x-1/2">
@@ -76,41 +73,36 @@ export function ShopPageClient() {
         <div className="sticky top-16 md:top-[72px] z-30 bg-white/95 backdrop-blur-md border-b border-vienna-lavender/40 shadow-soft">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
             {/* Category pills */}
-            <div
-              className="flex items-center gap-2 overflow-x-auto pb-1 sm:pb-0"
-              role="tablist"
-              aria-label="Product categories"
-            >
+            <div className="flex items-center gap-2 overflow-x-auto pb-1 sm:pb-0" role="tablist" aria-label="Product categories">
               {CATEGORIES.map((cat) => (
                 <button
-                  key={cat}
+                  key={cat.key}
                   role="tab"
-                  aria-selected={activeCategory === cat}
-                  onClick={() => setActiveCategory(cat)}
+                  aria-selected={activeCategory === cat.key}
+                  onClick={() => setActiveCategory(cat.key)}
                   className={`
                     flex-shrink-0 px-4 py-1.5 rounded-pill
                     font-outfit text-[11px] font-bold uppercase tracking-wider
                     transition-colors duration-200 border cursor-pointer whitespace-nowrap
                     ${
-                      activeCategory === cat
+                      activeCategory === cat.key
                         ? "bg-vienna-rose text-white border-vienna-rose"
                         : "bg-white text-vienna-text-muted border-vienna-lavender hover:bg-vienna-lavender-light hover:text-vienna-text-heading"
                     }
                   `}
                 >
-                  {cat === "ALL" ? "All Products" : cat}
+                  {cat.label}
                 </button>
               ))}
             </div>
 
-            {/* Sort select */}
             <div className="flex items-center gap-2 flex-shrink-0">
               <span className="font-outfit text-[11px] font-bold text-vienna-text-muted uppercase tracking-wider hidden sm:block">
-                Sort:
+                {t("shop.sortLabel")}
               </span>
               <select
                 value={sortBy}
-                onChange={(e) => setSortBy(e.target.value as SortOption)}
+                onChange={(e) => setSortBy(e.target.value)}
                 className="font-outfit text-xs font-medium text-vienna-text-dark bg-white border border-vienna-lavender rounded-lg px-3 py-1.5 focus:outline-none focus:ring-2 focus:ring-vienna-rose cursor-pointer"
                 aria-label="Sort products"
               >
@@ -133,9 +125,9 @@ export function ShopPageClient() {
 
             {/* Results count */}
             <p className="font-outfit text-xs font-bold text-vienna-text-muted uppercase tracking-wider mb-6">
-              Showing {filtered.length} of {PRODUCTS_DATA.length} products
+              {t("shop.showing")} {filtered.length} {t("shop.of")} {PRODUCTS_DATA.length} {t("shop.products")}
               {activeCategory !== "ALL" && (
-                <> in <span className="text-vienna-rose">{activeCategory}</span></>
+                <> {t("shop.in")} <span className="text-vienna-rose">{CATEGORIES.find(c => c.key === activeCategory)?.label}</span></>
               )}
             </p>
 
@@ -159,16 +151,16 @@ export function ShopPageClient() {
               <div className="text-center py-24 space-y-4">
                 <p className="text-4xl">🌸</p>
                 <p className="font-outfit font-bold text-vienna-text-heading">
-                  Nothing here yet
+                  {t("shop.emptyTitle")}
                 </p>
                 <p className="font-nunito text-sm text-vienna-text-muted">
-                  No products found in this category. Try a different filter!
+                  {t("shop.emptyDesc")}
                 </p>
                 <button
                   onClick={() => setActiveCategory("ALL")}
                   className="font-outfit text-xs font-bold text-vienna-rose uppercase tracking-wider underline underline-offset-4 cursor-pointer"
                 >
-                  Show All Products
+                  {t("shop.showAll")}
                 </button>
               </div>
             )}
@@ -182,21 +174,16 @@ export function ShopPageClient() {
         >
           <div className="max-w-2xl mx-auto px-4 text-center space-y-5">
             <span className="inline-block text-vienna-rose font-outfit text-xs font-bold uppercase tracking-widest px-4 py-1.5 bg-white rounded-pill shadow-soft">
-              Shop on Shopee
+              {t("shop.badge")}
             </span>
             <h2 className="font-outfit font-bold text-vienna-text-heading text-2xl sm:text-3xl">
-              Ready to add some lovely to your desk?
+              {t("shop.ctaHeadline")}
             </h2>
             <p className="font-nunito text-vienna-text-muted text-sm sm:text-base max-w-md mx-auto">
-              Our full catalog is available on Shopee with secure payment, fast shipping, and easy returns.
+              {t("shop.ctaDesc")}
             </p>
-            <Button
-              href="https://id.shp.ee/JDMuodop"
-              variant="primary"
-              size="lg"
-              ariaLabel="Shop all Vienna products on Shopee"
-            >
-              Visit Our Shopee Store ↗
+            <Button href="https://id.shp.ee/JDMuodop" variant="primary" size="lg" ariaLabel={t("shop.visitShopee")}>
+              {t("shop.visitShopee")}
             </Button>
           </div>
         </section>

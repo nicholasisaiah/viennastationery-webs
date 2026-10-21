@@ -3,8 +3,10 @@
 import React from "react";
 import Image from "next/image";
 import { PolaroidFrame } from "@/components/ui/PolaroidFrame";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 export function JournalHero() {
+  const { t } = useLanguage();
   return (
     <section className="relative overflow-hidden bg-gradient-to-b from-vienna-cream via-vienna-pink-pastel/25 to-vienna-cream py-16 sm:py-20 md:py-28">
       
@@ -71,19 +73,19 @@ export function JournalHero() {
 
             {/* Subtitle */}
             <p className="font-outfit font-semibold text-vienna-text-dark text-lg sm:text-xl md:text-2xl">
-              Little things worth writing about.
+              {t("journal.heroSub")}
             </p>
 
             {/* Description */}
             <p className="font-nunito text-vienna-text-muted text-sm sm:text-base leading-relaxed max-w-lg mx-auto">
-              A curated space for those who find inspiration in delicate textures, soft hues, and the quiet ritual of creative living.
+              {t("journal.heroDesc")}
             </p>
 
             {/* Editorial Notes Label with side lines */}
             <div className="flex items-center justify-center gap-4 pt-4">
               <span className="w-12 h-[1px] bg-vienna-rose/40" aria-hidden="true" />
               <span className="font-outfit text-xs font-bold text-vienna-rose uppercase tracking-[0.25em]">
-                EDITORIAL NOTES
+                {t("journal.heroBadge")}
               </span>
               <span className="w-12 h-[1px] bg-vienna-rose/40" aria-hidden="true" />
             </div>

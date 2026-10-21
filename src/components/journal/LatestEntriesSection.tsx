@@ -4,13 +4,26 @@ import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Article } from "@/data/articles";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 interface LatestEntriesSectionProps {
   articles: Article[];
 }
 
 export function LatestEntriesSection({ articles }: LatestEntriesSectionProps) {
+  const { t, lang } = useLanguage();
   const [visibleCount, setVisibleCount] = useState(6);
+
+  // Helper: get translated field if lang=id
+  const getTitle = (art: Article) => lang === "id"
+    ? (t(`articles.${art.slug}.title`) !== `articles.${art.slug}.title` ? t(`articles.${art.slug}.title`) : art.title)
+    : art.title;
+  const getExcerpt = (art: Article) => lang === "id"
+    ? (t(`articles.${art.slug}.excerpt`) !== `articles.${art.slug}.excerpt` ? t(`articles.${art.slug}.excerpt`) : art.excerpt)
+    : art.excerpt;
+  const getCategory = (art: Article) => lang === "id"
+    ? (t(`articles.${art.slug}.category`) !== `articles.${art.slug}.category` ? t(`articles.${art.slug}.category`) : art.category)
+    : art.category;
 
   if (!articles || articles.length === 0) {
     return (
@@ -20,10 +33,10 @@ export function LatestEntriesSection({ articles }: LatestEntriesSectionProps) {
             ♡
           </span>
           <h3 className="font-fredoka text-xl font-bold text-vienna-text-heading">
-            No entries found in this category
+            {lang === "id" ? "Tidak ada tulisan di kategori ini" : "No entries found in this category"}
           </h3>
           <p className="font-nunito text-vienna-text-muted text-sm mt-2">
-            Try choosing another category above to explore more stories.
+            {lang === "id" ? "Pilih kategori lain di atas." : "Try choosing another category above."}
           </p>
         </div>
       </section>
@@ -47,18 +60,15 @@ export function LatestEntriesSection({ articles }: LatestEntriesSectionProps) {
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 pb-6 border-b border-vienna-lavender/50 mb-10">
           <div>
             <h2 className="font-fredoka font-bold text-vienna-text-heading text-2xl sm:text-3xl md:text-4xl">
-              Latest Entries <span className="text-vienna-rose-light">♡</span>
+              {t("journal.latestHeadline")} <span className="text-vienna-rose-light">♡</span>
             </h2>
             <p className="font-nunito text-vienna-text-muted text-sm sm:text-base mt-1">
-              Fresh perspectives and creative rituals.
+              {lang === "id" ? "Perspektif segar dan ritual kreatif." : "Fresh perspectives and creative rituals."}
             </p>
           </div>
 
-          <Link
-            href="/journal/archive"
-            className="font-outfit text-xs font-bold text-vienna-rose uppercase tracking-[0.2em] hover:text-vienna-rose-dark transition-colors self-start sm:self-auto"
-          >
-            ARCHIVED MOMENTS &rarr;
+          <Link href="/journal/archive" className="font-outfit text-xs font-bold text-vienna-rose uppercase tracking-[0.2em] hover:text-vienna-rose-dark transition-colors self-start sm:self-auto">
+            {lang === "id" ? "SEMUA ARTIKEL →" : "ARCHIVED MOMENTS →"}
           </Link>
         </div>
 
@@ -84,18 +94,18 @@ export function LatestEntriesSection({ articles }: LatestEntriesSectionProps) {
                   sizes="(max-width: 768px) 100vw, 60vw"
                 />
                 <span className="absolute top-4 left-4 bg-white/90 backdrop-blur-sm text-vienna-text-dark text-[10px] font-outfit font-bold uppercase tracking-widest px-3 py-1 rounded-pill">
-                  {firstArticle.category}
+                  {getCategory(firstArticle)}
                 </span>
               </div>
               <div className="p-6 md:p-8">
                 <span className="text-vienna-rose text-[10px] font-outfit font-bold uppercase tracking-widest">
-                  {firstArticle.category}
+                  {getCategory(firstArticle)}
                 </span>
                 <h3 className="font-fredoka font-bold text-vienna-text-heading text-2xl sm:text-3xl mt-1.5 leading-snug group-hover:text-vienna-rose transition-colors">
-                  {firstArticle.title}
+                  {getTitle(firstArticle)}
                 </h3>
                 <p className="font-nunito text-vienna-text-muted text-sm mt-3 line-clamp-3">
-                  {firstArticle.excerpt}
+                  {getExcerpt(firstArticle)}
                 </p>
               </div>
             </Link>
@@ -122,15 +132,15 @@ export function LatestEntriesSection({ articles }: LatestEntriesSectionProps) {
                     sizes="(max-width: 768px) 100vw, 30vw"
                   />
                   <span className="absolute top-3 left-3 bg-white/90 backdrop-blur-sm text-vienna-text-dark text-[10px] font-outfit font-bold uppercase tracking-widest px-3 py-1 rounded-pill">
-                    {art.category}
+                    {getCategory(art)}
                   </span>
                 </div>
                 <div className="p-5">
                   <span className="text-vienna-rose text-[10px] font-outfit font-bold uppercase tracking-widest">
-                    {art.category}
+                    {getCategory(art)}
                   </span>
                   <h3 className="font-fredoka font-bold text-vienna-text-heading text-base sm:text-lg mt-1 leading-snug group-hover:text-vienna-rose transition-colors">
-                    {art.title}
+                    {getTitle(art)}
                   </h3>
                 </div>
               </Link>
@@ -161,18 +171,18 @@ export function LatestEntriesSection({ articles }: LatestEntriesSectionProps) {
                     sizes="(max-width: 768px) 100vw, 33vw"
                   />
                   <span className="absolute top-3 left-3 bg-white/90 backdrop-blur-sm text-vienna-text-dark text-[10px] font-outfit font-bold uppercase tracking-widest px-3 py-1 rounded-pill">
-                    {art.category}
+                    {getCategory(art)}
                   </span>
                 </div>
                 <div className="p-5">
                   <span className="text-vienna-rose text-[10px] font-outfit font-bold uppercase tracking-widest">
-                    {art.category}
+                    {getCategory(art)}
                   </span>
                   <h3 className="font-fredoka font-bold text-vienna-text-heading text-lg mt-1 leading-snug group-hover:text-vienna-rose transition-colors">
-                    {art.title}
+                    {getTitle(art)}
                   </h3>
                   <p className="font-nunito text-vienna-text-muted text-xs mt-2 line-clamp-2">
-                    {art.excerpt}
+                    {getExcerpt(art)}
                   </p>
                 </div>
               </Link>
@@ -193,7 +203,7 @@ export function LatestEntriesSection({ articles }: LatestEntriesSectionProps) {
                 transition-all duration-200 shadow-soft cursor-pointer
               "
             >
-              LOAD MORE STORIES
+              {lang === "id" ? "MUAT LEBIH BANYAK" : "LOAD MORE STORIES"}
             </button>
           </div>
         )}
