@@ -10,6 +10,7 @@ import {
 import "./globals.css";
 import { Navbar } from "@/components/layout/Navbar";
 import { LanguageProvider } from "@/contexts/LanguageContext";
+import { Analytics } from "@vercel/analytics/next";
 
 const outfit = Outfit({
   variable: "--font-outfit",
@@ -129,6 +130,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
             {children}
           </main>
         </LanguageProvider>
+        <Analytics />
       </body>
     </html>
   );

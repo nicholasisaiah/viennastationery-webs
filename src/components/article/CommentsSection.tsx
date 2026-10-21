@@ -17,6 +17,8 @@ interface Props {
 }
 
 const LIKE_PREFIX = "vienna_liked_comment_";
+const COOLDOWN_PREFIX = "vienna_comment_cooldown_"; // key: slug, value: timestamp
+const COOLDOWN_MS = 5 * 60 * 1000; // 5 menit
 
 export function CommentsSection({ slug }: Props) {
   const { t, lang } = useLanguage();
@@ -28,6 +30,7 @@ export function CommentsSection({ slug }: Props) {
   const [submitError, setSubmitError] = useState("");
   const [submitSuccess, setSubmitSuccess] = useState(false);
   const [likedIds, setLikedIds] = useState<Set<string>>(new Set());
+  const [cooldownLeft, setCooldownLeft] = useState(0); // detik tersisa
 
   // Load liked comment IDs from localStorage
   useEffect(() => {
@@ -39,6 +42,19 @@ export function CommentsSection({ slug }: Props) {
     }
     setLikedIds(liked);
   }, []);
+
+  // Cek dan update cooldown timer
+  useEffect(() => {
+    const key = `${COOLDOWN_PREFIX}${slug}`;
+    const check = () => {
+      const ts = parseInt(localStorage.getItem(key) ?? "0", 10);
+      const remaining = Math.max(0, Math.ceil((ts + COOLDOWN_MS - Date.now()) / 1000));
+      setCooldownLeft(remaining);
+    };
+    check();
+    const interval = setInterval(check, 1000);
+    return () => clearInterval(interval);
+  }, [slug]);
 
   // Initial fetch
   useEffect(() => {
@@ -98,6 +114,20 @@ export function CommentsSection({ slug }: Props) {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!newContent.trim() || submitting) return;
+
+    // Rate limiting check
+    const cooldownKey = `${COOLDOWN_PREFIX}${slug}`;
+    const lastTs = parseInt(localStorage.getItem(cooldownKey) ?? "0", 10);
+    if (Date.now() - lastTs < COOLDOWN_MS) {
+      const remaining = Math.ceil((lastTs + COOLDOWN_MS - Date.now()) / 1000);
+      setSubmitError(
+        lang === "id"
+          ? `Tunggu ${remaining} detik lagi sebelum mengirim komentar baru.`
+          : `Please wait ${remaining} seconds before posting again.`
+      );
+      return;
+    }
+
     setSubmitting(true);
     setSubmitError("");
     setSubmitSuccess(false);
@@ -109,15 +139,17 @@ export function CommentsSection({ slug }: Props) {
     });
 
     if (!error) {
+      localStorage.setItem(cooldownKey, Date.now().toString());
       setNewAuthor("");
       setNewContent("");
       setSubmitSuccess(true);
       setTimeout(() => setSubmitSuccess(false), 3000);
     } else {
-      // Debug: tampilkan error detail untuk diagnosis
       console.error("Supabase comment error:", error);
       setSubmitError(
-        `Error ${error.code}: ${error.message}`
+        lang === "id"
+          ? "Gagal mengirim komentar. Coba lagi."
+          : "Failed to send comment. Please try again."
       );
     }
     setSubmitting(false);
@@ -206,10 +238,15 @@ export function CommentsSection({ slug }: Props) {
           </span>
           <button
             type="submit"
-            disabled={submitting || !newContent.trim()}
+            disabled={submitting || !newContent.trim() || cooldownLeft > 0}
             className="px-7 py-2.5 bg-vienna-rose text-white font-outfit font-semibold text-xs sm:text-sm uppercase tracking-wider rounded-pill hover:bg-vienna-rose-dark disabled:opacity-50 transition-colors duration-200 shadow-soft cursor-pointer"
           >
-            {submitting ? t("common.loading") : t("article.commentCta")}
+            {submitting
+              ? t("common.loading")
+              : cooldownLeft > 0
+              ? (lang === "id" ? `Tunggu ${cooldownLeft}s` : `Wait ${cooldownLeft}s`)
+              : t("article.commentCta")
+            }
           </button>
         </div>
         {/* Error / success feedback */}
@@ -221,6 +258,7 @@ export function CommentsSection({ slug }: Props) {
             {lang === "id" ? "✓ Komentarmu berhasil dikirim!" : "✓ Comment sent successfully!"}
           </p>
         )}
+
       </form>
 
       {/* Comments List */}
