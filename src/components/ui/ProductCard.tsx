@@ -24,7 +24,7 @@ export function ProductCard({
   price,
   image,
   href,
-  shopeeUrl = "https://shopee.co.id",
+  shopeeUrl = "https://id.shp.ee/JDMuodop",
   badge,
   className = "",
 }: ProductCardProps) {

@@ -29,7 +29,7 @@ export function ShopHeroSection() {
 
             <div className="pt-2">
               <Button
-                href="https://shopee.co.id"
+                href="https://id.shp.ee/JDMuodop"
                 variant="primary"
                 size="lg"
                 ariaLabel="Shop on Shopee main store"

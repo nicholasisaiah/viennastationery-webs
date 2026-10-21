@@ -36,7 +36,7 @@ export const PRODUCTS_DATA: Product[] = [
       "Internal card pockets & pen loop",
       "Includes 4 divider tabs in pastel shades",
     ],
-    shopeeUrl: "https://shopee.co.id",
+    shopeeUrl: "https://id.shp.ee/JDMuodop",
     dateAdded: "2026-09-01",
   },
   {
@@ -60,7 +60,7 @@ export const PRODUCTS_DATA: Product[] = [
       "Dual solar panel + AAA battery power",
       "Non-slip rubber feet for desk stability",
     ],
-    shopeeUrl: "https://shopee.co.id",
+    shopeeUrl: "https://id.shp.ee/JDMuodop",
     dateAdded: "2026-08-25",
   },
   {
@@ -84,7 +84,7 @@ export const PRODUCTS_DATA: Product[] = [
       "160 dot-grid pages",
       "Back expandable paper pocket",
     ],
-    shopeeUrl: "https://shopee.co.id",
+    shopeeUrl: "https://id.shp.ee/JDMuodop",
     dateAdded: "2026-09-10",
   },
   {
@@ -108,7 +108,7 @@ export const PRODUCTS_DATA: Product[] = [
       "Residue-free easy tear paper",
       "Complimentary matte storage box",
     ],
-    shopeeUrl: "https://shopee.co.id",
+    shopeeUrl: "https://id.shp.ee/JDMuodop",
     dateAdded: "2026-08-15",
   },
   {
@@ -132,7 +132,7 @@ export const PRODUCTS_DATA: Product[] = [
       "Ergonomic matte rubber grip",
       "Includes black, navy, and walnut inks",
     ],
-    shopeeUrl: "https://shopee.co.id",
+    shopeeUrl: "https://id.shp.ee/JDMuodop",
     dateAdded: "2026-09-12",
   },
   {
@@ -156,7 +156,7 @@ export const PRODUCTS_DATA: Product[] = [
       "Stackable modular design",
       "Polished smooth rounded edges",
     ],
-    shopeeUrl: "https://shopee.co.id",
+    shopeeUrl: "https://id.shp.ee/JDMuodop",
     dateAdded: "2026-07-20",
   },
   {
@@ -179,7 +179,7 @@ export const PRODUCTS_DATA: Product[] = [
       "Smooth finish prevents paper tears",
       "Re-usable tin storage container",
     ],
-    shopeeUrl: "https://shopee.co.id",
+    shopeeUrl: "https://id.shp.ee/JDMuodop",
     dateAdded: "2026-06-15",
   },
   {
@@ -202,7 +202,7 @@ export const PRODUCTS_DATA: Product[] = [
       "Compact 10x10 cm size",
       "Cardboard backing support",
     ],
-    shopeeUrl: "https://shopee.co.id",
+    shopeeUrl: "https://id.shp.ee/JDMuodop",
     dateAdded: "2026-07-01",
   },
   {
@@ -226,7 +226,7 @@ export const PRODUCTS_DATA: Product[] = [
       "Removable washi paper material",
       "Ideal for border decoration",
     ],
-    shopeeUrl: "https://shopee.co.id",
+    shopeeUrl: "https://id.shp.ee/JDMuodop",
     dateAdded: "2026-09-08",
   },
   {
@@ -250,7 +250,7 @@ export const PRODUCTS_DATA: Product[] = [
       "Accepts international standard cartridges",
       "Luxury gift box packaging",
     ],
-    shopeeUrl: "https://shopee.co.id",
+    shopeeUrl: "https://id.shp.ee/JDMuodop",
     dateAdded: "2026-08-30",
   },
   {
@@ -273,7 +273,7 @@ export const PRODUCTS_DATA: Product[] = [
       "Water-based non-bleed ink",
       "Flat anti-roll barrel design",
     ],
-    shopeeUrl: "https://shopee.co.id",
+    shopeeUrl: "https://id.shp.ee/JDMuodop",
     dateAdded: "2026-06-28",
   },
   {
@@ -297,7 +297,7 @@ export const PRODUCTS_DATA: Product[] = [
       "Page clips hold thick textbooks open",
       "Folds flat for compact storage",
     ],
-    shopeeUrl: "https://shopee.co.id",
+    shopeeUrl: "https://id.shp.ee/JDMuodop",
     dateAdded: "2026-07-15",
   },
 ];

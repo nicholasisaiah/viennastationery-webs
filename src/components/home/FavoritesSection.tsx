@@ -21,7 +21,7 @@ export function FavoritesSection() {
 
           <div className="flex-shrink-0">
             <Button
-              href="https://shopee.co.id"
+              href="https://id.shp.ee/JDMuodop"
               variant="primary"
               size="md"
               ariaLabel="See More on Shopee"
@@ -54,7 +54,7 @@ export function FavoritesSection() {
                 price={product.price}
                 image={product.image}
                 badge={product.badge}
-                href="https://shopee.co.id"
+                href="https://id.shp.ee/JDMuodop"
               />
             </div>
           ))}

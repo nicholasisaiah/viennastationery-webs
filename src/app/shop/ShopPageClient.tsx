@@ -188,7 +188,7 @@ export function ShopPageClient() {
               Our full catalog is available on Shopee with secure payment, fast shipping, and easy returns.
             </p>
             <Button
-              href="https://shopee.co.id"
+              href="https://id.shp.ee/JDMuodop"
               variant="primary"
               size="lg"
               ariaLabel="Shop all Vienna products on Shopee"

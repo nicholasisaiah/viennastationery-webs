@@ -21,7 +21,7 @@ export function CtaFooterSection() {
               Explore Vienna
             </Button>
             <Button
-              href="https://shopee.co.id"
+              href="https://id.shp.ee/JDMuodop"
               variant="secondary"
               size="lg"
               ariaLabel="Shop on Shopee"
