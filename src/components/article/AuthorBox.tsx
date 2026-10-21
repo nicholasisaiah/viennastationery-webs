@@ -1,18 +1,24 @@
+"use client";
 import React from "react";
 import Image from "next/image";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 interface AuthorBoxProps {
   name?: string;
   role?: string;
   avatar?: string;
   bio?: string;
+  instagramUrl?: string;
 }
 
 export function AuthorBox({
   name = "Vienna Creative Team",
   avatar = "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=200&q=80",
-  bio = "We are a collective of dreamers and designers dedicated to bringing more loveliness into everyday moments through curated stationery and stories.",
+  bio,
+  instagramUrl = "https://instagram.com/viennastationery",
 }: AuthorBoxProps) {
+  const { t } = useLanguage();
+  const displayBio = bio ?? t("article.authorBio");
   return (
     <div className="bg-vienna-lavender-light/60 border border-vienna-lavender rounded-2xl md:rounded-3xl p-6 sm:p-8 my-10 shadow-soft flex flex-col sm:flex-row items-center sm:items-start gap-6 text-center sm:text-left">
       {/* Avatar */}
@@ -32,12 +38,12 @@ export function AuthorBox({
           {name}
         </h3>
         <p className="font-nunito text-vienna-text-muted text-xs sm:text-sm leading-relaxed">
-          {bio}
+          {displayBio}
         </p>
 
         <div className="pt-2">
           <a
-            href="https://instagram.com"
+            href={instagramUrl}
             target="_blank"
             rel="noopener noreferrer"
             className="
@@ -61,7 +67,7 @@ export function AuthorBox({
               <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
               <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
             </svg>
-            <span>FOLLOW OUR JOURNEY</span>
+            <span>{t("article.followCta")}</span>
           </a>
         </div>
       </div>

@@ -19,7 +19,7 @@ interface Props {
 const LIKE_PREFIX = "vienna_liked_comment_";
 
 export function CommentsSection({ slug }: Props) {
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
   const [comments, setComments] = useState<Comment[]>([]);
   const [loading, setLoading] = useState(true);
   const [newAuthor, setNewAuthor] = useState("");
