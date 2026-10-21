@@ -5,13 +5,13 @@ import Image from "next/image";
 import { Button } from "@/components/ui/Button";
 import { PaperTextureBackground } from "@/components/ui/PaperTextureBackground";
 import { WashiTape } from "@/components/ui/WashiTape";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 export function HeroSection() {
+  const { t } = useLanguage();
   const scrollToAbout = () => {
     const aboutEl = document.getElementById("about-section");
-    if (aboutEl) {
-      aboutEl.scrollIntoView({ behavior: "smooth" });
-    }
+    if (aboutEl) aboutEl.scrollIntoView({ behavior: "smooth" });
   };
 
   return (
@@ -22,32 +22,22 @@ export function HeroSection() {
           {/* Left Column Text */}
           <div className="lg:col-span-6 space-y-6 text-left animate-fade-in-up">
             <h1 className="font-outfit font-extrabold text-vienna-text-heading text-4xl sm:text-5xl lg:text-6xl leading-[1.15] tracking-tight">
-              Making Everyday Moments a Little{" "}
+              {t("hero.headline1")}{" "}
               <span className="font-playfair italic font-normal text-vienna-rose block sm:inline">
-                More Lovely.
+                {t("hero.headline2")}
               </span>
             </h1>
 
             <p className="font-nunito text-vienna-text-muted text-base sm:text-lg max-w-lg leading-relaxed">
-              Designed for the dreamers, the planners, and those who find magic in the small details of daily life. Welcome to the world of Vienna.
+              {t("hero.sub")}
             </p>
 
             <div className="flex flex-wrap items-center gap-4 pt-2">
-              <Button
-                onClick={scrollToAbout}
-                variant="primary"
-                size="lg"
-                ariaLabel="Get to know Vienna"
-              >
-                Get to Know Vienna
+              <Button onClick={scrollToAbout} variant="primary" size="lg" ariaLabel={t("hero.ctaJournal")}>
+                {t("hero.ctaJournal")}
               </Button>
-              <Button
-                href="https://id.shp.ee/JDMuodop"
-                variant="secondary"
-                size="lg"
-                ariaLabel="Shop on Shopee"
-              >
-                Shop on Shopee
+              <Button href="https://id.shp.ee/JDMuodop" variant="secondary" size="lg" ariaLabel={t("hero.ctaShop")}>
+                {t("hero.ctaShop")}
               </Button>
             </div>
           </div>

@@ -3,12 +3,7 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-
-const NAV_LINKS = [
-  { label: "ABOUT", href: "/about" },
-  { label: "SHOP", href: "/shop" },
-  { label: "JOURNAL", href: "/journal" },
-] as const;
+import { useLanguage } from "@/contexts/LanguageContext";
 
 interface NavbarProps {
   variant?: "paper" | "cream";
@@ -18,29 +13,25 @@ export function Navbar({ variant = "cream" }: NavbarProps) {
   const pathname = usePathname();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const { lang, setLang, t } = useLanguage();
 
-  // Close mobile menu on route change
-  useEffect(() => {
-    setMobileOpen(false);
-  }, [pathname]);
+  const NAV_LINKS = [
+    { label: t("nav.about").toUpperCase(), href: "/about" },
+    { label: t("nav.shop").toUpperCase(), href: "/shop" },
+    { label: t("nav.journal").toUpperCase(), href: "/journal" },
+  ];
 
-  // Add shadow on scroll
+  useEffect(() => { setMobileOpen(false); }, [pathname]);
+
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 10);
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Lock body scroll when mobile menu is open
   useEffect(() => {
-    if (mobileOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "";
-    }
-    return () => {
-      document.body.style.overflow = "";
-    };
+    document.body.style.overflow = mobileOpen ? "hidden" : "";
+    return () => { document.body.style.overflow = ""; };
   }, [mobileOpen]);
 
   const bgClass =
@@ -91,7 +82,6 @@ export function Navbar({ variant = "cream" }: NavbarProps) {
                   `}
                 >
                   {label}
-                  {/* Active underline */}
                   {isActive && (
                     <span
                       className="absolute bottom-0 left-0 right-0 h-[2px] bg-vienna-rose rounded-full"
@@ -104,38 +94,53 @@ export function Navbar({ variant = "cream" }: NavbarProps) {
           })}
         </ul>
 
-        {/* Right icons */}
-        <div className="flex items-center gap-3">
-          {/* Search */}
-          <button
-            className="
-              p-2 rounded-full
-              text-vienna-text-muted hover:text-vienna-text-heading
-              transition-colors duration-200
-              focus-visible:ring-2 focus-visible:ring-vienna-rose
-              cursor-pointer
-            "
-            aria-label="Search"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="20"
-              height="20"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              aria-hidden="true"
-            >
-              <circle cx="11" cy="11" r="8" />
-              <line x1="21" y1="21" x2="16.65" y2="16.65" />
-            </svg>
-          </button>
+        {/* Right side */}
+        <div className="flex items-center gap-2">
 
-          {/* Bag */}
-          <button
+          {/* Language Toggle */}
+          <div
+            className="
+              hidden md:flex items-center
+              bg-vienna-offwhite border border-vienna-lavender/40
+              rounded-pill overflow-hidden text-[10px] font-outfit font-bold
+              tracking-widest
+            "
+            role="group"
+            aria-label="Pilih bahasa"
+          >
+            <button
+              onClick={() => setLang("id")}
+              className={`
+                px-3 py-1.5 transition-all duration-200 cursor-pointer
+                ${lang === "id"
+                  ? "bg-vienna-rose text-white"
+                  : "text-vienna-text-muted hover:text-vienna-text-heading"
+                }
+              `}
+              aria-pressed={lang === "id"}
+            >
+              ID
+            </button>
+            <button
+              onClick={() => setLang("en")}
+              className={`
+                px-3 py-1.5 transition-all duration-200 cursor-pointer
+                ${lang === "en"
+                  ? "bg-vienna-rose text-white"
+                  : "text-vienna-text-muted hover:text-vienna-text-heading"
+                }
+              `}
+              aria-pressed={lang === "en"}
+            >
+              EN
+            </button>
+          </div>
+
+          {/* Shopee bag button */}
+          <a
+            href="https://id.shp.ee/JDMuodop"
+            target="_blank"
+            rel="noopener noreferrer"
             className="
               w-9 h-9
               flex items-center justify-center
@@ -147,7 +152,7 @@ export function Navbar({ variant = "cream" }: NavbarProps) {
               focus-visible:ring-2 focus-visible:ring-vienna-rose
               cursor-pointer
             "
-            aria-label="Shopping bag"
+            aria-label={t("nav.shopCta")}
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -165,7 +170,7 @@ export function Navbar({ variant = "cream" }: NavbarProps) {
               <line x1="3" y1="6" x2="21" y2="6" />
               <path d="M16 10a4 4 0 01-8 0" />
             </svg>
-          </button>
+          </a>
 
           {/* Mobile hamburger */}
           <button
@@ -182,20 +187,9 @@ export function Navbar({ variant = "cream" }: NavbarProps) {
             onClick={() => setMobileOpen(!mobileOpen)}
             aria-expanded={mobileOpen}
             aria-controls="mobile-menu"
-            aria-label={mobileOpen ? "Close menu" : "Open menu"}
+            aria-label={mobileOpen ? "Tutup menu" : "Buka menu"}
           >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              aria-hidden="true"
-            >
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
               {mobileOpen ? (
                 <>
                   <line x1="18" y1="6" x2="6" y2="18" />
@@ -216,26 +210,44 @@ export function Navbar({ variant = "cream" }: NavbarProps) {
       {/* Mobile overlay menu */}
       {mobileOpen && (
         <>
-          {/* Backdrop */}
           <div
             className="fixed inset-0 bg-black/20 backdrop-blur-sm z-40 md:hidden"
             onClick={() => setMobileOpen(false)}
             aria-hidden="true"
           />
-
-          {/* Menu panel */}
           <div
             id="mobile-menu"
             className="
               fixed inset-x-0 top-0 z-40 md:hidden
               bg-vienna-cream pt-20 pb-8 px-6
-              shadow-medium
-              animate-fade-in
+              shadow-medium animate-fade-in
             "
             role="dialog"
             aria-modal="true"
             aria-label="Mobile navigation"
           >
+            {/* Mobile Language Toggle */}
+            <div className="flex gap-2 mb-6 pb-4 border-b border-vienna-lavender/30">
+              <button
+                onClick={() => setLang("id")}
+                className={`
+                  flex-1 py-2 rounded-pill text-[11px] font-outfit font-bold tracking-widest transition-all cursor-pointer
+                  ${lang === "id" ? "bg-vienna-rose text-white" : "bg-vienna-offwhite text-vienna-text-muted"}
+                `}
+              >
+                🇮🇩 Indonesia
+              </button>
+              <button
+                onClick={() => setLang("en")}
+                className={`
+                  flex-1 py-2 rounded-pill text-[11px] font-outfit font-bold tracking-widest transition-all cursor-pointer
+                  ${lang === "en" ? "bg-vienna-rose text-white" : "bg-vienna-offwhite text-vienna-text-muted"}
+                `}
+              >
+                🇬🇧 English
+              </button>
+            </div>
+
             <ul className="flex flex-col gap-1" role="list">
               {NAV_LINKS.map(({ label, href }) => {
                 const isActive = pathname === href || pathname.startsWith(href + "/");
@@ -246,12 +258,10 @@ export function Navbar({ variant = "cream" }: NavbarProps) {
                       className={`
                         block py-3 px-4
                         font-outfit text-sm font-medium tracking-[0.2em]
-                        rounded-lg
-                        transition-colors duration-200
-                        ${
-                          isActive
-                            ? "text-vienna-rose bg-vienna-pink-circle"
-                            : "text-vienna-text-heading hover:bg-vienna-offwhite"
+                        rounded-lg transition-colors duration-200
+                        ${isActive
+                          ? "text-vienna-rose bg-vienna-pink-circle"
+                          : "text-vienna-text-heading hover:bg-vienna-offwhite"
                         }
                       `}
                     >

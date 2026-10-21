@@ -9,6 +9,7 @@ import {
 } from "next/font/google";
 import "./globals.css";
 import { Navbar } from "@/components/layout/Navbar";
+import { LanguageProvider } from "@/contexts/LanguageContext";
 
 const outfit = Outfit({
   variable: "--font-outfit",
@@ -107,7 +108,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
-      lang="en"
+      lang="id"
       className={`
         ${outfit.variable}
         ${playfair.variable}
@@ -119,13 +120,15 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       `}
     >
       <body className="min-h-full flex flex-col">
-        <a href="#main-content" className="skip-link">
-          Skip to content
-        </a>
-        <Navbar />
-        <main id="main-content" className="flex-1">
-          {children}
-        </main>
+        <LanguageProvider>
+          <a href="#main-content" className="skip-link">
+            Skip to content
+          </a>
+          <Navbar />
+          <main id="main-content" className="flex-1">
+            {children}
+          </main>
+        </LanguageProvider>
       </body>
     </html>
   );
