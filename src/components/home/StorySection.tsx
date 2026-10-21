@@ -1,7 +1,10 @@
+"use client";
 import React from "react";
 import Image from "next/image";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 export function StorySection() {
+  const { t } = useLanguage();
   return (
     <section className="bg-vienna-cream py-16 md:py-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -9,7 +12,7 @@ export function StorySection() {
         {/* Centered Heading */}
         <div className="text-center max-w-xl mx-auto mb-14">
           <h2 className="font-outfit font-bold text-vienna-text-heading text-2xl sm:text-3xl md:text-4xl tracking-tight">
-            It Started With the Little Things.
+            {t("story.headline1")}
           </h2>
           <div className="w-12 h-[3px] bg-vienna-rose mx-auto mt-3 rounded-full" aria-hidden="true" />
         </div>
@@ -50,10 +53,10 @@ export function StorySection() {
           >
             <div>
               <h3 className="font-playfair italic font-bold text-vienna-text-heading text-xl sm:text-2xl mb-3">
-                The Journaling Joy
+                {t("story.badge1")}
               </h3>
               <p className="font-nunito text-vienna-text-dark text-xs sm:text-sm leading-relaxed">
-                It began in a small apartment with a single shelf of notebooks. We realized that a beautiful journal didn&apos;t just hold notes—it held dreams, plans, and the quietest parts of our day.
+                {t("story.body1")}
               </p>
             </div>
 

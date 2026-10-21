@@ -85,10 +85,11 @@ function RenderSections({ sections }: { sections: ArticleSection[] }) {
           return (
             <PullQuote
               key={idx}
-              quote={section.text}
               author={section.author}
               role={section.role}
-            />
+            >
+              {section.text}
+            </PullQuote>
           );
         }
         // Default: paragraph
