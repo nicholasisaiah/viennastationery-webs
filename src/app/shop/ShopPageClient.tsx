@@ -146,8 +146,11 @@ export function ShopPageClient() {
                     key={product.id}
                     name={product.name}
                     price={product.price}
+                    originalPrice={product.originalPrice}
                     image={product.image}
+                    variants={product.variants}
                     badge={product.badge}
+                    shopeeUrl={product.shopeeUrl}
                     href={product.shopeeUrl}
                   />
                 ))}

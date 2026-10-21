@@ -1,10 +1,17 @@
+export interface ProductVariant {
+  label: string; // nama varian, e.g. "BLUE", "PINK"
+  image: string; // URL foto untuk varian ini
+}
+
 export interface Product {
   id: string;
   slug: string;
   name: string;
   price: number;
+  originalPrice?: number;  // harga sebelum diskon (opsional)
   image: string;
   images: string[];
+  variants?: ProductVariant[]; // variasi warna (opsional)
   badge?: "MUST HAVE" | "NEW" | "BEST SELLER";
   category: "NOTEBOOKS" | "PENS & WRITING" | "STICKERS & TAPES" | "DESK ACCESSORIES" | "ORGANIZERS";
   shortDescription: string;

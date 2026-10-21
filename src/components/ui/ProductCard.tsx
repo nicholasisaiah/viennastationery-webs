@@ -1,11 +1,21 @@
-import React from "react";
+"use client";
+
+import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+
+export interface ProductVariant {
+  label: string; // e.g. "BLUE", "PINK", "MIX"
+  image: string; // URL foto untuk varian ini
+}
 
 interface ProductCardProps {
   name: string;
   price: number;
+  originalPrice?: number; // harga sebelum diskon
   image: string;
+  images?: string[]; // gambar tambahan
+  variants?: ProductVariant[]; // variasi warna
   href: string;
   shopeeUrl?: string;
   badge?: string;
@@ -22,12 +32,24 @@ export function formatPriceRp(price: number): string {
 export function ProductCard({
   name,
   price,
+  originalPrice,
   image,
+  variants,
   href,
   shopeeUrl = "https://id.shp.ee/JDMuodop",
   badge,
   className = "",
 }: ProductCardProps) {
+  const [activeImage, setActiveImage] = useState(image);
+  const [activeVariant, setActiveVariant] = useState<string | null>(
+    variants?.[0]?.label ?? null
+  );
+
+  const discount =
+    originalPrice && originalPrice > price
+      ? Math.round(((originalPrice - price) / originalPrice) * 100)
+      : null;
+
   return (
     <div
       className={`
@@ -42,7 +64,7 @@ export function ProductCard({
         {/* Image container */}
         <div className="relative overflow-hidden rounded-lg md:rounded-xl aspect-square bg-vienna-offwhite mb-3">
           <Image
-            src={image}
+            src={activeImage}
             alt={name}
             fill
             className="object-cover transition-transform duration-500 group-hover:scale-105"
@@ -62,18 +84,79 @@ export function ProductCard({
               {badge}
             </span>
           )}
+
+          {/* Discount tag */}
+          {discount && (
+            <span
+              className="
+                absolute top-2.5 right-2.5
+                bg-vienna-rose text-white
+                text-[9px] font-outfit font-bold
+                px-2 py-0.5 rounded-pill shadow-xs
+              "
+            >
+              -{discount}%
+            </span>
+          )}
         </div>
 
         {/* Product info */}
         <div>
-          <h3 className="font-outfit font-semibold text-vienna-text-heading text-xs sm:text-sm md:text-base leading-snug line-clamp-1 group-hover:text-vienna-rose transition-colors">
+          <h3 className="font-outfit font-semibold text-vienna-text-heading text-xs sm:text-sm md:text-base leading-snug line-clamp-2 group-hover:text-vienna-rose transition-colors">
             {name}
           </h3>
-          <p className="text-vienna-rose font-outfit font-bold text-xs sm:text-sm mt-1">
-            {formatPriceRp(price)}
-          </p>
+
+          {/* Price */}
+          <div className="flex items-center gap-2 mt-1.5">
+            <p className="text-vienna-rose font-outfit font-bold text-xs sm:text-sm">
+              {formatPriceRp(price)}
+            </p>
+            {originalPrice && originalPrice > price && (
+              <p className="text-vienna-text-muted font-outfit text-[10px] line-through">
+                {formatPriceRp(originalPrice)}
+              </p>
+            )}
+          </div>
         </div>
       </Link>
+
+      {/* Color Variants */}
+      {variants && variants.length > 0 && (
+        <div className="mt-2.5 flex flex-wrap gap-1.5">
+          {variants.map((v) => (
+            <button
+              key={v.label}
+              onClick={() => {
+                setActiveImage(v.image);
+                setActiveVariant(v.label);
+              }}
+              title={v.label}
+              aria-label={`Pilih warna ${v.label}`}
+              className={`
+                relative w-6 h-6 rounded-full overflow-hidden border-2 transition-all duration-200
+                ${
+                  activeVariant === v.label
+                    ? "border-vienna-rose scale-110 shadow-xs"
+                    : "border-transparent hover:border-vienna-lavender"
+                }
+              `}
+            >
+              <Image
+                src={v.image}
+                alt={v.label}
+                fill
+                className="object-cover"
+                sizes="24px"
+              />
+            </button>
+          ))}
+          {activeVariant && (
+            <span className="self-center text-[9px] font-outfit text-vienna-text-muted uppercase tracking-wide">
+              {activeVariant}
+            </span>
+          )}
+        </div>
+      )}
 
       {/* Shopee Buy Button */}
       <div className="mt-3 pt-2 border-t border-vienna-lavender/20">
