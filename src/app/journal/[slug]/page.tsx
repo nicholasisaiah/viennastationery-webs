@@ -5,7 +5,6 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ARTICLES_DATA } from "@/data/articles";
 import { ARTICLE_BODIES } from "@/data/articleBodies";
-import { ArticleCard } from "@/components/ui/ArticleCard";
 import { WashiTape } from "@/components/ui/WashiTape";
 import { CtaFooterSection } from "@/components/layout/CtaFooterSection";
 import {
@@ -17,6 +16,7 @@ import {
   CommentsSection,
   JsonLd,
   ArticleBodyClient,
+  MoreStoriesSection,
 } from "@/components/article";
 
 interface ArticleDetailPageProps {
@@ -210,40 +210,7 @@ export default async function ArticleDetailPage({ params }: ArticleDetailPagePro
           </div>
         </div>
 
-        {/* More Stories */}
-        <section className="py-16 bg-vienna-paper-gray/40 paper-texture border-t border-vienna-lavender/40">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10">
-              <div>
-                <h3 className="font-fredoka font-bold text-vienna-text-heading text-2xl sm:text-3xl">
-                  More Stories <span className="text-vienna-rose-light">♡</span>
-                </h3>
-                <p className="font-nunito text-vienna-text-muted text-sm sm:text-base mt-1">
-                  Continue your creative journey.
-                </p>
-              </div>
-              <Link
-                href="/journal"
-                className="font-outfit text-xs font-bold text-vienna-rose uppercase tracking-[0.2em] underline underline-offset-4 hover:text-vienna-rose-dark transition-colors"
-              >
-                BACK TO JOURNAL HOME
-              </Link>
-            </div>
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-              {relatedArticles.map((rel) => (
-                <ArticleCard
-                  key={rel.id}
-                  title={rel.title}
-                  category={rel.category}
-                  excerpt={rel.excerpt}
-                  image={rel.image}
-                  href={`/journal/${rel.slug}`}
-                />
-              ))}
-            </div>
-          </div>
-        </section>
+        <MoreStoriesSection articles={relatedArticles} />
       </div>
 
       <CtaFooterSection />

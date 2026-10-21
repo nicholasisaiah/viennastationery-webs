@@ -25,6 +25,8 @@ export function CommentsSection({ slug }: Props) {
   const [newAuthor, setNewAuthor] = useState("");
   const [newContent, setNewContent] = useState("");
   const [submitting, setSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState("");
+  const [submitSuccess, setSubmitSuccess] = useState(false);
   const [likedIds, setLikedIds] = useState<Set<string>>(new Set());
 
   // Load liked comment IDs from localStorage
@@ -95,18 +97,28 @@ export function CommentsSection({ slug }: Props) {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!newContent.trim()) return;
+    if (!newContent.trim() || submitting) return;
     setSubmitting(true);
+    setSubmitError("");
+    setSubmitSuccess(false);
 
     const { error } = await supabase.from("comments").insert({
       article_slug: slug,
-      author: newAuthor.trim() || "Anonymous Reader",
+      author: newAuthor.trim() || (lang === "id" ? "Pembaca Anonim" : "Anonymous Reader"),
       content: newContent.trim(),
     });
 
     if (!error) {
       setNewAuthor("");
       setNewContent("");
+      setSubmitSuccess(true);
+      setTimeout(() => setSubmitSuccess(false), 3000);
+    } else {
+      setSubmitError(
+        lang === "id"
+          ? "Gagal mengirim komentar. Coba lagi."
+          : "Failed to send comment. Please try again."
+      );
     }
     setSubmitting(false);
   };
@@ -143,10 +155,20 @@ export function CommentsSection({ slug }: Props) {
   const formatDate = (dateStr: string) => {
     const date = new Date(dateStr);
     const diff = (Date.now() - date.getTime()) / 1000;
-    if (diff < 60) return t("common.ago") === "ago" ? "Just now" : "Baru saja";
-    if (diff < 3600) return `${Math.floor(diff / 60)} ${t("common.minutesAgo")}`;
-    if (diff < 86400) return `${Math.floor(diff / 3600)} jam ${t("common.ago")}`;
-    return date.toLocaleDateString("id-ID", { day: "numeric", month: "short", year: "numeric" });
+    if (diff < 60) return lang === "id" ? "Baru saja" : "Just now";
+    if (diff < 3600) {
+      const mins = Math.floor(diff / 60);
+      return lang === "id" ? `${mins} menit yang lalu` : `${mins} min ago`;
+    }
+    if (diff < 86400) {
+      const hours = Math.floor(diff / 3600);
+      return lang === "id" ? `${hours} jam yang lalu` : `${hours}h ago`;
+    }
+    return date.toLocaleDateString(lang === "id" ? "id-ID" : "en-US", {
+      day: "numeric",
+      month: "short",
+      year: "numeric",
+    });
   };
 
   return (
@@ -164,7 +186,7 @@ export function CommentsSection({ slug }: Props) {
           type="text"
           value={newAuthor}
           onChange={(e) => setNewAuthor(e.target.value)}
-          placeholder={t("article.commentPlaceholder") + " (opsional)"}  
+          placeholder={lang === "id" ? "Namamu (opsional)" : "Your name (optional)"}
           maxLength={60}
           className="w-full px-4 py-3 rounded-xl border border-vienna-lavender bg-white text-vienna-text-dark text-sm font-nunito placeholder:text-vienna-text-light focus:outline-none focus:ring-2 focus:ring-vienna-rose shadow-soft"
         />
@@ -190,6 +212,15 @@ export function CommentsSection({ slug }: Props) {
             {submitting ? t("common.loading") : t("article.commentCta")}
           </button>
         </div>
+        {/* Error / success feedback */}
+        {submitError && (
+          <p className="text-red-500 text-xs font-nunito mt-1">{submitError}</p>
+        )}
+        {submitSuccess && (
+          <p className="text-emerald-600 text-xs font-nunito mt-1">
+            {lang === "id" ? "✓ Komentarmu berhasil dikirim!" : "✓ Comment sent successfully!"}
+          </p>
+        )}
       </form>
 
       {/* Comments List */}

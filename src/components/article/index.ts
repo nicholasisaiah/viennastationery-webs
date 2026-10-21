@@ -6,3 +6,4 @@ export { AuthorBox } from "./AuthorBox";
 export { CommentsSection } from "./CommentsSection";
 export { JsonLd } from "./JsonLd";
 export { ArticleBodyClient } from "./ArticleBodyClient";
+export { MoreStoriesSection } from "./MoreStoriesSection";

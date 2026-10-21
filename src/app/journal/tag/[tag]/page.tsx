@@ -73,6 +73,8 @@ export default async function JournalTagPage({ params }: TagPageProps) {
                 excerpt={art.excerpt}
                 image={art.image}
                 href={`/journal/${art.slug}`}
+                readTime={art.readTime}
+                date={art.date}
               />
             ))}
           </div>

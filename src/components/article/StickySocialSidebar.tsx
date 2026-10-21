@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import { supabase } from "@/lib/supabase";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 interface Props {
   slug: string;
@@ -10,9 +11,11 @@ interface Props {
 const LIKE_PREFIX = "vienna_liked_article_";
 
 export function StickySocialSidebar({ slug }: Props) {
+  const { t, lang } = useLanguage();
   const [likes, setLikes] = useState(0);
   const [hasLiked, setHasLiked] = useState(false);
   const [commentCount, setCommentCount] = useState(0);
+  const [copied, setCopied] = useState(false);
 
   // Restore like state from localStorage
   useEffect(() => {
@@ -93,6 +96,8 @@ export function StickySocialSidebar({ slug }: Props) {
 
   const copyLink = () => {
     navigator.clipboard.writeText(window.location.href);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
   };
 
   return (
@@ -153,14 +158,25 @@ export function StickySocialSidebar({ slug }: Props) {
         {/* Copy link */}
         <button
           onClick={copyLink}
-          className="text-vienna-text-muted hover:text-vienna-rose transition-colors p-1 cursor-pointer"
+          className="flex flex-col items-center gap-1 text-vienna-text-muted hover:text-vienna-rose transition-colors p-1 cursor-pointer"
           aria-label="Copy link to clipboard"
-          title="Copy link"
+          title={copied ? (lang === "id" ? "Disalin!" : "Copied!") : (lang === "id" ? "Salin link" : "Copy link")}
         >
-          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
-            <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" />
-            <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" />
-          </svg>
+          {copied ? (
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#C67D7D" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <polyline points="20 6 9 17 4 12" />
+            </svg>
+          ) : (
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" />
+              <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" />
+            </svg>
+          )}
+          {copied && (
+            <span className="font-outfit text-[9px] font-bold text-vienna-rose">
+              {lang === "id" ? "Disalin!" : "Copied!"}
+            </span>
+          )}
         </button>
       </aside>
 
@@ -191,9 +207,12 @@ export function StickySocialSidebar({ slug }: Props) {
 
         <button
           onClick={copyLink}
-          className="text-xs font-outfit font-bold text-vienna-text-muted hover:text-vienna-rose cursor-pointer"
+          className="text-xs font-outfit font-bold text-vienna-text-muted hover:text-vienna-rose cursor-pointer transition-colors"
         >
-          SHARE
+          {copied
+            ? (lang === "id" ? "✓ Disalin!" : "✓ Copied!")
+            : t("article.shareLabel").toUpperCase()
+          }
         </button>
       </div>
     </>

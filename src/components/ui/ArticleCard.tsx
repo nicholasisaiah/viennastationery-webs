@@ -8,6 +8,8 @@ interface ArticleCardProps {
   excerpt?: string;
   image: string;
   href: string;
+  readTime?: string;
+  date?: string;
   variant?: "default" | "featured";
   className?: string;
 }
@@ -18,6 +20,8 @@ export function ArticleCard({
   excerpt,
   image,
   href,
+  readTime,
+  date,
   variant = "default",
   className = "",
 }: ArticleCardProps) {
@@ -83,6 +87,17 @@ export function ArticleCard({
           <p className="text-vienna-text-muted text-sm mt-2 line-clamp-2 font-nunito">
             {excerpt}
           </p>
+        )}
+        {(readTime || date) && (
+          <div className="flex items-center gap-2 mt-3">
+            {date && (
+              <span className="font-nunito text-vienna-text-light text-xs">{date}</span>
+            )}
+            {date && readTime && <span className="text-vienna-rose/40">·</span>}
+            {readTime && (
+              <span className="font-nunito text-vienna-text-light text-xs">{readTime}</span>
+            )}
+          </div>
         )}
       </div>
     </Link>
