@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import { supabase } from "@/lib/supabase";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 interface Comment {
   id: string;
@@ -18,6 +19,7 @@ interface Props {
 const LIKE_PREFIX = "vienna_liked_comment_";
 
 export function CommentsSection({ slug }: Props) {
+  const { t } = useLanguage();
   const [comments, setComments] = useState<Comment[]>([]);
   const [loading, setLoading] = useState(true);
   const [newAuthor, setNewAuthor] = useState("");
@@ -141,16 +143,16 @@ export function CommentsSection({ slug }: Props) {
   const formatDate = (dateStr: string) => {
     const date = new Date(dateStr);
     const diff = (Date.now() - date.getTime()) / 1000;
-    if (diff < 60) return "Just now";
-    if (diff < 3600) return `${Math.floor(diff / 60)} min ago`;
-    if (diff < 86400) return `${Math.floor(diff / 3600)} hr ago`;
+    if (diff < 60) return t("common.ago") === "ago" ? "Just now" : "Baru saja";
+    if (diff < 3600) return `${Math.floor(diff / 60)} ${t("common.minutesAgo")}`;
+    if (diff < 86400) return `${Math.floor(diff / 3600)} jam ${t("common.ago")}`;
     return date.toLocaleDateString("id-ID", { day: "numeric", month: "short", year: "numeric" });
   };
 
   return (
     <section id="thoughts-and-whispers" className="py-12 my-10 border-t border-vienna-lavender/50">
       <h3 className="font-fredoka font-bold text-vienna-text-heading text-2xl sm:text-3xl mb-8">
-        Thoughts &amp; Whispers{" "}
+        {t("article.commentsHeadline")}{" "}
         <span className="text-vienna-rose text-xl sm:text-2xl font-normal ml-1 font-outfit">
           ({comments.length})
         </span>
@@ -162,7 +164,7 @@ export function CommentsSection({ slug }: Props) {
           type="text"
           value={newAuthor}
           onChange={(e) => setNewAuthor(e.target.value)}
-          placeholder="Your name (optional)"
+          placeholder={t("article.commentPlaceholder") + " (opsional)"}  
           maxLength={60}
           className="w-full px-4 py-3 rounded-xl border border-vienna-lavender bg-white text-vienna-text-dark text-sm font-nunito placeholder:text-vienna-text-light focus:outline-none focus:ring-2 focus:ring-vienna-rose shadow-soft"
         />
@@ -170,7 +172,7 @@ export function CommentsSection({ slug }: Props) {
           id="comment-textarea"
           value={newContent}
           onChange={(e) => setNewContent(e.target.value)}
-          placeholder="Share your thoughts, rituals, or questions..."
+          placeholder={t("article.commentPlaceholder")}
           rows={3}
           maxLength={1000}
           required
@@ -185,7 +187,7 @@ export function CommentsSection({ slug }: Props) {
             disabled={submitting || !newContent.trim()}
             className="px-7 py-2.5 bg-vienna-rose text-white font-outfit font-semibold text-xs sm:text-sm uppercase tracking-wider rounded-pill hover:bg-vienna-rose-dark disabled:opacity-50 transition-colors duration-200 shadow-soft cursor-pointer"
           >
-            {submitting ? "Posting..." : "Post Comment"}
+            {submitting ? t("common.loading") : t("article.commentCta")}
           </button>
         </div>
       </form>
@@ -208,7 +210,7 @@ export function CommentsSection({ slug }: Props) {
         <div className="text-center py-10 space-y-2">
           <p className="text-3xl">🌸</p>
           <p className="font-nunito text-vienna-text-muted text-sm">
-            Be the first to share your thoughts!
+            {t("article.noComments")}
           </p>
         </div>
       ) : (

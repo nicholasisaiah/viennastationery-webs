@@ -16,6 +16,7 @@ import {
   AuthorBox,
   CommentsSection,
   JsonLd,
+  ArticleBodyClient,
 } from "@/components/article";
 
 interface ArticleDetailPageProps {
@@ -166,52 +167,11 @@ export default async function ArticleDetailPage({ params }: ArticleDetailPagePro
               </div>
             </div>
 
-            {/* Article Body — unique content per slug */}
+            {/* Article Body — bilingual via ArticleBodyClient */}
             <div className="prose prose-vienna max-w-none text-vienna-text-dark text-base sm:text-lg leading-[1.8] space-y-6 pt-4">
               {bodyData ? (
-                bodyData.sections.map((section, idx) => {
-                  if (section.type === "dropcap") {
-                    return (
-                      <p
-                        key={idx}
-                        className="first-letter:font-fredoka first-letter:text-6xl first-letter:font-bold first-letter:text-vienna-rose first-letter:float-left first-letter:mr-3.5 first-letter:leading-none first-letter:mt-1"
-                      >
-                        {section.text}
-                      </p>
-                    );
-                  }
-                  if (section.type === "h2") {
-                    return (
-                      <h2
-                        key={idx}
-                        className="font-fredoka font-bold text-vienna-text-heading text-2xl sm:text-3xl pt-4 border-t border-vienna-lavender/30"
-                      >
-                        {section.text}
-                      </h2>
-                    );
-                  }
-                  if (section.type === "h3") {
-                    return (
-                      <h3
-                        key={idx}
-                        className="font-fredoka font-bold text-vienna-text-heading text-xl sm:text-2xl"
-                      >
-                        {section.text}
-                      </h3>
-                    );
-                  }
-                  if (section.type === "pullQuote") {
-                    return (
-                      <PullQuote key={idx} author={section.author || ""} role={section.role || ""}>
-                        {section.text}
-                      </PullQuote>
-                    );
-                  }
-                  // paragraph (default)
-                  return <p key={idx}>{section.text}</p>;
-                })
+                <ArticleBodyClient slug={slug} sections={bodyData.sections} />
               ) : (
-                // Fallback: use excerpt as first paragraph
                 <p className="first-letter:font-fredoka first-letter:text-6xl first-letter:font-bold first-letter:text-vienna-rose first-letter:float-left first-letter:mr-3.5 first-letter:leading-none first-letter:mt-1">
                   {article.excerpt}
                 </p>

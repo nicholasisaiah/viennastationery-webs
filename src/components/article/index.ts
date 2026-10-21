@@ -5,3 +5,4 @@ export { PolaroidGallery } from "./PolaroidGallery";
 export { AuthorBox } from "./AuthorBox";
 export { CommentsSection } from "./CommentsSection";
 export { JsonLd } from "./JsonLd";
+export { ArticleBodyClient } from "./ArticleBodyClient";

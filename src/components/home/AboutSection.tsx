@@ -1,7 +1,10 @@
+"use client";
 import React from "react";
 import Image from "next/image";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 export function AboutSection() {
+  const { t } = useLanguage();
   return (
     <section id="about-section" className="bg-white py-16 md:py-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -49,7 +52,7 @@ export function AboutSection() {
                   />
                 </div>
                 <p className="handwritten text-center text-vienna-rose text-base mt-2.5 font-medium">
-                  for the little things♡
+                  {t("about.sticker")}
                 </p>
               </div>
 
@@ -60,23 +63,23 @@ export function AboutSection() {
           <div className="lg:col-span-6 space-y-6 pt-6 lg:pt-0">
             {/* Small uppercase label */}
             <span className="text-vienna-rose font-outfit text-xs font-bold uppercase tracking-[0.2em] inline-flex items-center gap-1">
-              A LITTLE ABOUT VIENNA <span aria-hidden="true">♡</span>
+              {t("about.badge")} <span aria-hidden="true">♡</span>
             </span>
 
             {/* Title */}
             <h2 className="font-playfair italic font-bold text-vienna-text-heading text-3xl sm:text-4xl lg:text-5xl leading-tight">
-              Stationery should be more than just stationery.
+              {t("about.headline")}
             </h2>
 
             {/* Paragraph */}
             <p className="font-nunito text-vienna-text-dark text-base sm:text-lg leading-relaxed">
-              We believe your tools for expression should spark joy every time you touch them. Vienna was born from a love for delicate textures, soft hues, and the quiet ritual of putting pen to paper.
+              {t("about.body")}
             </p>
 
-            {/* Blockquote with left pink border */}
+            {/* Blockquote */}
             <blockquote className="border-l-2 border-vienna-rose pl-5 py-1 my-4">
               <p className="font-nunito text-vienna-text-muted text-sm sm:text-base italic leading-relaxed">
-                Our collections are curated for those who appreciate the aesthetic of organization and the art of the intentional pause.
+                {t("story.body1")}
               </p>
             </blockquote>
           </div>
