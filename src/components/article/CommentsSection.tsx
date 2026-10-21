@@ -114,10 +114,10 @@ export function CommentsSection({ slug }: Props) {
       setSubmitSuccess(true);
       setTimeout(() => setSubmitSuccess(false), 3000);
     } else {
+      // Debug: tampilkan error detail untuk diagnosis
+      console.error("Supabase comment error:", error);
       setSubmitError(
-        lang === "id"
-          ? "Gagal mengirim komentar. Coba lagi."
-          : "Failed to send comment. Please try again."
+        `Error ${error.code}: ${error.message}`
       );
     }
     setSubmitting(false);
