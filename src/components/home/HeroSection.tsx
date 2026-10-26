@@ -79,7 +79,7 @@ export function HeroSection() {
               >
                 <div className="relative w-full h-full overflow-hidden rounded-xs bg-white">
                   <Image
-                    src="https://images.unsplash.com/photo-1487530811015-780780a4ee52?w=400&q=80"
+                    src="https://images.unsplash.com/photo-1560717789-0ac7c58ac90a?w=400&q=80"
                     alt="Pink peony flower accent"
                     fill
                     className="object-cover object-top"
