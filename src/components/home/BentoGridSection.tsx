@@ -123,7 +123,7 @@ export function BentoGridSection() {
 
             <div className="flex items-center gap-3 mt-4">
               <div className="relative w-10 h-10 rounded-full overflow-hidden border-2 border-white shadow-xs">
-                <Image src="https://images.unsplash.com/photo-1487530811015-780780a4ee52?w=80&q=80" alt="Team member" fill className="object-cover" sizes="40px" />
+                <Image src="/images/pink-peony-accent.png" alt="Team member" fill className="object-cover" sizes="40px" />
               </div>
               <div className="relative w-10 h-10 rounded-full overflow-hidden border-2 border-white shadow-xs">
                 <Image src="https://images.unsplash.com/photo-1519764622345-23439dd774f7?w=80&q=80" alt="Team member" fill className="object-cover" sizes="40px" />

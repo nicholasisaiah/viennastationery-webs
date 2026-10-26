@@ -14,7 +14,7 @@ export function JournalHero() {
       <div className="hidden lg:block absolute top-12 left-[32%] z-10 pointer-events-none opacity-90 animate-gentle-float">
         <div className="relative w-14 h-14 bg-white p-1 rounded-sm shadow-soft transform -rotate-6">
           <Image
-            src="https://images.unsplash.com/photo-1487530811015-780780a4ee52?w=200&q=80"
+            src="/images/pink-peony-accent.png"
             alt="Peony floral accent"
             fill
             className="object-cover rounded-xs"
