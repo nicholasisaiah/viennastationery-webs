@@ -2,7 +2,6 @@
 
 import React, { useState } from "react";
 import Image from "next/image";
-import Link from "next/link";
 import { useLanguage } from "@/contexts/LanguageContext";
 
 export interface ProductVariant {
@@ -17,7 +16,7 @@ interface ProductCardProps {
   image: string;
   images?: string[]; // gambar tambahan
   variants?: ProductVariant[]; // variasi warna
-  href: string;
+  href?: string; // kept for backward compat but not used for navigation
   shopeeUrl?: string;
   badge?: string;
   className?: string;
@@ -62,65 +61,63 @@ export function ProductCard({
         ${className}
       `}
     >
-      <Link href={href} aria-label={`View product details: ${name}`}>
-        {/* Image container */}
-        <div className="relative overflow-hidden rounded-lg md:rounded-xl aspect-square bg-vienna-offwhite mb-3">
-          <Image
-            src={activeImage}
-            alt={name}
-            fill
-            className="object-cover transition-transform duration-500 group-hover:scale-105"
-            sizes="(max-width: 768px) 50vw, 25vw"
-          />
+      {/* Image container — no link, just display */}
+      <div className="relative overflow-hidden rounded-lg md:rounded-xl aspect-square bg-vienna-offwhite mb-3">
+        <Image
+          src={activeImage}
+          alt={name}
+          fill
+          className="object-cover transition-transform duration-500 group-hover:scale-105"
+          sizes="(max-width: 768px) 50vw, 25vw"
+        />
 
-          {/* Badge */}
-          {badge && (
-            <span
-              className="
-                absolute top-2.5 left-2.5
-                bg-vienna-text-heading text-white
-                text-[9px] font-outfit font-bold uppercase tracking-widest
-                px-2.5 py-0.5 rounded-pill shadow-xs
-              "
-            >
-              {badge}
-            </span>
-          )}
+        {/* Badge */}
+        {badge && (
+          <span
+            className="
+              absolute top-2.5 left-2.5
+              bg-vienna-text-heading text-white
+              text-[9px] font-outfit font-bold uppercase tracking-widest
+              px-2.5 py-0.5 rounded-pill shadow-xs
+            "
+          >
+            {badge}
+          </span>
+        )}
 
-          {/* Discount tag */}
-          {discount && (
-            <span
-              className="
-                absolute top-2.5 right-2.5
-                bg-vienna-rose text-white
-                text-[9px] font-outfit font-bold
-                px-2 py-0.5 rounded-pill shadow-xs
-              "
-            >
-              -{discount}%
-            </span>
-          )}
-        </div>
+        {/* Discount tag */}
+        {discount && (
+          <span
+            className="
+              absolute top-2.5 right-2.5
+              bg-vienna-rose text-white
+              text-[9px] font-outfit font-bold
+              px-2 py-0.5 rounded-pill shadow-xs
+            "
+          >
+            -{discount}%
+          </span>
+        )}
+      </div>
 
-        {/* Product info */}
-        <div>
-          <h3 className="font-outfit font-semibold text-vienna-text-heading text-xs sm:text-sm md:text-base leading-snug line-clamp-2 group-hover:text-vienna-rose transition-colors">
-            {name}
-          </h3>
+      {/* Product info — no link */}
+      <div>
+        <h3 className="font-outfit font-semibold text-vienna-text-heading text-xs sm:text-sm md:text-base leading-snug line-clamp-2">
+          {name}
+        </h3>
 
-          {/* Price */}
-          <div className="flex items-center gap-2 mt-1.5">
-            <p className="text-vienna-rose font-outfit font-bold text-xs sm:text-sm">
-              {formatPriceRp(price)}
+        {/* Price */}
+        <div className="flex items-center gap-2 mt-1.5">
+          <p className="text-vienna-rose font-outfit font-bold text-xs sm:text-sm">
+            {formatPriceRp(price)}
+          </p>
+          {originalPrice && originalPrice > price && (
+            <p className="text-vienna-text-muted font-outfit text-[10px] line-through">
+              {formatPriceRp(originalPrice)}
             </p>
-            {originalPrice && originalPrice > price && (
-              <p className="text-vienna-text-muted font-outfit text-[10px] line-through">
-                {formatPriceRp(originalPrice)}
-              </p>
-            )}
-          </div>
+          )}
         </div>
-      </Link>
+      </div>
 
       {/* Color Variants */}
       {variants && variants.length > 0 && (
