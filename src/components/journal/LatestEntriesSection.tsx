@@ -8,11 +8,17 @@ import { useLanguage } from "@/contexts/LanguageContext";
 
 interface LatestEntriesSectionProps {
   articles: Article[];
+  showAll?: boolean;
 }
 
-export function LatestEntriesSection({ articles }: LatestEntriesSectionProps) {
+export function LatestEntriesSection({ articles, showAll = false }: LatestEntriesSectionProps) {
   const { t, lang } = useLanguage();
-  const [visibleCount, setVisibleCount] = useState(6);
+  const [visibleCount, setVisibleCount] = useState(showAll ? articles.length : 6);
+
+  // Reset visible count when category changes
+  React.useEffect(() => {
+    setVisibleCount(showAll ? articles.length : 6);
+  }, [showAll, articles.length]);
 
   // Helper: get translated field if lang=id
   const getTitle = (art: Article) => lang === "id"
@@ -61,6 +67,9 @@ export function LatestEntriesSection({ articles }: LatestEntriesSectionProps) {
           <div>
             <h2 className="font-fredoka font-bold text-vienna-text-heading text-2xl sm:text-3xl md:text-4xl">
               {t("journal.latestHeadline")} <span className="text-vienna-rose-light">♡</span>
+              <span className="ml-2 text-base sm:text-lg font-outfit font-medium text-vienna-text-muted">
+                ({articles.length} {lang === "id" ? "artikel" : "articles"})
+              </span>
             </h2>
             <p className="font-nunito text-vienna-text-muted text-sm sm:text-base mt-1">
               {lang === "id" ? "Perspektif segar dan ritual kreatif." : "Fresh perspectives and creative rituals."}

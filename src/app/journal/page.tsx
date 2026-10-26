@@ -31,9 +31,13 @@ function JournalPageContent() {
     ARTICLES_DATA.find((art) => art.featured) || ARTICLES_DATA[0];
 
   // Filtered Articles for Latest Entries
+  const isAll = activeCategory === "ALL" || !activeCategory;
   const filteredArticles = ARTICLES_DATA.filter((art) => {
-    if (activeCategory === "ALL" || !activeCategory) return true;
-    return art.category.toUpperCase().includes(activeCategory.toUpperCase());
+    if (isAll) return true;
+    const catUp = art.category.toUpperCase();
+    const filterUp = activeCategory.toUpperCase();
+    // Match exact category or compound categories like "Study & Lifestyle"
+    return catUp === filterUp || catUp.split(/\s*&\s*/).some(part => part.trim() === filterUp);
   });
 
   return (
@@ -57,7 +61,7 @@ function JournalPageContent() {
         />
 
         {/* 4. LATEST ENTRIES ♡ */}
-        <LatestEntriesSection articles={filteredArticles} />
+        <LatestEntriesSection articles={filteredArticles} showAll={isAll} />
 
         {/* 5. BANNER KUTIPAN */}
         <JournalQuoteBanner />
