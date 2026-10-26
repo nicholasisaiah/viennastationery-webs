@@ -1,15 +1,18 @@
+"use client";
 import React from "react";
 import Image from "next/image";
 import { WashiTape } from "@/components/ui/WashiTape";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 export function DraftsCollageSection() {
+  const { t } = useLanguage();
   return (
     <section className="bg-vienna-cream py-16 md:py-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         
         {/* Title */}
         <h2 className="font-comfortaa font-bold text-vienna-text-heading text-2xl sm:text-3xl md:text-4xl tracking-tight mb-14">
-          Somewhere between the drafts and the final version <span className="text-vienna-rose-light" aria-hidden="true">♡</span>
+          {t("people.draftHeadline")} <span className="text-vienna-rose-light" aria-hidden="true">♡</span>
         </h2>
 
         {/* Desktop Absolute Stacked Collage */}

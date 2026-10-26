@@ -1,7 +1,10 @@
+"use client";
 import React from "react";
 import { TIMELINE_STEPS } from "@/data/timeline";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 export function TimelineSection() {
+  const { t } = useLanguage();
   return (
     <section className="bg-white py-16 md:py-24 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -9,7 +12,7 @@ export function TimelineSection() {
         {/* Title */}
         <div className="text-center max-w-2xl mx-auto mb-16">
           <h2 className="font-comfortaa font-bold text-vienna-text-heading text-2xl sm:text-3xl md:text-4xl tracking-tight">
-            From idea &rarr; little details &rarr; this website.
+            {t("people.timelineHeadline")}
           </h2>
         </div>
 

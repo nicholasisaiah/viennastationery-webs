@@ -1,6 +1,8 @@
+"use client";
 import React from "react";
 import Image from "next/image";
 import { TEAM_DATA } from "@/data/team";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const CARD_VARIANTS = [
   { bg: "bg-vienna-cream border-vienna-lavender/50", offset: "lg:mt-0" },
@@ -9,6 +11,7 @@ const CARD_VARIANTS = [
 ];
 
 export function MeetThePeopleSection() {
+  const { t } = useLanguage();
   return (
     <section className="bg-white py-16 md:py-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -16,10 +19,10 @@ export function MeetThePeopleSection() {
         {/* Title */}
         <div className="text-center max-w-xl mx-auto mb-16">
           <h2 className="font-comfortaa font-bold text-vienna-text-heading text-3xl sm:text-4xl tracking-tight">
-            Meet the people <span className="text-vienna-rose-light" aria-hidden="true">♡</span>
+            {t("people.meetHeadline")} <span className="text-vienna-rose-light" aria-hidden="true">♡</span>
           </h2>
           <p className="font-nunito text-vienna-text-muted text-sm sm:text-base mt-2">
-            The curators of your digital journaling experience.
+            {t("people.meetSub")}
           </p>
         </div>
 
@@ -66,7 +69,7 @@ export function MeetThePeopleSection() {
                   {/* Contribution */}
                   <div className="space-y-1">
                     <span className="font-outfit text-[10px] font-bold text-vienna-text-muted uppercase tracking-wider block">
-                      MY LITTLE CONTRIBUTION:
+                      {t("people.contribution")}
                     </span>
                     <p className="font-playfair italic text-vienna-text-dark text-xs sm:text-sm leading-relaxed">
                       {member.contribution}
@@ -77,7 +80,7 @@ export function MeetThePeopleSection() {
                 {/* Currently Obsessed With */}
                 <div className="pt-4 mt-4 border-t border-black/5">
                   <span className="font-outfit text-[10px] font-bold text-vienna-text-muted uppercase tracking-wider block mb-1.5">
-                    CURRENTLY OBSESSED WITH:
+                    {t("people.obsessed")}
                   </span>
                   <span className="inline-block px-3.5 py-1 bg-white text-vienna-text-dark text-xs font-nunito font-medium rounded-pill shadow-xs border border-vienna-lavender/40">
                     {member.obsessedWith}
