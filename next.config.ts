@@ -13,6 +13,26 @@ const nextConfig: NextConfig = {
         hostname: "plus.unsplash.com",
         pathname: "/**",
       },
+      {
+        protocol: "https",
+        hostname: "down-id.img.susercontent.com",
+        pathname: "/**",
+      },
+      {
+        protocol: "https",
+        hostname: "id-11134207-*.susercontent.com",
+        pathname: "/**",
+      },
+      {
+        protocol: "https",
+        hostname: "down-id.img.susercontent.com",
+        pathname: "/**",
+      },
+      {
+        protocol: "https",
+        hostname: "*.susercontent.com",
+        pathname: "/**",
+      },
     ],
   },
 };

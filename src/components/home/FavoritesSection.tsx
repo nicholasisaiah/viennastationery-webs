@@ -55,9 +55,10 @@ export function FavoritesSection() {
               <ProductCard
                 name={product.name}
                 price={product.price}
+                originalPrice={product.originalPrice}
                 image={product.image}
                 badge={product.badge}
-                href="https://id.shp.ee/JDMuodop"
+                href={product.shopeeUrl || "https://id.shp.ee/JDMuodop"}
               />
             </div>
           ))}
