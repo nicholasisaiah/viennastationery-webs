@@ -114,7 +114,7 @@ export function ShopPageClient() {
                     <div className="fixed inset-0 z-40" onClick={() => setSortOpen(false)} />
                     <ul
                       role="listbox"
-                      className="absolute right-0 top-full mt-1 z-50 bg-white border border-vienna-lavender rounded-xl shadow-medium py-1 min-w-[180px] overflow-hidden"
+                      className="absolute right-0 top-full mt-1 z-50 bg-white border border-vienna-lavender rounded-lg shadow-medium py-1 min-w-[180px] overflow-hidden"
                     >
                       {SORT_OPTIONS.map((opt) => (
                         <li
