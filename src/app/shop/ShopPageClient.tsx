@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { ProductCard } from "@/components/ui/ProductCard";
-import { PRODUCTS_DATA } from "@/data/products";
+import { PRODUCTS_DATA, PRODUCT_CATEGORIES } from "@/data/products";
 import { CtaFooterSection } from "@/components/layout/CtaFooterSection";
 import { WashiTape } from "@/components/ui/WashiTape";
 import { Button } from "@/components/ui/Button";
@@ -16,11 +16,7 @@ export function ShopPageClient() {
 
   const CATEGORIES = [
     { key: "ALL", label: t("shop.categories.all") },
-    { key: "NOTEBOOKS", label: t("shop.categories.notebooks") },
-    { key: "PENS & WRITING", label: t("shop.categories.pens") },
-    { key: "STICKERS & TAPES", label: t("shop.categories.stickers") },
-    { key: "DESK ACCESSORIES", label: t("shop.categories.desk") },
-    { key: "ORGANIZERS", label: t("shop.categories.organizers") },
+    ...PRODUCT_CATEGORIES.map((cat) => ({ key: cat, label: cat })),
   ];
 
   const SORT_OPTIONS = [

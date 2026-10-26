@@ -39,7 +39,12 @@ export function FavoritesSection() {
             scrollbars-none
           "
         >
-          {PRODUCTS_DATA.map((product) => (
+          {PRODUCTS_DATA
+            .filter((p) => p.badge === "SALE" || p.badge === "NEW")
+            .slice(0, 4)
+            .concat(PRODUCTS_DATA.filter((p) => !p.badge).slice(0, 4))
+            .slice(0, 4)
+            .map((product) => (
             <div
               key={product.id}
               className="
