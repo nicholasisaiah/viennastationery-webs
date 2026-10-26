@@ -70,7 +70,7 @@ export function ShopPageClient() {
         <div className="sticky top-16 md:top-[72px] z-30 bg-white/95 backdrop-blur-md border-b border-vienna-lavender/40 shadow-soft">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
             {/* Category pills */}
-            <div className="flex items-center gap-2 overflow-x-auto pb-1 sm:pb-0" role="tablist" aria-label="Product categories">
+            <div className="flex items-center gap-2 overflow-x-auto scrollbar-hide" role="tablist" aria-label="Product categories" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
               {CATEGORIES.map((cat) => (
                 <button
                   key={cat.key}
