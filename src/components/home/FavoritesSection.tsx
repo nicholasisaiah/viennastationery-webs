@@ -1,5 +1,6 @@
 "use client";
 import React from "react";
+import Link from "next/link";
 import { Button } from "@/components/ui/Button";
 import { ProductCard } from "@/components/ui/ProductCard";
 import { PRODUCTS_DATA } from "@/data/products";
@@ -45,12 +46,10 @@ export function FavoritesSection() {
             .concat(PRODUCTS_DATA.filter((p) => !p.badge).slice(0, 4))
             .slice(0, 4)
             .map((product) => (
-            <div
+            <Link
+              href={`/shop/${product.slug}`}
               key={product.id}
-              className="
-                flex-shrink-0 w-[240px] sm:w-[280px] md:w-auto
-                snap-start
-              "
+              className="flex-shrink-0 w-[240px] sm:w-[280px] md:w-auto snap-start block"
             >
               <ProductCard
                 name={product.name}
@@ -58,9 +57,9 @@ export function FavoritesSection() {
                 originalPrice={product.originalPrice}
                 image={product.image}
                 badge={product.badge}
-                href={product.shopeeUrl || "https://id.shp.ee/JDMuodop"}
+                shopeeUrl={product.shopeeUrl || "https://id.shp.ee/JDMuodop"}
               />
-            </div>
+            </Link>
           ))}
         </div>
 

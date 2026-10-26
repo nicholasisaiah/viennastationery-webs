@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import Link from "next/link";
 import { ProductCard } from "@/components/ui/ProductCard";
 import { PRODUCTS_DATA, PRODUCT_CATEGORIES } from "@/data/products";
 import { CtaFooterSection } from "@/components/layout/CtaFooterSection";
@@ -130,17 +131,17 @@ export function ShopPageClient() {
             {filtered.length > 0 ? (
               <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
                 {filtered.map((product) => (
-                  <ProductCard
-                    key={product.id}
-                    name={product.name}
-                    price={product.price}
-                    originalPrice={product.originalPrice}
-                    image={product.image}
-                    variants={product.variants}
-                    badge={product.badge}
-                    shopeeUrl={product.shopeeUrl}
-                    href={product.shopeeUrl}
-                  />
+                  <Link key={product.id} href={`/shop/${product.slug}`} className="block">
+                    <ProductCard
+                      name={product.name}
+                      price={product.price}
+                      originalPrice={product.originalPrice}
+                      image={product.image}
+                      variants={product.variants}
+                      badge={product.badge}
+                      shopeeUrl={product.shopeeUrl}
+                    />
+                  </Link>
                 ))}
               </div>
             ) : (

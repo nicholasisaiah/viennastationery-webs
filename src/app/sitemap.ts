@@ -1,5 +1,6 @@
 import { MetadataRoute } from "next";
 import { ARTICLES_DATA } from "@/data/articles";
+import { PRODUCTS_DATA } from "@/data/products";
 
 const BASE_URL = "https://vienna-stationery.my.id";
 
@@ -50,5 +51,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.85,
   }));
 
-  return [...staticPages, ...articlePages];
+  const productPages: MetadataRoute.Sitemap = PRODUCTS_DATA.map((product) => ({
+    url: `${BASE_URL}/shop/${product.slug}`,
+    lastModified: new Date(product.dateAdded),
+    changeFrequency: "weekly" as const,
+    priority: 0.75,
+  }));
+
+  return [...staticPages, ...articlePages, ...productPages];
 }
