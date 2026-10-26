@@ -48,12 +48,8 @@ function JournalPageContent() {
     setIsTransitioning(true);
     setTimeout(() => {
       setActiveCategory(cat);
-      // Scroll to filter bar so articles are immediately visible
-      const filterBar = document.getElementById("journal-filter-bar");
-      if (filterBar) {
-        const offset = filterBar.getBoundingClientRect().top + window.scrollY - 72; // 72px = navbar height
-        window.scrollTo({ top: offset, behavior: "smooth" });
-      }
+      // Scroll to top — filter bar is sticky so it stays visible
+      window.scrollTo({ top: 0, behavior: "smooth" });
       // Small delay for content to update, then fade in
       requestAnimationFrame(() => {
         setIsTransitioning(false);
