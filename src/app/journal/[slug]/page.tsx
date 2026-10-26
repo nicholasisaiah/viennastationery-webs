@@ -141,15 +141,11 @@ export default async function ArticleDetailPage({ params }: ArticleDetailPagePro
           <div className="w-full h-[1px] bg-vienna-lavender/50 mt-6" aria-hidden="true" />
         </header>
 
-        {/* 2. SIDEBAR + MAIN CONTENT */}
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative mb-16">
+        {/* 2. GRID: SIDEBAR + MAIN CONTENT */}
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative grid grid-cols-1 lg:grid-cols-[auto_1fr] gap-6 items-start mb-16">
 
-          {/* Left Sticky Sidebar — positioned absolutely so it doesn't add height */}
-          <div className="absolute left-0 top-0 hidden xl:block" style={{ transform: 'translateX(-80px)' }}>
-            <StickySocialSidebar slug={slug} />
-          </div>
-          {/* Mobile sidebar fallback */}
-          <div className="xl:hidden">
+          {/* Left Sticky Sidebar — single instance */}
+          <div className="hidden lg:block self-start">
             <StickySocialSidebar slug={slug} />
           </div>
 
