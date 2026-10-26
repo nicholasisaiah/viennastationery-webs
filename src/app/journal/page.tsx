@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect, Suspense } from "react";
+import React, { useState, useEffect, useRef, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import { ARTICLES_DATA } from "@/data/articles";
 import {
@@ -19,6 +19,8 @@ function JournalPageContent() {
   const categoryParam = searchParams.get("kategori") || "ALL";
 
   const [activeCategory, setActiveCategory] = useState<string>(categoryParam);
+  const [isTransitioning, setIsTransitioning] = useState(false);
+  const contentRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (categoryParam) {
@@ -40,6 +42,19 @@ function JournalPageContent() {
     return catUp === filterUp || catUp.split(/\s*&\s*/).some(part => part.trim() === filterUp);
   });
 
+  // Smooth category switch with fade transition
+  const handleCategoryChange = (cat: string) => {
+    if (cat === activeCategory) return;
+    setIsTransitioning(true);
+    setTimeout(() => {
+      setActiveCategory(cat);
+      // Small delay for content to update, then fade in
+      requestAnimationFrame(() => {
+        setIsTransitioning(false);
+      });
+    }, 200); // fade-out duration
+  };
+
   return (
     <div className="min-h-screen bg-vienna-cream flex flex-col justify-between font-nunito">
       <div>
@@ -49,21 +64,31 @@ function JournalPageContent() {
         {/* 2. CATEGORY FILTER BAR */}
         <CategoryFilterBar
           activeCategory={activeCategory}
-          onSelectCategory={(cat) => setActiveCategory(cat)}
+          onSelectCategory={handleCategoryChange}
         />
 
-        {/* 3. FEATURED ARTICLE — only on "Semua" */}
-        {isAll && featuredArticle && <FeaturedArticleSection article={featuredArticle} />}
+        {/* Content area with transition */}
+        <div
+          ref={contentRef}
+          className="transition-all duration-300 ease-out"
+          style={{
+            opacity: isTransitioning ? 0 : 1,
+            transform: isTransitioning ? "translateY(12px)" : "translateY(0)",
+          }}
+        >
+          {/* 3. FEATURED ARTICLE — only on "Semua" */}
+          {isAll && featuredArticle && <FeaturedArticleSection article={featuredArticle} />}
 
-        {/* 7. PILIH BERDASARKAN TEMA — only on "Semua" */}
-        {isAll && (
-          <ThematicCardsSection
-            onSelectThemeCategory={(cat) => setActiveCategory(cat)}
-          />
-        )}
+          {/* 7. PILIH BERDASARKAN TEMA — only on "Semua" */}
+          {isAll && (
+            <ThematicCardsSection
+              onSelectThemeCategory={handleCategoryChange}
+            />
+          )}
 
-        {/* 4. LATEST ENTRIES ♡ */}
-        <LatestEntriesSection articles={filteredArticles} showAll={isAll} />
+          {/* 4. LATEST ENTRIES ♡ */}
+          <LatestEntriesSection articles={filteredArticles} showAll={isAll} />
+        </div>
 
         {/* 5. BANNER KUTIPAN */}
         <JournalQuoteBanner />
