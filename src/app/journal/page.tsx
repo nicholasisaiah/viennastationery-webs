@@ -52,13 +52,15 @@ function JournalPageContent() {
           onSelectCategory={(cat) => setActiveCategory(cat)}
         />
 
-        {/* 3. FEATURED ARTICLE */}
-        {featuredArticle && <FeaturedArticleSection article={featuredArticle} />}
+        {/* 3. FEATURED ARTICLE — only on "Semua" */}
+        {isAll && featuredArticle && <FeaturedArticleSection article={featuredArticle} />}
 
-        {/* 7. PILIH BERDASARKAN TEMA */}
-        <ThematicCardsSection
-          onSelectThemeCategory={(cat) => setActiveCategory(cat)}
-        />
+        {/* 7. PILIH BERDASARKAN TEMA — only on "Semua" */}
+        {isAll && (
+          <ThematicCardsSection
+            onSelectThemeCategory={(cat) => setActiveCategory(cat)}
+          />
+        )}
 
         {/* 4. LATEST ENTRIES ♡ */}
         <LatestEntriesSection articles={filteredArticles} showAll={isAll} />
