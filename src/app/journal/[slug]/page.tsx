@@ -144,8 +144,8 @@ export default async function ArticleDetailPage({ params }: ArticleDetailPagePro
         {/* 2. GRID: SIDEBAR + MAIN CONTENT */}
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative grid grid-cols-1 lg:grid-cols-[auto_1fr] gap-6 items-start mb-16">
 
-          {/* Left Sticky Sidebar — single instance */}
-          <div className="hidden lg:block self-start">
+          {/* Sidebar — component handles desktop/mobile rendering internally */}
+          <div className="lg:self-start">
             <StickySocialSidebar slug={slug} />
           </div>
 
