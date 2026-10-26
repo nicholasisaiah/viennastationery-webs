@@ -24,7 +24,7 @@ export function FavoritesSection() {
           </div>
 
           <div className="flex-shrink-0">
-            <Button href="https://id.shp.ee/JDMuodop" variant="primary" size="md" ariaLabel={t("favorites.cta")}>
+            <Button href="/shop" variant="primary" size="md" ariaLabel={t("favorites.cta")}>
               {t("favorites.cta")}
             </Button>
           </div>
@@ -57,6 +57,7 @@ export function FavoritesSection() {
                 originalPrice={product.originalPrice}
                 image={product.image}
                 badge={product.badge}
+                variants={product.variants}
                 shopeeUrl={product.shopeeUrl || "https://id.shp.ee/JDMuodop"}
               />
             </Link>
