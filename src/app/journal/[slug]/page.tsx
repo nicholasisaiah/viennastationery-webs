@@ -141,16 +141,20 @@ export default async function ArticleDetailPage({ params }: ArticleDetailPagePro
           <div className="w-full h-[1px] bg-vienna-lavender/50 mt-6" aria-hidden="true" />
         </header>
 
-        {/* 2. GRID: SIDEBAR + MAIN CONTENT */}
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative grid grid-cols-1 xl:grid-cols-12 gap-8 items-start mb-16">
+        {/* 2. SIDEBAR + MAIN CONTENT */}
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative mb-16">
 
-          {/* Left Sticky Sidebar — now passes slug for real Firebase */}
-          <div className="xl:col-span-2">
+          {/* Left Sticky Sidebar — positioned absolutely so it doesn't add height */}
+          <div className="absolute left-0 top-0 hidden xl:block" style={{ transform: 'translateX(-80px)' }}>
+            <StickySocialSidebar slug={slug} />
+          </div>
+          {/* Mobile sidebar fallback */}
+          <div className="xl:hidden">
             <StickySocialSidebar slug={slug} />
           </div>
 
           {/* Main Article Column */}
-          <div className="xl:col-span-10 max-w-2xl mx-auto w-full space-y-8">
+          <div className="max-w-2xl mx-auto w-full space-y-8">
 
             {/* Hero Image */}
             <div className="relative w-full aspect-[16/10] rounded-3xl overflow-hidden shadow-medium bg-vienna-offwhite">
