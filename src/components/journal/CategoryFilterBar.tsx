@@ -51,11 +51,11 @@ export function CategoryFilterBar({
 
     const queryStr = params.toString();
     const newPath = queryStr ? `/journal?${queryStr}` : "/journal";
-    router.push(newPath, { scroll: false });
+    router.replace(newPath, { scroll: false });
   };
 
   return (
-    <div className="sticky top-16 z-30 bg-vienna-cream/95 backdrop-blur-sm border-y border-vienna-lavender/50 py-3 transition-shadow">
+    <div id="journal-filter-bar" className="sticky top-16 z-30 bg-vienna-cream/95 backdrop-blur-sm border-y border-vienna-lavender/50 py-3 transition-shadow">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         <nav
