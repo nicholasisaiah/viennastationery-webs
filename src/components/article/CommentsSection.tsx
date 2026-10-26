@@ -155,7 +155,12 @@ export function CommentsSection({ slug }: Props) {
     setSubmitting(false);
   };
 
+  const [likingIds, setLikingIds] = useState<Set<string>>(new Set());
+
   const handleLikeComment = async (commentId: string, currentLikes: number) => {
+    if (likingIds.has(commentId)) return; // Block spam
+    setLikingIds((prev) => new Set(prev).add(commentId));
+
     const key = `${LIKE_PREFIX}${commentId}`;
     const alreadyLiked = likedIds.has(commentId);
     const newLikes = alreadyLiked
@@ -178,10 +183,18 @@ export function CommentsSection({ slug }: Props) {
       localStorage.setItem(key, "1");
     }
 
-    await supabase.rpc("increment_comment_likes", {
-      p_id: commentId,
-      p_amount: alreadyLiked ? -1 : 1,
-    });
+    try {
+      await supabase.rpc("increment_comment_likes", {
+        p_id: commentId,
+        p_amount: alreadyLiked ? -1 : 1,
+      });
+    } finally {
+      setLikingIds((prev) => {
+        const next = new Set(prev);
+        next.delete(commentId);
+        return next;
+      });
+    }
   };
 
   const formatDate = (dateStr: string) => {

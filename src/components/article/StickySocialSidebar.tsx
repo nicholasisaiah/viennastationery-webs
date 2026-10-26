@@ -64,7 +64,12 @@ export function StickySocialSidebar({ slug }: Props) {
     };
   }, [slug]);
 
+  const [liking, setLiking] = useState(false);
+
   const handleLike = async () => {
+    if (liking) return; // Block spam clicks
+    setLiking(true);
+
     const key = `${LIKE_PREFIX}${slug}`;
     const amount = hasLiked ? -1 : 1;
 
@@ -78,10 +83,18 @@ export function StickySocialSidebar({ slug }: Props) {
       localStorage.setItem(key, "1");
     }
 
-    await supabase.rpc("increment_article_likes", {
-      p_slug: slug,
-      p_amount: amount,
-    });
+    try {
+      await supabase.rpc("increment_article_likes", {
+        p_slug: slug,
+        p_amount: amount,
+      });
+    } catch {
+      // Revert on error
+      setHasLiked(hasLiked);
+      setLikes((prev) => Math.max(0, prev - amount));
+    } finally {
+      setLiking(false);
+    }
   };
 
   const scrollToComments = () => {
