@@ -1,48 +1,37 @@
 -- ============================================================
--- Newsletter Subscribers Table for Vienna Stationery
+-- NEWSLETTER FIX: Reset table & policies from scratch
 -- Run this in Supabase Dashboard > SQL Editor
 -- ============================================================
 
--- 1. Drop old table if exists (re-run safe)
-DROP TABLE IF EXISTS newsletter_subscribers;
+-- Step 1: Drop existing table completely (removes all old policies)
+DROP TABLE IF EXISTS newsletter_subscribers CASCADE;
 
--- 2. Create the newsletter_subscribers table
+-- Step 2: Recreate table
 CREATE TABLE newsletter_subscribers (
-  id          UUID        DEFAULT gen_random_uuid() PRIMARY KEY,
-  email       TEXT        NOT NULL,
+  id            UUID        DEFAULT gen_random_uuid() PRIMARY KEY,
+  email         TEXT        NOT NULL UNIQUE,
   subscribed_at TIMESTAMPTZ DEFAULT now() NOT NULL,
-  source      TEXT        DEFAULT 'journal' NOT NULL,
-  is_active   BOOLEAN     DEFAULT true NOT NULL,
-  -- Enforce uniqueness on lowercase email at column level
-  CONSTRAINT uq_newsletter_email UNIQUE (email)
+  source        TEXT        DEFAULT 'journal' NOT NULL,
+  is_active     BOOLEAN     DEFAULT true NOT NULL
 );
 
--- 3. Index for active subscribers
-CREATE INDEX idx_newsletter_active
-  ON newsletter_subscribers (is_active)
-  WHERE is_active = true;
-
--- 4. Enable Row Level Security
+-- Step 3: Enable RLS
 ALTER TABLE newsletter_subscribers ENABLE ROW LEVEL SECURITY;
 
--- 5. Allow INSERT for everyone (anon + authenticated)
---    This is needed because the API route uses the anon key
-CREATE POLICY "Allow public insert"
+-- Step 4: Drop ANY leftover policies (safety)
+DROP POLICY IF EXISTS "Allow public insert" ON newsletter_subscribers;
+DROP POLICY IF EXISTS "Service role reads all" ON newsletter_subscribers;
+DROP POLICY IF EXISTS "Service role updates" ON newsletter_subscribers;
+DROP POLICY IF EXISTS "anon_insert" ON newsletter_subscribers;
+
+-- Step 5: Single clean INSERT policy for anon role
+CREATE POLICY "anon_insert"
   ON newsletter_subscribers
   FOR INSERT
-  TO public
+  TO anon
   WITH CHECK (true);
 
--- 6. Only service_role (server-side) can SELECT all rows
-CREATE POLICY "Service role reads all"
-  ON newsletter_subscribers
-  FOR SELECT
-  TO authenticated
-  USING (true);
-
--- 7. Service role can update (for unsubscribe flows)
-CREATE POLICY "Service role updates"
-  ON newsletter_subscribers
-  FOR UPDATE
-  TO authenticated
-  USING (true);
+-- Step 6: Verify
+SELECT schemaname, tablename, policyname, roles, cmd
+FROM pg_policies
+WHERE tablename = 'newsletter_subscribers';

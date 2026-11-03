@@ -50,7 +50,7 @@ const caveat = Caveat({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://vienna-stationery.my.id"),
+  metadataBase: new URL("https://viennastationery.my.id"),
   title: {
     default: "Vienna Stationery — Momen Sehari-hari yang Sedikit Lebih Indah",
     template: "%s — Vienna Stationery",
@@ -79,7 +79,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "id_ID",
-    url: "https://vienna-stationery.my.id",
+    url: "https://viennastationery.my.id",
     siteName: "Vienna Stationery",
     title: "Vienna Stationery — Momen Sehari-hari yang Sedikit Lebih Indah",
     description:
