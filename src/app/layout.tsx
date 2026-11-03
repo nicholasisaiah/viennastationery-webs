@@ -52,22 +52,27 @@ const caveat = Caveat({
 export const metadata: Metadata = {
   metadataBase: new URL("https://vienna-stationery.my.id"),
   title: {
-    default: "Vienna Stationery — Making Everyday Moments a Little More Lovely",
+    default: "Vienna Stationery — Momen Sehari-hari yang Sedikit Lebih Indah",
     template: "%s — Vienna Stationery",
   },
   description:
-    "Aesthetic stationery for the dreamers, the planners, and those who find magic in the small details of daily life. Explore journals, notebooks, washi tapes, and more.",
+    "Stationery estetik untuk para pemimpi, perencana, dan mereka yang menemukan keindahan dalam detail-detail kecil kehidupan sehari-hari. Jelajahi jurnal, notebook, washi tape, dan lainnya.",
   keywords: [
-    "aesthetic stationery",
-    "journal stationery Indonesia",
-    "notebook aesthetic",
+    "stationery estetik",
+    "stationery aesthetic",
+    "jurnal stationery Indonesia",
+    "notebook aesthetic Indonesia",
     "washi tape",
-    "bullet journal",
-    "stationery online",
+    "bullet journal Indonesia",
+    "stationery online Indonesia",
     "Vienna stationery",
-    "desk setup aesthetic",
-    "journaling tips",
+    "desk setup estetik",
+    "tips journaling",
     "stationery shopee",
+    "alat tulis estetik",
+    "binder setup",
+    "stationery murah aesthetic",
+    "notebook pastel",
   ],
   authors: [{ name: "Vienna Creative Team" }],
   creator: "Vienna Stationery",
@@ -76,9 +81,9 @@ export const metadata: Metadata = {
     locale: "id_ID",
     url: "https://vienna-stationery.my.id",
     siteName: "Vienna Stationery",
-    title: "Vienna Stationery — Making Everyday Moments a Little More Lovely",
+    title: "Vienna Stationery — Momen Sehari-hari yang Sedikit Lebih Indah",
     description:
-      "Aesthetic stationery for dreamers, planners, and those who find magic in the small details.",
+      "Stationery estetik untuk para pemimpi, perencana, dan mereka yang menemukan keindahan dalam detail-detail kecil.",
     images: [
       {
         url: "https://images.unsplash.com/photo-1540553016722-983e48a2cd10?w=1200&q=80",
@@ -91,7 +96,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Vienna Stationery",
-    description: "Aesthetic stationery for everyday lovely moments.",
+    description: "Stationery estetik untuk momen sehari-hari yang lebih indah.",
   },
   robots: {
     index: true,

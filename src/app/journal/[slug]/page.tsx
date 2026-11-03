@@ -7,6 +7,7 @@ import { ARTICLES_DATA } from "@/data/articles";
 import { ARTICLE_BODIES } from "@/data/articleBodies";
 import { WashiTape } from "@/components/ui/WashiTape";
 import { CtaFooterSection } from "@/components/layout/CtaFooterSection";
+import { ArticleHeader } from "@/components/article/ArticleHeader";
 import {
   ReadingProgressBar,
   StickySocialSidebar,
@@ -26,21 +27,40 @@ interface ArticleDetailPageProps {
 export async function generateMetadata({ params }: ArticleDetailPageProps): Promise<Metadata> {
   const { slug } = await params;
   const article = ARTICLES_DATA.find((a) => a.slug === slug);
-  if (!article) return { title: "Article Not Found — Vienna Stationery" };
+  if (!article) return { title: "Artikel Tidak Ditemukan — Vienna Stationery" };
 
   const baseUrl = "https://vienna-stationery.my.id";
 
+  // Use Indonesian title/excerpt from TRANSLATIONS if available, else fall back to English
+  let idTitle = article.title;
+  let idExcerpt = article.excerpt;
+  try {
+    const { TRANSLATIONS } = await import("@/data/translations");
+    const idArticles = TRANSLATIONS.id.articles as Record<string, { title: string; excerpt: string; category: string }>;
+    if (idArticles[slug]) {
+      idTitle = idArticles[slug].title;
+      idExcerpt = idArticles[slug].excerpt;
+    }
+  } catch {
+    // fall through
+  }
+
   return {
-    title: `${article.title} — Vienna Journal`,
-    description: article.excerpt,
+    title: `${idTitle} — Vienna Journal`,
+    description: idExcerpt,
     alternates: {
       canonical: `${baseUrl}/journal/${article.slug}`,
+      languages: {
+        "id-ID": `${baseUrl}/journal/${article.slug}`,
+        "en-US": `${baseUrl}/journal/${article.slug}`,
+      },
     },
     openGraph: {
-      title: article.title,
-      description: article.excerpt,
+      title: idTitle,
+      description: idExcerpt,
       url: `${baseUrl}/journal/${article.slug}`,
       type: "article",
+      locale: "id_ID",
       publishedTime: article.date,
       authors: [article.author],
       tags: article.tags,
@@ -49,14 +69,14 @@ export async function generateMetadata({ params }: ArticleDetailPageProps): Prom
           url: article.image.startsWith("http") ? article.image : `${baseUrl}${article.image}`,
           width: 1200,
           height: 630,
-          alt: article.title,
+          alt: idTitle,
         },
       ],
     },
     twitter: {
       card: "summary_large_image",
-      title: article.title,
-      description: article.excerpt,
+      title: idTitle,
+      description: idExcerpt,
     },
   };
 }
@@ -98,48 +118,8 @@ export default async function ArticleDetailPage({ params }: ArticleDetailPagePro
       <ReadingProgressBar />
 
       <div>
-        {/* 1. ARTICLE HEADER */}
-        <header className="py-12 md:py-16 text-center px-4 max-w-3xl mx-auto space-y-4">
-          <nav className="flex items-center justify-center gap-2 text-xs font-outfit font-bold uppercase tracking-[0.2em]" aria-label="Breadcrumb">
-            <Link href="/journal" className="text-vienna-text-muted hover:text-vienna-text-heading transition-colors">
-              JOURNAL
-            </Link>
-            <span className="text-vienna-text-light" aria-hidden="true">/</span>
-            <Link
-              href={`/journal?kategori=${encodeURIComponent(article.category.toLowerCase())}`}
-              className="text-vienna-rose hover:underline"
-            >
-              {article.category}
-            </Link>
-          </nav>
-
-          <h1 className="font-fredoka font-bold text-vienna-text-heading text-3xl sm:text-4xl md:text-5xl lg:text-6xl leading-[1.15] tracking-tight">
-            {article.title}
-          </h1>
-
-          <p className="font-nunito text-vienna-text-muted text-base sm:text-lg max-w-2xl mx-auto line-clamp-2 leading-relaxed">
-            {article.excerpt}
-          </p>
-
-          <div className="flex items-center justify-center gap-2.5 pt-2 text-xs font-nunito text-vienna-text-muted">
-            <div className="relative w-7 h-7 rounded-full overflow-hidden border border-vienna-rose/40">
-              <Image
-                src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=56&q=80"
-                alt={article.author}
-                fill
-                className="object-cover"
-                sizes="28px"
-              />
-            </div>
-            <span className="font-semibold text-vienna-text-heading">By {article.author}</span>
-            <span className="text-vienna-rose" aria-hidden="true">&bull;</span>
-            <time dateTime={article.date}>{article.date}</time>
-            <span className="text-vienna-rose" aria-hidden="true">&bull;</span>
-            <span>{article.readTime}</span>
-          </div>
-
-          <div className="w-full h-[1px] bg-vienna-lavender/50 mt-6" aria-hidden="true" />
-        </header>
+        {/* 1. ARTICLE HEADER — bilingual client component */}
+        <ArticleHeader article={article} />
 
         {/* 2. GRID: SIDEBAR + MAIN CONTENT */}
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative grid grid-cols-1 lg:grid-cols-[auto_1fr] gap-6 items-start mb-16">
