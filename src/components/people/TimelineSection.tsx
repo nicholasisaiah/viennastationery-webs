@@ -18,71 +18,80 @@ export function TimelineSection() {
 
         {/* ── Desktop Horizontal Timeline ── */}
         <div className="hidden lg:block relative max-w-6xl mx-auto">
-
-          {/*
-            Layout: 3-row grid per column
-              Row 0 (h-36)  — card TOP  (even steps: 0,2,4)
-              Row 1 (h-8)   — dot + horizontal line zone
-              Row 2 (h-36)  — card BOTTOM (odd steps: 1,3,5)
-          */}
           <div className="grid grid-cols-6 gap-3 relative">
 
-            {/* Horizontal line sits in the middle row */}
+            {/* Horizontal backbone line — sits at the dot row */}
             <div
-              className="absolute left-0 right-0 h-[2px] bg-vienna-lavender z-0"
-              style={{ top: "calc(9rem + 1rem)" }}   /* h-36 + half of h-8 */
+              className="absolute left-0 right-0 h-[2px] bg-vienna-lavender/70 z-0"
+              style={{ top: "calc(9rem + 1rem)" }}
               aria-hidden="true"
             />
 
             {TIMELINE_STEPS.map((step, idx) => {
-              const isTop = idx % 2 === 0; // 0,2,4 → card on top; 1,3,5 → card on bottom
+              const isTop = idx % 2 === 0; // 0,2,4 → top; 1,3,5 → bottom
 
               return (
                 <div key={step.stepNumber} className="flex flex-col items-center">
 
-                  {/* TOP CARD SLOT — fixed height so dot row is always aligned */}
-                  <div className="h-36 flex items-end pb-2 w-full">
-                    {isTop && (
-                      <div
-                        className={`
-                          w-full p-3 rounded-xl shadow-soft hover-lift transition-transform duration-300
-                          ${step.bgClass}
-                        `}
-                      >
-                        <span className="font-outfit text-[10px] font-bold text-vienna-rose uppercase tracking-widest block mb-1">
-                          {step.stepNumber}. {step.title}
-                        </span>
-                        <p className="font-nunito text-vienna-text-muted text-xs leading-snug">
-                          {step.description}
-                        </p>
-                      </div>
+                  {/* ── TOP CARD SLOT (h-36) ── */}
+                  <div className="h-36 flex flex-col items-center justify-end w-full">
+                    {isTop ? (
+                      <>
+                        {/* Card */}
+                        <div
+                          className={`
+                            w-full p-3 rounded-xl shadow-soft hover-lift
+                            transition-transform duration-300 ${step.bgClass}
+                          `}
+                        >
+                          <span className="font-outfit text-[10px] font-bold text-vienna-rose uppercase tracking-widest block mb-1">
+                            {step.stepNumber}. {step.title}
+                          </span>
+                          <p className="font-nunito text-vienna-text-muted text-xs leading-snug">
+                            {step.description}
+                          </p>
+                        </div>
+                        {/* Vertical connector: card → dot */}
+                        <div className="w-[2px] bg-vienna-lavender/70 flex-1 min-h-[8px]" aria-hidden="true" />
+                      </>
+                    ) : (
+                      /* Empty top slot for bottom cards */
+                      <div className="flex-1" />
                     )}
                   </div>
 
-                  {/* DOT — always at the same vertical position */}
+                  {/* ── DOT (always on the line) ── */}
                   <div className="h-8 flex items-center justify-center relative z-10">
                     <div
-                      className="w-3 h-3 rounded-full bg-vienna-rose border-2 border-white shadow-sm"
+                      className="w-3.5 h-3.5 rounded-full bg-vienna-rose border-[3px] border-white shadow-sm ring-1 ring-vienna-rose/30"
                       aria-hidden="true"
                     />
                   </div>
 
-                  {/* BOTTOM CARD SLOT — fixed height */}
-                  <div className="h-36 flex items-start pt-2 w-full">
-                    {!isTop && (
-                      <div
-                        className={`
-                          w-full p-3 rounded-xl shadow-soft hover-lift transition-transform duration-300
-                          ${step.bgClass}
-                        `}
-                      >
-                        <span className="font-outfit text-[10px] font-bold text-vienna-rose uppercase tracking-widest block mb-1">
-                          {step.stepNumber}. {step.title}
-                        </span>
-                        <p className="font-nunito text-vienna-text-muted text-xs leading-snug">
-                          {step.description}
-                        </p>
-                      </div>
+                  {/* ── BOTTOM CARD SLOT (h-36) ── */}
+                  <div className="h-36 flex flex-col items-center justify-start w-full">
+                    {!isTop ? (
+                      <>
+                        {/* Vertical connector: dot → card */}
+                        <div className="w-[2px] bg-vienna-lavender/70 flex-1 min-h-[8px]" aria-hidden="true" />
+                        {/* Card */}
+                        <div
+                          className={`
+                            w-full p-3 rounded-xl shadow-soft hover-lift
+                            transition-transform duration-300 ${step.bgClass}
+                          `}
+                        >
+                          <span className="font-outfit text-[10px] font-bold text-vienna-rose uppercase tracking-widest block mb-1">
+                            {step.stepNumber}. {step.title}
+                          </span>
+                          <p className="font-nunito text-vienna-text-muted text-xs leading-snug">
+                            {step.description}
+                          </p>
+                        </div>
+                      </>
+                    ) : (
+                      /* Empty bottom slot for top cards */
+                      <div className="flex-1" />
                     )}
                   </div>
 
@@ -93,13 +102,12 @@ export function TimelineSection() {
         </div>
 
         {/* ── Mobile & Tablet Vertical Timeline ── */}
-        <div className="lg:hidden relative max-w-md mx-auto pl-6 border-l-2 border-vienna-lavender space-y-8 py-4">
+        <div className="lg:hidden relative max-w-md mx-auto pl-6 border-l-2 border-vienna-lavender/70 space-y-8 py-4">
           {TIMELINE_STEPS.map((step) => (
             <div key={step.stepNumber} className="relative">
-              {/* Dot marker */}
               <div
                 className="
-                  w-3.5 h-3.5 rounded-full bg-vienna-rose border-2 border-white shadow-xs
+                  w-3.5 h-3.5 rounded-full bg-vienna-rose border-[3px] border-white shadow-xs ring-1 ring-vienna-rose/30
                   absolute -left-[31px] top-4
                 "
                 aria-hidden="true"
