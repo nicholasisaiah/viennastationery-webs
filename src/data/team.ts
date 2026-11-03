@@ -11,7 +11,7 @@ export const TEAM_DATA: TeamMember[] = [
   {
     id: "t1",
     name: "Carmen Jessalyn Tjong Malik",
-    role: "DESIGN",
+    role: "VISUAL DESIGN",
     image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=300&q=80",
     contribution:
       '"Every color, every curve, every little detail you see here — that\'s all mine."',
