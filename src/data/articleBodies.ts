@@ -44,8 +44,8 @@ export const ARTICLE_BODIES: ArticleBody[] = [
       {
         type: "pullQuote",
         text: "Your environment is the silent companion to your creativity. When it speaks of beauty and intention, your work follows suit.",
-        author: "CLARA",
-        role: "CREATIVE LEAD",
+        author: "VIENNA TEAM",
+        role: "CREATIVE EDITORIAL",
       },
       {
         type: "h2",
@@ -93,7 +93,7 @@ export const ARTICLE_BODIES: ArticleBody[] = [
       {
         type: "pullQuote",
         text: "We don't design products. We design small moments of pause — tiny permission slips to slow down and feel something.",
-        author: "ELOWEN SAGE",
+        author: "VIENNA TEAM",
         role: "CREATIVE DIRECTION",
       },
       {
@@ -138,8 +138,8 @@ export const ARTICLE_BODIES: ArticleBody[] = [
       {
         type: "pullQuote",
         text: "A planner is a thinking tool, not a performance. Design yours for clarity, not for admiration.",
-        author: "JULIAN REED",
-        role: "INTERFACE DESIGN",
+        author: "VIENNA TEAM",
+        role: "EDITORIAL",
       },
       {
         type: "h2",
@@ -187,8 +187,8 @@ export const ARTICLE_BODIES: ArticleBody[] = [
       {
         type: "pullQuote",
         text: "The evening journal is not about being productive. It's about being honest with yourself before the day closes.",
-        author: "MAYA CHEN",
-        role: "WEB DEVELOPMENT",
+        author: "VIENNA TEAM",
+        role: "LIFESTYLE EDITOR",
       },
       {
         type: "h2",
@@ -293,7 +293,7 @@ export const ARTICLE_BODIES: ArticleBody[] = [
       {
         type: "pullQuote",
         text: "A morning without intention is a morning surrendered to other people's urgencies. Claim yours with something as simple as a cup of tea and an open notebook.",
-        author: "ELOWEN SAGE",
+        author: "VIENNA TEAM",
         role: "CREATIVE DIRECTION",
       },
       {
@@ -342,8 +342,8 @@ export const ARTICLE_BODIES: ArticleBody[] = [
       {
         type: "pullQuote",
         text: "The binder cover is your creative mission statement. It should look like the inside of your mind — organized chaos with a strong aesthetic point of view.",
-        author: "JULIAN REED",
-        role: "INTERFACE DESIGN",
+        author: "VIENNA TEAM",
+        role: "CREATIVE EDITORIAL",
       },
       {
         type: "h2",
@@ -391,8 +391,8 @@ export const ARTICLE_BODIES: ArticleBody[] = [
       {
         type: "pullQuote",
         text: "Morning pages are not about writing well. They are about showing up, writing badly, and discovering what's on the other side of the bad writing.",
-        author: "MAYA CHEN",
-        role: "WEB DEVELOPMENT",
+        author: "VIENNA TEAM",
+        role: "LIFESTYLE EDITOR",
       },
       {
         type: "h2",
@@ -440,7 +440,7 @@ export const ARTICLE_BODIES: ArticleBody[] = [
       {
         type: "pullQuote",
         text: "The right color palette for your desk isn't the most popular one on Pinterest. It's the one that makes you feel like yourself when you sit down to work.",
-        author: "ELOWEN SAGE",
+        author: "VIENNA TEAM",
         role: "CREATIVE DIRECTION",
       },
       {
@@ -530,8 +530,8 @@ export const ARTICLE_BODIES: ArticleBody[] = [
       {
         type: "pullQuote",
         text: "The goal of a habit tracker is not to create a perfect record. It's to make you slightly more likely to show up today than you would have been without it.",
-        author: "JULIAN REED",
-        role: "INTERFACE DESIGN",
+        author: "VIENNA TEAM",
+        role: "EDITORIAL",
       },
       {
         type: "h2",
@@ -579,8 +579,8 @@ export const ARTICLE_BODIES: ArticleBody[] = [
       {
         type: "pullQuote",
         text: "A reading nook is not a luxury — it's a necessity for anyone who takes their inner life seriously. Even the smallest space, made intentional, becomes sacred.",
-        author: "MAYA CHEN",
-        role: "WEB DEVELOPMENT",
+        author: "VIENNA TEAM",
+        role: "LIFESTYLE EDITOR",
       },
       {
         type: "h2",

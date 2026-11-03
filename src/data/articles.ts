@@ -42,7 +42,7 @@ export const ARTICLES_DATA: Article[] = [
     // Autumn/fall stationery flat lay with warm tones
     image:
       "https://images.unsplash.com/photo-1508739773434-c26b3d09e071?w=800&q=80",
-    author: "Elowen Sage",
+    author: "Vienna Team",
     authorRole: "CREATIVE DIRECTION",
     date: "Sept 08, 2026",
     readTime: "4 min read",
@@ -58,8 +58,8 @@ export const ARTICLES_DATA: Article[] = [
     // Clean minimalist planner/agenda on desk
     image:
       "https://images.unsplash.com/photo-1506784983877-45594efa4cbe?w=800&q=80",
-    author: "Julian Reed",
-    authorRole: "INTERFACE DESIGN",
+    author: "Vienna Team",
+    authorRole: "EDITORIAL",
     date: "Sept 01, 2026",
     readTime: "6 min read",
   },
@@ -74,8 +74,8 @@ export const ARTICLES_DATA: Article[] = [
     // Open journal with pen, evening/candlelight vibe
     image:
       "https://images.unsplash.com/photo-1531346680769-a1d79b57de5c?w=800&q=80",
-    author: "Maya Chen",
-    authorRole: "WEB DEVELOPMENT",
+    author: "Vienna Team",
+    authorRole: "LIFESTYLE EDITOR",
     date: "Aug 28, 2026",
     readTime: "3 min read",
   },
@@ -105,7 +105,8 @@ export const ARTICLES_DATA: Article[] = [
     // Coffee cup with journal in morning light
     image:
       "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=800&q=80",
-    author: "Elowen Sage",
+    author: "Vienna Team",
+    authorRole: "CREATIVE EDITORIAL",
     date: "Aug 15, 2026",
     readTime: "5 min read",
   },
@@ -120,7 +121,8 @@ export const ARTICLES_DATA: Article[] = [
     // Decorated binder / planner with stickers and washi tape
     image:
       "https://images.unsplash.com/photo-1456735190827-d1262f71b8a3?w=800&q=80",
-    author: "Julian Reed",
+    author: "Vienna Team",
+    authorRole: "CREATIVE EDITORIAL",
     date: "Aug 10, 2026",
     readTime: "4 min read",
   },
@@ -135,7 +137,8 @@ export const ARTICLES_DATA: Article[] = [
     // Hand writing in journal, morning light
     image:
       "https://images.unsplash.com/photo-1455390582262-044cdead277a?w=800&q=80",
-    author: "Maya Chen",
+    author: "Vienna Team",
+    authorRole: "LIFESTYLE EDITOR",
     date: "Aug 02, 2026",
     readTime: "5 min read",
   },
@@ -150,7 +153,8 @@ export const ARTICLES_DATA: Article[] = [
     // Colorful aesthetic desk setup with pastel tones
     image:
       "https://images.unsplash.com/photo-1518455027359-f3f8164ba6bd?w=800&q=80",
-    author: "Elowen Sage",
+    author: "Vienna Team",
+    authorRole: "CREATIVE EDITORIAL",
     date: "Jul 25, 2026",
     readTime: "4 min read",
   },
@@ -180,7 +184,8 @@ export const ARTICLES_DATA: Article[] = [
     // Bullet journal habit tracker spread
     image:
       "https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?w=800&q=80",
-    author: "Julian Reed",
+    author: "Vienna Team",
+    authorRole: "EDITORIAL",
     date: "Jul 10, 2026",
     readTime: "4 min read",
   },
@@ -195,7 +200,8 @@ export const ARTICLES_DATA: Article[] = [
     // Cozy reading nook with soft blanket, books, warm light
     image:
       "https://images.unsplash.com/photo-1507842217343-583bb7270b66?w=800&q=80",
-    author: "Maya Chen",
+    author: "Vienna Team",
+    authorRole: "LIFESTYLE EDITOR",
     date: "Jul 02, 2026",
     readTime: "5 min read",
   },
