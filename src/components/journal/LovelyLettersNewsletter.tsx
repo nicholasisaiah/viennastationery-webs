@@ -34,6 +34,8 @@ export function LovelyLettersNewsletter() {
 
       const data = await res.json();
 
+      console.log("[newsletter] API response:", res.status, data);
+
       if (res.status === 201) {
         setStatus("success");
         setMessage(
@@ -53,10 +55,10 @@ export function LovelyLettersNewsletter() {
         setStatus("error");
         setMessage(
           lang === "id"
-            ? "Gagal mendaftar. Silakan coba lagi nanti."
-            : "Failed to subscribe. Please try again later."
+            ? `Gagal mendaftar: ${data.detail || data.error || "Coba lagi nanti."}`
+            : `Failed to subscribe: ${data.detail || data.error || "Please try again later."}`
         );
-        console.error("Newsletter error:", data.error);
+        console.error("[newsletter] Error detail:", data);
       }
     } catch (err) {
       setStatus("error");
