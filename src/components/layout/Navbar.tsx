@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useLanguage } from "@/contexts/LanguageContext";
 
@@ -56,10 +57,20 @@ export function Navbar({ variant = "cream" }: NavbarProps) {
         {/* Logo */}
         <Link
           href="/"
-          className="font-outfit font-extrabold text-vienna-rose text-xl md:text-2xl tracking-wider relative z-50"
+          className="relative z-50 flex items-center"
           aria-label="Vienna Stationery — Home"
         >
-          VIENNA
+          <Image
+            src="/images/vienna-logo.png"
+            alt="Vienna Stationery"
+            width={44}
+            height={44}
+            className="rounded-full object-cover"
+            priority
+          />
+          <span className="ml-2.5 font-outfit font-extrabold text-vienna-rose text-xl md:text-2xl tracking-wider">
+            VIENNA
+          </span>
         </Link>
 
         {/* Desktop menu */}
