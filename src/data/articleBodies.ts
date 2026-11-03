@@ -600,4 +600,447 @@ export const ARTICLE_BODIES: ArticleBody[] = [
       },
     ],
   },
+
+  // ── 13. MacBook Pro & Analog Notebook ──────────────────────────────
+  {
+    slug: "macbook-pro-dan-notebook-analog",
+    sections: [
+      {
+        type: "dropcap",
+        text: "There's a paradox at the heart of the modern creative workspace: the more powerful our digital tools become, the more our best ideas seem to demand an analog escape. If you spend your days in front of a MacBook Pro — designing, coding, editing, writing — you've probably felt it. The cursor blinks. The screen glows. And your mind goes completely blank.",
+      },
+      {
+        type: "h2",
+        text: "The Digital Blank Page Problem",
+      },
+      {
+        type: "paragraph",
+        text: "Research in cognitive science consistently shows that the act of writing by hand engages the brain differently from typing. When you sketch a concept map, draft a rough outline, or simply write a to-do list with an actual pen, you activate regions of the brain associated with learning, memory, and creative thinking. The physical resistance of pen on paper — that slight drag — slows your thoughts just enough to let them deepen.",
+      },
+      {
+        type: "h2",
+        text: "The Most Beautiful Desk Pairing",
+      },
+      {
+        type: "paragraph",
+        text: "A MacBook Pro beside a well-chosen notebook isn't just aesthetically pleasing — it's a productivity system. The screen handles execution; the notebook handles ideation. When you're stuck, you close the laptop and open the notebook. When you're ready to build, you return to the screen with a clear plan. This simple rhythm prevents the most common creative block: trying to think and produce simultaneously.",
+      },
+      {
+        type: "pullQuote",
+        text: "The most powerful creative setup isn't all digital. It's the thoughtful balance between the speed of technology and the depth of analog thought.",
+        author: "VIENNA TEAM",
+        role: "CREATIVE LEAD",
+      },
+      {
+        type: "h2",
+        text: "Choosing Your Analog Partner",
+      },
+      {
+        type: "paragraph",
+        text: "The notebook beside your MacBook should earn its place. Look for quality paper that won't bleed through, a cover that matches the intentionality of your workspace, and a size that fits naturally beside your laptop without taking over. Vienna's notebooks are designed with exactly this pairing in mind — beautiful enough to keep on your desk permanently, functional enough to carry every creative thought you need to capture.",
+      },
+    ],
+  },
+
+  // ── 14. GTA 6 ───────────────────────────────────────────────────────
+  {
+    slug: "fakta-mengejutkan-gta-6",
+    sections: [
+      {
+        type: "dropcap",
+        text: "Few cultural moments in recent memory have generated as much anticipation as the upcoming release of Grand Theft Auto VI. For gamers, collectors, and casual players alike, this is more than a game launch — it's a generational event. And if you want to experience it fully, a little preparation goes a long way.",
+      },
+      {
+        type: "h2",
+        text: "What You Need to Know Before Launch Day",
+      },
+      {
+        type: "paragraph",
+        text: "GTA 6 is expected to require up to 210 GB of storage — a figure that reflects the sheer scale of its open world. Plan ahead and clear space on your console now. The game returns to the iconic Vice City setting, this time with a modern edge and, for the first time in franchise history, a female protagonist. The dynamic between the two lead characters promises a narrative depth that the series hasn't attempted before.",
+      },
+      {
+        type: "h2",
+        text: "Your Setup Deserves the Moment",
+      },
+      {
+        type: "paragraph",
+        text: "Great gaming sessions aren't just about what's on screen — they're about the environment around you. Seasoned players know that keeping a notebook nearby during an open-world game isn't just useful; it's essential. Jot down side mission locations you want to revisit, map out strategies, track rare items you're hunting. The physical act of noting things down keeps you in control of the experience rather than overwhelmed by it.",
+      },
+      {
+        type: "pullQuote",
+        text: "The best gaming sessions are the ones you remember. A few notes in a good notebook make sure you actually do.",
+        author: "VIENNA TEAM",
+        role: "LIFESTYLE EDITOR",
+      },
+      {
+        type: "h2",
+        text: "Making the Desk Match the Occasion",
+      },
+      {
+        type: "paragraph",
+        text: "A launch day this significant deserves a setup to match. Think beyond your controller and headset — add a quality notebook to your gaming station. Vienna's notebooks pair effortlessly with any desk aesthetic, from minimal and dark to warm and eclectic. Celebrate the arrival of something you've waited years for by giving your space the attention it deserves.",
+      },
+    ],
+  },
+
+  // ── 15. Digital Doomsday ─────────────────────────────────────────────
+  {
+    slug: "kiamat-digital-mulai-menulis-di-kertas",
+    sections: [
+      {
+        type: "dropcap",
+        text: "Scientists and technology experts aren't warning us about asteroids or alien invasions. The threat they're quietly discussing is far more mundane — and far more plausible. A large-scale solar flare, a coordinated cyberattack on cloud infrastructure, or a cascading failure of satellite networks could, in theory, wipe out access to everything you've stored digitally. Every note, every plan, every saved idea: gone.",
+      },
+      {
+        type: "h2",
+        text: "The Fragility of the Digital Record",
+      },
+      {
+        type: "paragraph",
+        text: "We've outsourced our memories to devices and services we don't control. Your calendar lives on a server. Your notes exist in an app that requires a subscription. Your ideas are typed into platforms that could disappear overnight. The physical world, for all its limitations, offers something digital infrastructure cannot: permanence that doesn't require a server staying on.",
+      },
+      {
+        type: "h2",
+        text: "Paper as an Act of Resilience",
+      },
+      {
+        type: "paragraph",
+        text: "You don't need to be a prepper to see the wisdom in writing things down. A handwritten journal of your most important thoughts, plans, and ideas is a form of personal resilience. It's information that survives a power outage, a hacked account, or a dead battery. And beyond the practical argument, there's something deeply satisfying about holding your thoughts in your hands — something no cloud backup can replicate.",
+      },
+      {
+        type: "pullQuote",
+        text: "Paper doesn't crash. It doesn't require a password. It doesn't need a software update. Your best ideas deserve that kind of reliability.",
+        author: "VIENNA TEAM",
+        role: "EDITORIAL",
+      },
+      {
+        type: "h2",
+        text: "Starting the Analog Habit",
+      },
+      {
+        type: "paragraph",
+        text: "The transition from digital to analog doesn't have to be dramatic. Start with one notebook dedicated to your most important ideas — the kind you'd be devastated to lose. Write in it daily, even briefly. Over time, you'll discover that the act of writing by hand not only preserves your thoughts but sharpens them. What starts as a backup becomes a practice you genuinely love.",
+      },
+    ],
+  },
+
+  // ── 16. IHSG & Investment Journal ───────────────────────────────────
+  {
+    slug: "ihsg-merah-jangan-panik-jurnal-investasi",
+    sections: [
+      {
+        type: "dropcap",
+        text: "Watching your investment portfolio turn red is one of the most viscerally uncomfortable experiences in personal finance. The numbers shrink. The instinct to act — to sell, to panic, to do anything — can feel overwhelming. But the investors who consistently come out ahead aren't the ones who react fastest. They're the ones who pause longest.",
+      },
+      {
+        type: "h2",
+        text: "Why Screens Make Us Panic",
+      },
+      {
+        type: "paragraph",
+        text: "Financial apps are designed for engagement, not calm. Real-time graphs, red percentage indicators, push notifications — all of it is engineered to keep you watching and reacting. The problem is that reactive investing is almost always expensive investing. Studies consistently show that individual investors who trade most actively tend to underperform those who trade the least.",
+      },
+      {
+        type: "h2",
+        text: "The Investment Journal as Your Anchor",
+      },
+      {
+        type: "paragraph",
+        text: "Before your next investment decision, try this: close the app, pick up a pen, and write down your original reasoning for the position. What did you believe when you entered it? Has anything fundamentally changed, or just the price? Writing forces linear thinking. It slows you down. And that slowdown is often the difference between a rational hold and an expensive panic sell.",
+      },
+      {
+        type: "pullQuote",
+        text: "The best investment journal entry is the one you write when you're tempted to sell. It's the one that might save you from yourself.",
+        author: "VIENNA TEAM",
+        role: "EDITORIAL",
+      },
+      {
+        type: "h2",
+        text: "What to Track in Your Journal",
+      },
+      {
+        type: "paragraph",
+        text: "An effective investment journal doesn't need to be complicated. Record your entry thesis, your target price, your stop-loss level, and — crucially — your emotional state at the time. Review these entries before making any significant change to your portfolio. Over time, you'll start to see patterns in your decision-making that no chart can show you. That self-knowledge is the real edge.",
+      },
+    ],
+  },
+
+  // ── 17. ChatGPT & Human Voice ────────────────────────────────────────
+  {
+    slug: "chatgpt-hasil-ketikan-kurang-bernyawa",
+    sections: [
+      {
+        type: "dropcap",
+        text: "Artificial intelligence has given us something genuinely remarkable: the ability to generate coherent, well-structured text in seconds. For brainstorming, drafting, and overcoming blank-page paralysis, tools like ChatGPT are extraordinary. And yet, something consistently gets lost in the output. Read enough AI-generated text and you begin to feel it — a certain smoothness that never quite becomes warmth.",
+      },
+      {
+        type: "h2",
+        text: "What AI Cannot Replicate",
+      },
+      {
+        type: "paragraph",
+        text: "Human writing carries the fingerprints of lived experience. The slight awkwardness of a sentence written in genuine excitement. The rhythm of someone who thinks in a particular way. The unexpected metaphor that comes from a specific memory. AI produces text by predicting what words are most likely to follow each other — which results in writing that is always plausible, but rarely surprising. Plausible writing doesn't move people. Surprising, specific, personal writing does.",
+      },
+      {
+        type: "h2",
+        text: "The Notebook as a Filter",
+      },
+      {
+        type: "paragraph",
+        text: "The most effective technique for humanising AI output is deceptively simple: read the AI's draft, then close the screen and rewrite the key ideas by hand. When you reconstruct an argument from memory on paper, your brain inevitably adds your own phrasing, your own emphases, your own examples. The AI provides the scaffold; your handwriting provides the soul.",
+      },
+      {
+        type: "pullQuote",
+        text: "AI gives you the raw material. Your notebook is where you turn it into something only you could have written.",
+        author: "VIENNA TEAM",
+        role: "CREATIVE EDITORIAL",
+      },
+      {
+        type: "h2",
+        text: "Making the Process Enjoyable",
+      },
+      {
+        type: "paragraph",
+        text: "The notebook you use for this process matters more than you might think. Writing feels different — better — when the paper is smooth, when the cover is something you chose deliberately, when the whole object makes you want to pick it up. Vienna's notebooks are designed to make this intermediary step feel less like work and more like the most interesting part of your creative process.",
+      },
+    ],
+  },
+
+  // ── 18. Making AI Writing More Natural ──────────────────────────────
+  {
+    slug: "cara-membuat-tulisan-ai-lebih-natural",
+    sections: [
+      {
+        type: "dropcap",
+        text: "Anyone who uses AI writing tools regularly eventually develops a familiar frustration. The output is competent — sometimes impressively so — but it reads as if it were written by someone who has read everything and experienced nothing. The fix isn't to abandon AI assistance. It's to learn how to edit for humanity.",
+      },
+      {
+        type: "h2",
+        text: "Strip Out the Machine's Favourite Phrases",
+      },
+      {
+        type: "paragraph",
+        text: "AI models have signature tendencies. Watch for phrases like 'In today's fast-paced world', 'It's important to note that', or any paragraph that begins with 'In conclusion'. These are statistical tics — patterns that appear frequently in training data and therefore frequently in output. Replace them with how you'd actually start a sentence in conversation. The simpler, the better.",
+      },
+      {
+        type: "h2",
+        text: "Inject Specificity and Personal Experience",
+      },
+      {
+        type: "paragraph",
+        text: "The single biggest differentiator between AI writing and human writing is specificity. AI generalises by nature. Humans remember specific moments, specific people, specific failures and wins. Add one concrete anecdote, one actual example, one real number from your own experience — and the entire piece changes register. Suddenly it reads as testimony rather than summary.",
+      },
+      {
+        type: "pullQuote",
+        text: "The best editing happens away from the screen. Write the AI's ideas back out by hand, and they'll come out sounding like you.",
+        author: "VIENNA TEAM",
+        role: "EDITORIAL",
+      },
+      {
+        type: "h2",
+        text: "Vary Your Sentence Rhythm",
+      },
+      {
+        type: "paragraph",
+        text: "AI tends toward consistent sentence length, which creates a monotonous reading experience. Human writers — whether they know it or not — vary their rhythm constantly. Short sentences for impact. Longer ones to build an idea through accumulation and nuance, letting the reader sit with complexity for a moment before moving on. Read your edited draft aloud. If it sounds like a machine, it still reads like one.",
+      },
+    ],
+  },
+
+  // ── 19. M-Banking & Mindful Budgeting ───────────────────────────────
+  {
+    slug: "saldo-mbanking-tipis-tips-keuangan",
+    sections: [
+      {
+        type: "dropcap",
+        text: "There's a particular kind of shock that comes from opening your mobile banking app near the end of the month. The number on the screen is lower than you expected — sometimes significantly lower — and you can't quite account for where it went. You didn't make any large purchases. You didn't do anything unusual. And yet the money is gone.",
+      },
+      {
+        type: "h2",
+        text: "The Psychology of Painless Spending",
+      },
+      {
+        type: "paragraph",
+        text: "Behavioural economists call it 'the pain of paying' — and digital transactions largely eliminate it. When you use physical cash, your brain registers each note as a small loss, which naturally moderates your spending. When you tap a card or scan a QR code, no such signal fires. The money exists as an abstract number on a screen, and screens feel fundamentally different from wallets.",
+      },
+      {
+        type: "h2",
+        text: "Ten Minutes That Change Everything",
+      },
+      {
+        type: "paragraph",
+        text: "The most effective financial intervention available to you costs nothing and takes ten minutes a week. Sit down with your transaction history and write it out by hand — every significant expense, categorised, totalled. When your hand is physically writing the number next to 'streaming subscriptions you forgot about', the cognitive impact is completely different from skimming a digital list. You feel it. That feeling is what changes behaviour.",
+      },
+      {
+        type: "pullQuote",
+        text: "Budgeting on paper doesn't have to feel like homework. With the right notebook, it can feel like the most empowering thing you do all week.",
+        author: "VIENNA TEAM",
+        role: "EDITORIAL",
+      },
+      {
+        type: "h2",
+        text: "Making Budgeting a Practice You Enjoy",
+      },
+      {
+        type: "paragraph",
+        text: "The reason most people abandon budgeting isn't lack of discipline — it's lack of pleasure in the process. If your budget tracker is a crumpled receipt or a spreadsheet that takes twenty minutes to open, you won't use it consistently. A beautiful dedicated notebook changes the psychology entirely. Vienna's planners are designed to make this weekly ritual something you genuinely look forward to.",
+      },
+    ],
+  },
+
+  // ── 20. Roblox Strategy ─────────────────────────────────────────────
+  {
+    slug: "bermain-roblox-butuh-strategi",
+    sections: [
+      {
+        type: "dropcap",
+        text: "Roblox has a reputation problem with anyone who hasn't looked closely. From the outside, it appears to be a children's game with blocky graphics. From the inside — as any dedicated player or creator knows — it's one of the most complex creative and economic platforms on the internet, where real strategies are built, real currencies are traded, and genuinely original worlds are designed from scratch.",
+      },
+      {
+        type: "h2",
+        text: "Why Strategy Happens Off-Screen",
+      },
+      {
+        type: "paragraph",
+        text: "The most prolific Roblox creators share a counterintuitive habit: their best design work happens away from the computer. Before they open Roblox Studio, they sketch layouts on paper. Before they plan a trading strategy in Blox Fruits, they list their targets and priorities in a notebook. This isn't nostalgia — it's cognitive efficiency. Paper thinking is free-form in a way that screen thinking isn't. There are no menus to navigate, no loading times, no distractions.",
+      },
+      {
+        type: "pullQuote",
+        text: "The best game worlds start as rough sketches on paper, not polished renders on a screen.",
+        author: "VIENNA TEAM",
+        role: "CREATIVE EDITORIAL",
+      },
+      {
+        type: "h2",
+        text: "The Case for a Gaming Notebook",
+      },
+      {
+        type: "paragraph",
+        text: "A dedicated notebook for your gaming sessions does several things at once. It externalises your working memory, freeing up cognitive resources for actual play. It creates a record of your strategies that you can revisit and refine. And it provides a reason to step away from the screen for five minutes — which is often enough to break the cycle of eye strain and mental fatigue that kills long sessions. Your game becomes more fun when you play it with intention.",
+      },
+    ],
+  },
+
+  // ── 21. Physical Books ──────────────────────────────────────────────
+  {
+    slug: "mengapa-buku-fisik-istimewa",
+    sections: [
+      {
+        type: "dropcap",
+        text: "Every few years, someone announces that physical books are dying. E-readers, they say, are simply more practical. You can carry a thousand titles in your bag. You can adjust the font size. You can read in the dark. And yet, bookshops persist. Print runs continue. And people who could easily read everything on a screen continue to choose paper. There's a reason for that.",
+      },
+      {
+        type: "h2",
+        text: "What Screen Reading Cannot Replicate",
+      },
+      {
+        type: "paragraph",
+        text: "Reading from a physical page is a fundamentally different sensory experience. The texture of the paper. The resistance of a turned page. The smell of ink — a compound called nonenal that triggers a distinctive, deeply pleasant response in the human brain. The visible progress of a bookmark moving through a book. These aren't small details. They are the signals that tell your nervous system: this moment is worth being present for.",
+      },
+      {
+        type: "h2",
+        text: "The Reading Journal as an Extension of the Book",
+      },
+      {
+        type: "paragraph",
+        text: "Avid readers often develop a parallel practice: keeping a journal alongside their reading. Not a review or a summary, but a live record — quotes that stopped them, questions the text raised, memories a particular passage triggered. This practice deepens comprehension, strengthens recall, and creates a personal document that's sometimes more valuable than the book itself. Your reading journal is the conversation you're having with the author.",
+      },
+      {
+        type: "pullQuote",
+        text: "A great book deserves more than a five-star rating. It deserves a page in your journal — written in your own hand, in your own words.",
+        author: "VIENNA TEAM",
+        role: "EDITORIAL",
+      },
+      {
+        type: "h2",
+        text: "Designing Your Reading Ritual",
+      },
+      {
+        type: "paragraph",
+        text: "The most satisfying reading sessions are the ones with an environment to match. A comfortable seat. Good light. A warm drink. And a notebook within arm's reach — not because you have to write, but because you might want to. Vienna's notebooks are designed with exactly this companion role in mind: quiet, beautiful, ready when you need them, invisible when you don't.",
+      },
+    ],
+  },
+
+  // ── 22. Laut Bercerita ──────────────────────────────────────────────
+  {
+    slug: "selesai-baca-laut-bercerita",
+    sections: [
+      {
+        type: "dropcap",
+        text: "If you've just finished Leila S. Chudori's Laut Bercerita, you already know the feeling. It's the particular heaviness of a story that refuses to stay inside the pages. The characters — Biru Laut, Asmara Jati, their friends and their families — feel too real to leave behind. And the history they carry, the disappearances, the grief, the unanswered questions, has a way of sitting with you long after the last page.",
+      },
+      {
+        type: "h2",
+        text: "Processing What the Book Left Behind",
+      },
+      {
+        type: "paragraph",
+        text: "Literary grief — the specific ache of a story ending — is a recognised emotional experience, and it's particularly acute after novels that deal with actual historical trauma. Laut Bercerita isn't just a story; it's a reckoning with Indonesia's past that most readers encounter in a deeply personal way. The emotions it surfaces deserve somewhere to go. That somewhere, for many readers, is a journal.",
+      },
+      {
+        type: "h2",
+        text: "What to Write After You Finish",
+      },
+      {
+        type: "paragraph",
+        text: "You don't need to write a review. Start with whatever is loudest in your head. Maybe it's a quote — 'Matilah engkau mati, kau akan lahir berkali-kali' — that you want to keep. Maybe it's a letter to Biru Laut, or to Asmara Jati, or to Leila herself. Maybe it's just an honest account of what you felt on the last page. Whatever form it takes, writing it down converts the weight of the story into something you carry more lightly.",
+      },
+      {
+        type: "pullQuote",
+        text: "The best way to honour a book that moved you is to write about it. Let the characters know they didn't disappear without witness.",
+        author: "VIENNA TEAM",
+        role: "EDITORIAL",
+      },
+      {
+        type: "h2",
+        text: "The Literary Journal as a Lasting Record",
+      },
+      {
+        type: "paragraph",
+        text: "A dedicated reading journal — one where you record quotes, reactions, and reflections from every significant book you finish — becomes one of the most personal documents you own. Years from now, finding your notes on Laut Bercerita will bring the story back with a vividness that rereading might not. Vienna's notebooks are made to hold exactly this kind of record: beautiful enough to deserve the words inside them.",
+      },
+    ],
+  },
+
+  // ── 23. TikTok Content Creator ──────────────────────────────────────
+  {
+    slug: "kreator-konten-tiktok-fyp",
+    sections: [
+      {
+        type: "dropcap",
+        text: "Getting onto TikTok's For You Page is, for most creators, an obsession that consumes far more mental energy than the actual content creation. The algorithm feels opaque. Trends move too fast. And the most common response to creative block — scrolling TikTok for inspiration — reliably makes everything worse, flooding an already-exhausted brain with more competing stimuli.",
+      },
+      {
+        type: "h2",
+        text: "Why More Screen Time Produces Worse Content",
+      },
+      {
+        type: "paragraph",
+        text: "The research on creativity is clear: original ideas don't emerge from stimulus overload. They emerge from periods of low input, when the brain has time to make unexpected connections. Scrolling TikTok for inspiration is the creative equivalent of trying to hear a quiet sound in a loud room. The quieter you get — the more you step away from the feed — the more clearly your own ideas start to arrive.",
+      },
+      {
+        type: "h2",
+        text: "The Storyboard Before the Shot",
+      },
+      {
+        type: "paragraph",
+        text: "The most consistently successful TikTok creators share a practice that rarely makes it into their content: they plan on paper. Before opening the camera, they sketch the rough arc of the video. They write out their hook word for word. They note the key visual transitions they want to hit. This isn't time wasted — it's the opposite. A video planned in fifteen minutes of notebook time takes a fraction of the time to shoot and edit.",
+      },
+      {
+        type: "pullQuote",
+        text: "Your best TikTok video is probably already in your head. A notebook is just how you get it out of there and onto a screen.",
+        author: "VIENNA TEAM",
+        role: "CREATIVE EDITORIAL",
+      },
+      {
+        type: "h2",
+        text: "Building a Content Rhythm That Lasts",
+      },
+      {
+        type: "paragraph",
+        text: "Burnout is the silent killer of creator careers. The creators who sustain output over years — not just months — tend to have systems that include deliberate offline time. A content planning notebook isn't just a productivity tool; it's a boundary between your creative self and the algorithm. It's the place where ideas are yours before they belong to a feed. Vienna's notebooks are designed for exactly this kind of intentional creative work.",
+      },
+    ],
+  },
 ];

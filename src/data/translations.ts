@@ -257,6 +257,61 @@ export const TRANSLATIONS = {
         excerpt: "Memadukan pencahayaan lembut, bantal linen, dan notebook favoritmu untuk retreat malam yang tenang.",
         category: "Gaya Hidup",
       },
+      "macbook-pro-dan-notebook-analog": {
+        title: "Punya MacBook Pro? Ini 'Senjata' Rahasia yang Sering Terlewat di Meja Kerjamu",
+        excerpt: "MacBook Pro-mu memang canggih — tapi alat produktivitas yang paling sering terlupakan di meja kreatifmu mungkin adalah sebuah notebook analog.",
+        category: "Belajar & Gaya Hidup",
+      },
+      "fakta-mengejutkan-gta-6": {
+        title: "GTA 6 Hampir Tiba: Fakta Mengejutkan & Cara Mempersiapkan Setup-mu",
+        excerpt: "Game paling ditunggu dalam satu dekade hampir hadir. Dari ukuran unduhan 210 GB hingga protagonis wanita pertama — ini yang perlu kamu tahu.",
+        category: "Gaya Hidup",
+      },
+      "kiamat-digital-mulai-menulis-di-kertas": {
+        title: "Ancaman Kiamat Digital Semakin Nyata? Inilah Alasan Kamu Harus Mulai Menulis di Kertas Hari Ini",
+        excerpt: "Ilmuwan memperingatkan bahwa ketergantungan total pada layar adalah kelemahan terbesar kita. Menulis di kertas bukan nostalgia — ini bentuk ketahanan paling tangguh.",
+        category: "Gaya Hidup",
+      },
+      "ihsg-merah-jangan-panik-jurnal-investasi": {
+        title: "Portofolio IHSG Merah? Lakukan Ini Sebelum Menjual",
+        excerpt: "Rahasia bertahan di pasar yang bergejolak bukan grafik yang lebih canggih — melainkan jurnal investasi yang ditulis tangan dengan disiplin.",
+        category: "Gaya Hidup",
+      },
+      "chatgpt-hasil-ketikan-kurang-bernyawa": {
+        title: "ChatGPT Memang Jenius, Tapi Ini Alasan Mengapa Hasilnya Sering Terasa Kurang Bernyawa",
+        excerpt: "AI bisa membuat draf lebih cepat dari pikiranmu, tapi tidak bisa meniru suaramu. Begini cara notebook menjembatani antara efisiensi mesin dan kehangatan manusia.",
+        category: "Kreatif",
+      },
+      "cara-membuat-tulisan-ai-lebih-natural": {
+        title: "Terlalu Kaku dan Mirip Robot? Cara Ampuh Membuat Tulisan AI Terasa Lebih Natural",
+        excerpt: "Empat teknik praktis untuk menghilangkan kekakuan khas tulisan AI — termasuk metode analog editing yang banyak dipakai para profesional.",
+        category: "Kreatif",
+      },
+      "saldo-mbanking-tipis-tips-keuangan": {
+        title: "Kaget Lihat Saldo M-Banking Mendadak Tipis? Trik Sederhana Ini Akan Selamatkan Keuanganmu",
+        excerpt: "Transaksi cashless menghilangkan 'rasa sakit saat membayar' — dan otakmu yang menanggung akibatnya. Sepuluh menit budgeting manual per minggu bisa mengubah segalanya.",
+        category: "Organisasi",
+      },
+      "bermain-roblox-butuh-strategi": {
+        title: "Roblox Bukan Sekadar Permainan Biasa — Ini Alasan Mengapa Butuh Strategi Khusus",
+        excerpt: "Para kreator Roblox terbaik berbagi satu kebiasaan yang tidak terduga: melangkah menjauh dari layar untuk membuat sketsa ide di atas kertas sebelum mulai membangun.",
+        category: "Belajar & Gaya Hidup",
+      },
+      "mengapa-buku-fisik-istimewa": {
+        title: "Sensasi Ajaib Lembaran Kertas: Mengapa Buku Fisik Selalu Istimewa di Hati Kita",
+        excerpt: "E-reader memang praktis, tapi tidak ada algoritma yang bisa meniru aroma halaman baru atau berat sebuah cerita yang dipegang di tangan.",
+        category: "Gaya Hidup",
+      },
+      "selesai-baca-laut-bercerita": {
+        title: "Selesai Baca 'Laut Bercerita' dan Merasa Sesak di Dada? Cara Terbaik Mengabadikan Kisahnya",
+        excerpt: "Mahakarya Leila S. Chudori meninggalkan beban yang tak mudah pergi. Menulis tentangnya — kutipan, surat untuk tokoh, refleksi pribadi — adalah hal paling melegakan yang bisa kamu lakukan.",
+        category: "Jurnal",
+      },
+      "kreator-konten-tiktok-fyp": {
+        title: "Lelah Mengejar FYP TikTok? Rahasia Kreator Konten Sukses Ternyata Ada di Luar Layar Ponsel",
+        excerpt: "Kreator TikTok paling sukses tidak mulai dengan ponsel — mereka mulai dengan storyboard di atas kertas. Ini alasan dan caranya.",
+        category: "Kreatif",
+      },
     },
     articleBodies: {
       "how-to-make-your-study-desk-feel-more-like-you": {
@@ -578,6 +633,61 @@ export const TRANSLATIONS = {
         title: "Creating a Cozy Corner for Reading & Reflection",
         excerpt: "Pairing soft lighting, linen cushions, and your favorite notebook for quiet evening retreats.",
         category: "Lifestyle",
+      },
+      "macbook-pro-dan-notebook-analog": {
+        title: "Got a MacBook Pro? Here's the Secret Weapon You're Missing on Your Desk",
+        excerpt: "Your MacBook Pro is powerful — but the most overlooked productivity tool on your creative desk might just be an analog notebook.",
+        category: "Study & Lifestyle",
+      },
+      "fakta-mengejutkan-gta-6": {
+        title: "GTA 6 Is Almost Here: Surprising Facts & How to Prepare Your Setup",
+        excerpt: "The most anticipated game in a decade is nearly here. From a 210 GB download to a first female protagonist — here's what you need to know.",
+        category: "Lifestyle",
+      },
+      "kiamat-digital-mulai-menulis-di-kertas": {
+        title: "The Digital Doomsday Threat: Why You Should Start Writing on Paper Today",
+        excerpt: "Scientists warn that total dependence on screens is our greatest vulnerability. Writing on paper isn't just nostalgic — it's your most resilient backup.",
+        category: "Lifestyle",
+      },
+      "ihsg-merah-jangan-panik-jurnal-investasi": {
+        title: "Your Portfolio Is in the Red? Do This Before You Sell",
+        excerpt: "The secret to surviving volatile markets isn't better charts — it's a disciplined investment journal written by hand.",
+        category: "Lifestyle",
+      },
+      "chatgpt-hasil-ketikan-kurang-bernyawa": {
+        title: "ChatGPT Is a Genius — But Here's Why Its Output Feels Lifeless",
+        excerpt: "AI can draft faster than you can think, but it can't replicate your voice. Here's how a notebook bridges the gap between machine efficiency and human warmth.",
+        category: "Creative",
+      },
+      "cara-membuat-tulisan-ai-lebih-natural": {
+        title: "Too Stiff and Robotic? How to Make AI Writing Feel More Human",
+        excerpt: "Four practical techniques to strip AI writing of its telltale stiffness — including the analog editing method that pros swear by.",
+        category: "Creative",
+      },
+      "saldo-mbanking-tipis-tips-keuangan": {
+        title: "Shocked by Your Mobile Banking Balance? This Simple Trick Will Save Your Finances",
+        excerpt: "The 'pain of paying' disappears with cashless transactions — and your brain pays the price. Ten minutes a week of manual budgeting can change everything.",
+        category: "Organization",
+      },
+      "bermain-roblox-butuh-strategi": {
+        title: "Roblox Is Not Just a Game — Here's Why It Demands Real Strategy",
+        excerpt: "Top Roblox creators share one secret habit: stepping away from the screen to sketch ideas on paper before building anything.",
+        category: "Study & Lifestyle",
+      },
+      "mengapa-buku-fisik-istimewa": {
+        title: "The Magic of Physical Books: Why Paper Will Always Hold a Special Place",
+        excerpt: "E-readers are convenient, but no algorithm can replicate the scent of a new page or the weight of a story held in your hands.",
+        category: "Lifestyle",
+      },
+      "selesai-baca-laut-bercerita": {
+        title: "Finished 'Laut Bercerita' and Feeling Heartbroken? The Best Way to Honour Its Story",
+        excerpt: "Leila S. Chudori's masterpiece leaves a weight on your chest. Writing about it — quotes, letters to characters, personal reflections — is the most cathartic thing you can do.",
+        category: "Journaling",
+      },
+      "kreator-konten-tiktok-fyp": {
+        title: "Exhausted Chasing TikTok FYP? The Secret of Top Creators Is Off-Screen",
+        excerpt: "The most successful TikTok creators don't start with a phone — they start with a storyboard on paper. Here's why and how.",
+        category: "Creative",
       },
     },
     articleBodies: {
