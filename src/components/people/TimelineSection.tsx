@@ -8,7 +8,7 @@ export function TimelineSection() {
   return (
     <section className="bg-white py-16 md:py-24 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
+
         {/* Title */}
         <div className="text-center max-w-2xl mx-auto mb-16">
           <h2 className="font-comfortaa font-bold text-vienna-text-heading text-2xl sm:text-3xl md:text-4xl tracking-tight">
@@ -16,43 +16,75 @@ export function TimelineSection() {
           </h2>
         </div>
 
-        {/* Desktop Horizontal Timeline (6 Steps) */}
-        <div className="hidden lg:block relative max-w-6xl mx-auto py-12">
-          
-          {/* Horizontal Connecting Line */}
-          <div className="absolute top-1/2 left-0 right-0 h-[2px] bg-vienna-lavender -translate-y-1/2 z-0" aria-hidden="true" />
+        {/* ── Desktop Horizontal Timeline ── */}
+        <div className="hidden lg:block relative max-w-6xl mx-auto">
 
-          <div className="grid grid-cols-6 gap-4 relative z-10">
+          {/*
+            Layout: 3-row grid per column
+              Row 0 (h-36)  — card TOP  (even steps: 0,2,4)
+              Row 1 (h-8)   — dot + horizontal line zone
+              Row 2 (h-36)  — card BOTTOM (odd steps: 1,3,5)
+          */}
+          <div className="grid grid-cols-6 gap-3 relative">
+
+            {/* Horizontal line sits in the middle row */}
+            <div
+              className="absolute left-0 right-0 h-[2px] bg-vienna-lavender z-0"
+              style={{ top: "calc(9rem + 1rem)" }}   /* h-36 + half of h-8 */
+              aria-hidden="true"
+            />
+
             {TIMELINE_STEPS.map((step, idx) => {
-              const isEven = idx % 2 === 0;
+              const isTop = idx % 2 === 0; // 0,2,4 → card on top; 1,3,5 → card on bottom
 
               return (
-                <div key={step.stepNumber} className="relative flex flex-col items-center">
-                  
-                  {/* Top / Bottom Placement */}
-                  <div
-                    className={`
-                      w-full p-4 rounded-xl shadow-soft hover-lift transition-transform duration-300
-                      ${step.bgClass}
-                      ${isEven ? "mb-12" : "mt-12 order-last"}
-                    `}
-                  >
-                    <span className="font-outfit text-[10px] font-bold text-vienna-rose uppercase tracking-widest block mb-1">
-                      {step.stepNumber}. {step.title}
-                    </span>
-                    <p className="font-nunito text-vienna-text-muted text-xs leading-snug">
-                      {step.description}
-                    </p>
+                <div key={step.stepNumber} className="flex flex-col items-center">
+
+                  {/* TOP CARD SLOT — fixed height so dot row is always aligned */}
+                  <div className="h-36 flex items-end pb-2 w-full">
+                    {isTop && (
+                      <div
+                        className={`
+                          w-full p-3 rounded-xl shadow-soft hover-lift transition-transform duration-300
+                          ${step.bgClass}
+                        `}
+                      >
+                        <span className="font-outfit text-[10px] font-bold text-vienna-rose uppercase tracking-widest block mb-1">
+                          {step.stepNumber}. {step.title}
+                        </span>
+                        <p className="font-nunito text-vienna-text-muted text-xs leading-snug">
+                          {step.description}
+                        </p>
+                      </div>
+                    )}
                   </div>
 
-                  {/* Dot Marker on Timeline Line */}
-                  <div
-                    className="
-                      w-3 h-3 rounded-full bg-vienna-rose border-2 border-white shadow-xs
-                      absolute top-1/2 -translate-y-1/2 z-20
-                    "
-                    aria-hidden="true"
-                  />
+                  {/* DOT — always at the same vertical position */}
+                  <div className="h-8 flex items-center justify-center relative z-10">
+                    <div
+                      className="w-3 h-3 rounded-full bg-vienna-rose border-2 border-white shadow-sm"
+                      aria-hidden="true"
+                    />
+                  </div>
+
+                  {/* BOTTOM CARD SLOT — fixed height */}
+                  <div className="h-36 flex items-start pt-2 w-full">
+                    {!isTop && (
+                      <div
+                        className={`
+                          w-full p-3 rounded-xl shadow-soft hover-lift transition-transform duration-300
+                          ${step.bgClass}
+                        `}
+                      >
+                        <span className="font-outfit text-[10px] font-bold text-vienna-rose uppercase tracking-widest block mb-1">
+                          {step.stepNumber}. {step.title}
+                        </span>
+                        <p className="font-nunito text-vienna-text-muted text-xs leading-snug">
+                          {step.description}
+                        </p>
+                      </div>
+                    )}
+                  </div>
 
                 </div>
               );
@@ -60,7 +92,7 @@ export function TimelineSection() {
           </div>
         </div>
 
-        {/* Mobile & Tablet Vertical Timeline */}
+        {/* ── Mobile & Tablet Vertical Timeline ── */}
         <div className="lg:hidden relative max-w-md mx-auto pl-6 border-l-2 border-vienna-lavender space-y-8 py-4">
           {TIMELINE_STEPS.map((step) => (
             <div key={step.stepNumber} className="relative">
@@ -72,7 +104,6 @@ export function TimelineSection() {
                 "
                 aria-hidden="true"
               />
-
               <div className={`p-5 rounded-xl shadow-soft ${step.bgClass}`}>
                 <span className="font-outfit text-xs font-bold text-vienna-rose uppercase tracking-widest block mb-1">
                   {step.stepNumber}. {step.title}
