@@ -5,36 +5,68 @@ import { PaperTextureBackground } from "@/components/ui/PaperTextureBackground";
 import { useLanguage } from "@/contexts/LanguageContext";
 
 export function LovelyLettersNewsletter() {
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [message, setMessage] = useState("");
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     if (!email || !email.includes("@")) {
       setStatus("error");
-      setMessage("Masukkan alamat email yang valid.");
+      setMessage(
+        lang === "id"
+          ? "Masukkan alamat email yang valid."
+          : "Please enter a valid email address."
+      );
       return;
     }
 
     setStatus("loading");
 
-    // Simulate newsletter subscription saving (local storage prevention of duplicate)
-    setTimeout(() => {
-      const existing = JSON.parse(localStorage.getItem("vienna_subscribers") || "[]");
-      if (existing.includes(email.toLowerCase())) {
-        setStatus("error");
-        setMessage("Email ini sudah terdaftar dalam Lovely Letters! ♡");
-      } else {
-        existing.push(email.toLowerCase());
-        localStorage.setItem("vienna_subscribers", JSON.stringify(existing));
+    try {
+      const res = await fetch("/api/newsletter", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, source: "journal" }),
+      });
+
+      const data = await res.json();
+
+      if (res.status === 201) {
         setStatus("success");
-        setMessage("Thank you! Cek inbox kamu ♡");
+        setMessage(
+          lang === "id"
+            ? "Terima kasih sudah berlangganan! Cek inbox kamu ♡"
+            : "Thank you for subscribing! Check your inbox ♡"
+        );
         setEmail("");
+      } else if (res.status === 409) {
+        setStatus("error");
+        setMessage(
+          lang === "id"
+            ? "Email ini sudah terdaftar dalam Lovely Letters! ♡"
+            : "This email is already subscribed to Lovely Letters! ♡"
+        );
+      } else {
+        setStatus("error");
+        setMessage(
+          lang === "id"
+            ? "Gagal mendaftar. Silakan coba lagi nanti."
+            : "Failed to subscribe. Please try again later."
+        );
+        console.error("Newsletter error:", data.error);
       }
-    }, 600);
+    } catch (err) {
+      setStatus("error");
+      setMessage(
+        lang === "id"
+          ? "Terjadi kesalahan jaringan. Silakan coba lagi."
+          : "A network error occurred. Please try again."
+      );
+      console.error("Newsletter fetch error:", err);
+    }
   };
 
   return (
@@ -50,6 +82,10 @@ export function LovelyLettersNewsletter() {
         >
           <div className="max-w-xl mx-auto space-y-4">
             
+            <span className="text-vienna-rose text-[10px] font-outfit font-bold uppercase tracking-[0.25em]">
+              {t("journal.newsletter.badge")}
+            </span>
+
             <h2 className="font-fredoka font-bold text-vienna-text-heading text-3xl sm:text-4xl">
               {t("journal.newsletter.headline")}{" "}
               <span className="text-vienna-rose-light" aria-hidden="true">♡</span>
@@ -62,7 +98,11 @@ export function LovelyLettersNewsletter() {
             <form
               onSubmit={handleSubmit}
               className="flex flex-col sm:flex-row items-center justify-center gap-3 pt-4 max-w-md mx-auto"
-              aria-label="Subscribe to Lovely Letters newsletter"
+              aria-label={
+                lang === "id"
+                  ? "Berlangganan newsletter Lovely Letters"
+                  : "Subscribe to Lovely Letters newsletter"
+              }
             >
               <label htmlFor="journal-newsletter-email" className="sr-only">
                 {t("journal.newsletter.placeholder")}
@@ -119,6 +159,10 @@ export function LovelyLettersNewsletter() {
                 {message}
               </p>
             )}
+
+            <p className="text-vienna-text-light text-xs font-nunito pt-2">
+              {t("journal.newsletter.privacy")}
+            </p>
 
           </div>
         </PaperTextureBackground>
