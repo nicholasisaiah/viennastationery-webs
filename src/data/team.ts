@@ -15,7 +15,7 @@ export const TEAM_DATA: TeamMember[] = [
     image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=300&q=80",
     contribution:
       '"Every color, every curve, every little detail you see here — that\'s all mine."',
-    obsessedWith: "Washi tape collections",
+    obsessedWith: "Aesthetic Pinterest boards",
   },
   {
     id: "t2",
@@ -24,7 +24,7 @@ export const TEAM_DATA: TeamMember[] = [
     image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&q=80",
     contribution:
       '"Shaping the story and soul of Vienna — from mood boards to the voice behind every word."',
-    obsessedWith: "Moodboards at 2am",
+    obsessedWith: "Storytelling & visual narratives",
   },
   {
     id: "t3",
@@ -33,6 +33,6 @@ export const TEAM_DATA: TeamMember[] = [
     image: "https://images.unsplash.com/photo-1519764622345-23439dd774f7?w=300&q=80",
     contribution:
       '"Building every pixel of this website — from database to deployment."',
-    obsessedWith: "Clean TypeScript types",
+    obsessedWith: "Building things that actually work",
   },
 ];
