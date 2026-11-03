@@ -41,7 +41,7 @@ export function PeopleHeroSection() {
           {/* Polaroid Right (finding the right pink) */}
           <div className="lg:absolute lg:top-12 lg:right-8 xl:right-16 flex justify-center lg:block transform rotate-4 hover:rotate-0 hover-lift transition-transform duration-300 mt-4 lg:mt-0">
             <PolaroidFrame
-              src="https://images.unsplash.com/photo-1527176930608-54f7dd4d4b86?w=300&q=80"
+              src="https://images.unsplash.com/photo-1513364776144-60967b0f800f?w=300&q=80"
               alt="Color palette"
               caption={t("people.rightPolaroid")}
               className="w-40 sm:w-48"

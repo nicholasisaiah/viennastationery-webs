@@ -109,15 +109,6 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
-  icons: {
-    icon: [
-      { url: "/images/vienna-logo.png", type: "image/png", sizes: "512x512" },
-    ],
-    apple: [
-      { url: "/images/vienna-logo.png", sizes: "180x180", type: "image/png" },
-    ],
-    shortcut: "/images/vienna-logo.png",
-  },
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
