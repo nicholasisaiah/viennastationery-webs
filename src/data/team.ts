@@ -21,7 +21,7 @@ export const TEAM_DATA: TeamMember[] = [
     id: "t2",
     name: "Hendri",
     role: "CREATIVE DIRECTION",
-    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&q=80",
+    image: "/team/hendri.jpg",
     contribution:
       '"Shaping the story and soul of Vienna — from mood boards to the voice behind every word."',
     obsessedWith: "Storytelling & visual narratives",

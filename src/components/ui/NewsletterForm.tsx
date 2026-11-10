@@ -5,25 +5,46 @@ import React, { useState } from "react";
 interface NewsletterFormProps {
   variant?: "inline" | "card";
   className?: string;
+  source?: string;
 }
 
 export function NewsletterForm({
   variant = "inline",
   className = "",
+  source = "footer",
 }: NewsletterFormProps) {
   const [email, setEmail] = useState("");
-  const [status, setStatus] = useState<"idle" | "success" | "error">("idle");
+  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error" | "duplicate">("idle");
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!email || !email.includes("@")) {
       setStatus("error");
       return;
     }
-    // Simulated submission
-    setStatus("success");
-    setEmail("");
-    setTimeout(() => setStatus("idle"), 3000);
+
+    setStatus("loading");
+    try {
+      const res = await fetch("/api/newsletter", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, source }),
+      });
+      if (res.status === 201) {
+        setStatus("success");
+        setEmail("");
+        setTimeout(() => setStatus("idle"), 4000);
+      } else if (res.status === 409) {
+        setStatus("duplicate");
+        setTimeout(() => setStatus("idle"), 4000);
+      } else {
+        setStatus("error");
+        setTimeout(() => setStatus("idle"), 4000);
+      }
+    } catch {
+      setStatus("error");
+      setTimeout(() => setStatus("idle"), 4000);
+    }
   };
 
   if (variant === "card") {
@@ -100,13 +121,15 @@ export function NewsletterForm({
           <p
             id="newsletter-status-card"
             className={`text-sm mt-3 font-nunito ${
-              status === "success" ? "text-green-600" : "text-red-500"
+              status === "success" ? "text-green-600 font-semibold" : status === "duplicate" ? "text-vienna-rose font-semibold" : "text-red-500"
             }`}
             role="status"
             aria-live="polite"
           >
             {status === "success"
               ? "Welcome to the Lovely Letters! ♡"
+              : status === "duplicate"
+              ? "You're already subscribed! ♡"
               : "Please enter a valid email address."}
           </p>
         )}
@@ -150,6 +173,7 @@ export function NewsletterForm({
       />
       <button
         type="submit"
+        disabled={status === "loading"}
         className="
           w-10 h-10 flex-shrink-0
           flex items-center justify-center
@@ -158,7 +182,7 @@ export function NewsletterForm({
           hover:bg-vienna-rose-dark
           transition-colors duration-200
           focus-visible:ring-2 focus-visible:ring-vienna-rose focus-visible:ring-offset-2
-          cursor-pointer
+          cursor-pointer disabled:opacity-50
         "
         aria-label="Subscribe to newsletter"
       >
@@ -183,12 +207,12 @@ export function NewsletterForm({
         <p
           id="newsletter-status-inline"
           className={`text-xs ml-2 font-nunito ${
-            status === "success" ? "text-green-600" : "text-red-500"
+            status === "success" ? "text-green-600" : status === "duplicate" ? "text-vienna-rose" : "text-red-500"
           }`}
           role="status"
           aria-live="polite"
         >
-          {status === "success" ? "♡" : "!"}
+          {status === "loading" ? "…" : status === "success" ? "♡" : status === "duplicate" ? "✓" : "!"}
         </p>
       )}
     </form>
