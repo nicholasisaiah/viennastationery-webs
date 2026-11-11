@@ -64,6 +64,11 @@ export const ARTICLE_BODIES: ArticleBody[] = [
         type: "paragraph",
         text: "Finally, bring in elements that aren't related to work at all. A single dried flower in a bud vase, a favorite polaroid tucked under a glass paperweight, or a candle that you only light when it's time to focus. These signals tell your brain that this space is safe, creative, and uniquely yours. When your desk feels personal, you'll want to spend more time at it — and that's where the real magic happens.",
       },
+      {
+        type: "video",
+        text: "",
+        src: "/videos/desk-setup.mp4",
+      },
     ],
   },
 
