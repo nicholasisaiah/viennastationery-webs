@@ -36,7 +36,7 @@ export async function generateMetadata({ params }: ArticleDetailPageProps): Prom
   let idExcerpt = article.excerpt;
   try {
     const { TRANSLATIONS } = await import("@/data/translations");
-    const idArticles = TRANSLATIONS.id.articles as Record<string, { title: string; excerpt: string; category: string }>;
+    const idArticles = (TRANSLATIONS.id.articles as unknown) as Record<string, { title: string; excerpt: string; category: string }>;
     if (idArticles[slug]) {
       idTitle = idArticles[slug].title;
       idExcerpt = idArticles[slug].excerpt;

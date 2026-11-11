@@ -6,6 +6,10 @@ import { PullQuote } from "@/components/article/PullQuote";
 import { TRANSLATIONS } from "@/data/translations";
 import type { ArticleSection } from "@/data/articleBodies";
 
+type IdArticleBody =
+  | { sections: ArticleSection[] }
+  | { intro: string; pullQuote: string; body: string };
+
 interface ArticleBodyClientProps {
   slug: string;
   sections: ArticleSection[];
@@ -20,7 +24,7 @@ export function ArticleBodyClient({ slug, sections }: ArticleBodyClientProps) {
   }
 
   // Try to get the Indonesian body from translations
-  const idBodies = TRANSLATIONS.id.articleBodies as Record<string, { intro: string; pullQuote: string; body: string }>;
+  const idBodies = TRANSLATIONS.id.articleBodies as Record<string, IdArticleBody>;
   const idBody = idBodies[slug];
 
   if (!idBody) {
@@ -28,18 +32,22 @@ export function ArticleBodyClient({ slug, sections }: ArticleBodyClientProps) {
     return <RenderSections sections={sections} />;
   }
 
-  // Build Indonesian sections by combining the translated body with pullQuote from original
-  const pullQuoteSection = sections.find((s) => s.type === "pullQuote");
+  // If the ID body has a full sections array, use it directly
+  if ("sections" in idBody && Array.isArray(idBody.sections)) {
+    return <RenderSections sections={idBody.sections} />;
+  }
 
-  // Split idBody.body on \n\n into paragraphs
-  const paragraphs = idBody.body.split("\n\n").filter(Boolean);
+  // Legacy format: build sections from intro + body + pullQuote
+  const legacy = idBody as { intro: string; pullQuote: string; body: string };
+  const pullQuoteSection = sections.find((s) => s.type === "pullQuote");
+  const paragraphs = legacy.body.split("\n\n").filter(Boolean);
   const midPoint = Math.floor(paragraphs.length / 2);
 
   const idSections: ArticleSection[] = [
-    { type: "dropcap", text: idBody.intro },
+    { type: "dropcap", text: legacy.intro },
     ...paragraphs.slice(0, midPoint).map((p): ArticleSection => ({ type: "paragraph", text: p })),
     ...(pullQuoteSection
-      ? [{ ...pullQuoteSection, text: idBody.pullQuote.replace(/^[""]|[""]$/g, "") }]
+      ? [{ ...pullQuoteSection, text: legacy.pullQuote.replace(/^["""]|["""]$/g, "") }]
       : []),
     ...paragraphs.slice(midPoint).map((p): ArticleSection => ({ type: "paragraph", text: p })),
   ];
@@ -83,13 +91,23 @@ function RenderSections({ sections }: { sections: ArticleSection[] }) {
         }
         if (section.type === "pullQuote") {
           return (
-            <PullQuote
-              key={idx}
-              author={section.author}
-              role={section.role}
-            >
+            <PullQuote key={idx} author={section.author} role={section.role}>
               {section.text}
             </PullQuote>
+          );
+        }
+        if (section.type === "video" && section.src) {
+          return (
+            <div key={idx} className="rounded-2xl overflow-hidden shadow-medium my-2 bg-black">
+              <video
+                controls
+                className="w-full max-h-[480px] object-contain"
+                src={section.src}
+                playsInline
+              >
+                Browser kamu tidak mendukung pemutar video.
+              </video>
+            </div>
           );
         }
         // Default: paragraph

@@ -1,4 +1,4 @@
-export const TRANSLATIONS = {
+﻿export const TRANSLATIONS = {
   id: {
     nav: {
       journal: "Jurnal",
@@ -198,9 +198,31 @@ export const TRANSLATIONS = {
     },
     articles: {
       "how-to-make-your-study-desk-feel-more-like-you": {
-        title: "Cara Membuat Meja Belajarmu Terasa Lebih Seperti Dirimu",
-        excerpt: "Ruang kerjamu adalah perpanjangan dari pikiran kreatifmu. Kami menjelajahi seni desk-scaping yang penuh niat dengan tekstur lembut dan keindahan yang fungsional.",
-        category: "Belajar & Gaya Hidup",
+        sections: [
+          { type: "dropcap", text: "Ada sesuatu yang ajaib tentang meja belajar yang benar-benar mencerminkan siapa dirimu. Meja belajar bukan sekadar bidang datar tempat menumpuk laptop, tumpukan kertas, atau menyelesaikan tugas sekolah. Lebih dari itu, meja adalah sanctuary pribadi: ruang kreatif yang membentuk suasana hati, memicu ide-ide segar, dan membuat jam-jam kerja terasa jauh lebih menyenangkan. Ketika suasananya tepat, aktivitas belajar tak lagi terasa seperti beban, melainkan momen eksplorasi yang selalu dinanti." },
+          { type: "paragraph", text: "Ruang kerja yang tertata rapi tidak tumbuh secara kebetulan. Ia lahir dari kurasi barang yang bijak, pemilihan warna yang harmonis, serta sentuhan detail kecil yang mampu menghidupkan suasana. Jika kamu merasa motivasi belajarmu sedang menurun atau suasana meja terasa membosankan, memberikan sedikit sentuhan penyegaran bisa jadi langkah awal yang tepat." },
+          { type: "h2", text: "1. Mulai dari Dasar yang Bersih: Decluttering dan Kurasi Alat Tulis" },
+          { type: "paragraph", text: "Langkah pertama menciptakan ruang impian adalah membersihkan area kerja secara menyeluruh (decluttering). Singkirkan barang-barang yang tidak lagi berguna, kertas bekas yang menumpuk, atau barang dekoratif yang justru memenuhi area gerakmu. Evaluasi kembali alat tulis mana saja yang benar-benar kamu gunakan sehari-hari." },
+          { type: "paragraph", text: "Proses pembersihan ini memberi ruang napas baru, baik untuk mejamu maupun pikiranmu. Dengan membatasi barang yang ada di permukaan meja, mata tidak mudah lelah oleh stimulasi visual berlebihan. Sisakan barang-barang dasar seperti laptop atau buku catatan utama, lalu persiapkan wadah penyimpanan yang rapi untuk menampung seluruh perlengkapan tulismu." },
+          { type: "h2", text: "2. Utamakan Fungsionalitas dengan Sistem Penyimpanan Estetis" },
+          { type: "paragraph", text: "Fungsionalitas tetap menjadi kunci utama dari meja belajar yang ideal. Mat meja yang cantik tidak akan maksimal jika permukaan kerjamu masih terasa sempit dan berantakan. Pastikan setiap perlengkapan memiliki tempat penyimpanan yang jelas, terstruktur, dan mudah dijangkau saat dibutuhkan." },
+          { type: "paragraph", text: "Di sinilah peran penting elemen penyimpanan yang fungsional sekaligus menarik secara visual. Penggunaan organizer akrilik transparan, baki penyimpanan bersusun, hingga tempat pensil berdesain aesthetic membantu menjaga meja tetap rapi tanpa mengurangi keindahannya. Dengan organizer transparan, kamu bisa langsung melihat posisi pulpen, klip kertas, atau sticky notes favoritmu tanpa perlu mengaduk-aduk laci. Meja yang tertata rapi terbukti secara langsung mampu mempercepat alur kerjamu." },
+          { type: "h2", text: "3. Tentukan Palet Warna yang Harmonis dan Menenangkan" },
+          { type: "paragraph", text: "Elemen visual memegang peranan besar dalam membangun fokus dan rasa nyaman. Tentukan 2 hingga 3 warna utama untuk mejamu agar tampilan keseluruhan terlihat padu, mengalir, dan menyenangkan di mata." },
+          { type: "paragraph", text: "Kamu bisa menggunakan kombinasi warna pastel lembut seperti lavender, cream, dan soft pink untuk menciptakan suasana yang menenangkan. Jika kamu menyukai tampilan yang lebih segar dan berenergi, sentuhan warna sage green atau kombinasi warna cerah yang senada bisa jadi opsi tepat. Yang terpenting, pastikan warna alat tulis, binder notebook, tempat pensil, hingga aksesori meja saling melengkapi satu sama lain. Keselarasan warna ini akan memberikan kesan rapi secara instan, bahkan ketika kamu sedang berada di tengah-tengah sesi belajar yang padat." },
+          { type: "h2", text: "4. Hadirkan Sentuhan Personal yang Menghidupkan Suasana" },
+          { type: "paragraph", text: "Meja yang rapi dan terorganisir akan terasa hampa jika tidak memiliki karakter pemiliknya. Sentuhan personal inilah yang mengubah meja belajar biasa menjadi tempat favoritmu di rumah. Tambahkan elemen personal secara bertahap untuk menyuntikkan kehangatan dan inspirasi:" },
+          { type: "h3", text: "Foto Polaroid dan Washi Tape" },
+          { type: "paragraph", text: "Tempelkan foto kenangan, tiket acara favorit, atau quote motivasi di dinding depan meja menggunakan washi tape bermotif kesukaanmu. Washi tape memberikan fleksibilitas tinggi karena mudah dilepas tanpa merusak permukaan dinding." },
+          { type: "h3", text: "Koleksi Alat Tulis Unik" },
+          { type: "paragraph", text: "Lengkapi perlengkapan tulismu dengan detail menggemaskan. Pulpen bermotif kelinci, penghapus warna-warni, highlighter bertema pastel, hingga stiker dekoratif untuk mempercantik sampul buku binder bisa menjadi pemicu kebahagiaan kecil saat kamu mencatat." },
+          { type: "h3", text: "Elemen Penyegar Alami" },
+          { type: "paragraph", text: "Sukulen kecil atau tanaman hias meja dalam pot keramik memberikan sentuhan alami yang menyegarkan mata di sela-sela waktu belajar yang panjang." },
+          { type: "paragraph", text: "Menata meja belajar dengan perlengkapan yang menggemaskan bukan cuma membuat tampilan visual lebih rapi, tapi juga bisa menyelamatkan mood nugas yang sedang drop. Jika kamu butuh inspirasi seberapa serunya unboxing dan menata perlengkapan meja impian, simak cuplikan drama singkat berikut ini." },
+          { type: "video", text: "", src: "/videos/desk-setup.mp4" },
+          { type: "pullQuote", text: "Mejamu adalah cermin dari pikiran dan aspirasimu. Jadikan ia tempat yang ingin kamu datangi setiap hari.", author: "VIENNA TEAM", role: "CREATIVE EDITORIAL" },
+          { type: "paragraph", text: "Menciptakan ruang belajar yang menginspirasi sebenarnya tidak sulit. Kamu hanya perlu memadukan kerapian dasar, palet warna yang pas, sistem penyimpanan yang efisien, serta pilihan alat tulis unik yang bikin kamu makin bersemangat setiap kali duduk di meja. Yuk, mulai kurasi meja belajarmu sekarang!" },
+        ],
       },
       "the-art-of-the-intentional-pause": {
         title: "Seni Jeda yang Penuh Niat: Kisah Koleksi Musim Gugur Kami",

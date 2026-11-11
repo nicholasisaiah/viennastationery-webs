@@ -11,8 +11,8 @@ export default function JournalArchivePage() {
   const { t, lang } = useLanguage();
 
   // Resolve translated article metadata
-  const idArticles = TRANSLATIONS.id.articles as Record<string, { title: string; excerpt: string; category: string }>;
-  const enArticles = TRANSLATIONS.en.articles as Record<string, { title: string; excerpt: string; category: string }>;
+  const idArticles = (TRANSLATIONS.id.articles as unknown) as Record<string, { title: string; excerpt: string; category: string }>;
+  const enArticles = (TRANSLATIONS.en.articles as unknown) as Record<string, { title: string; excerpt: string; category: string }>;
 
   const articles = ARTICLES_DATA.map((art) => {
     const overrides = lang === "id" ? idArticles[art.slug] : enArticles[art.slug];

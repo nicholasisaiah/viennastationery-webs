@@ -5,10 +5,11 @@
 // =========================================================
 
 export interface ArticleSection {
-  type: "dropcap" | "paragraph" | "h2" | "pullQuote" | "h3";
+  type: "dropcap" | "paragraph" | "h2" | "pullQuote" | "h3" | "video";
   text: string;
   author?: string;    // for pullQuote
   role?: string;      // for pullQuote
+  src?: string;       // for video
 }
 
 export interface ArticleBody {
