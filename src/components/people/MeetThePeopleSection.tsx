@@ -77,14 +77,16 @@ export function MeetThePeopleSection() {
                   </div>
                 </div>
 
-                {/* Currently Obsessed With */}
+                {/* Tertarik dengan — label + value inline, satu kesatuan */}
                 <div className="pt-4 mt-4 border-t border-black/5">
-                  <span className="font-outfit text-[10px] font-bold text-vienna-text-muted uppercase tracking-wider block mb-1.5">
-                    {t("people.obsessed")}
-                  </span>
-                  <span className="inline-block px-3.5 py-1 bg-white text-vienna-text-dark text-xs font-nunito font-medium rounded-pill shadow-xs border border-vienna-lavender/40">
-                    {member.obsessedWith}
-                  </span>
+                  <p className="font-nunito text-xs leading-snug">
+                    <span className="font-outfit font-bold text-vienna-text-muted uppercase tracking-wider text-[10px]">
+                      {t("people.obsessed")}{" "}
+                    </span>
+                    <span className="font-semibold text-vienna-rose">
+                      {member.obsessedWith}
+                    </span>
+                  </p>
                 </div>
               </div>
             );
