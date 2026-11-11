@@ -12,7 +12,7 @@ export const TEAM_DATA: TeamMember[] = [
     id: "t1",
     name: "Carmen Jessalyn Tjong Malik",
     role: "VISUAL DESIGN",
-    image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=300&q=80",
+    image: "/team/carmen.jpg",
     contribution:
       '"Every color, every curve, every little detail you see here — that\'s all mine."',
     obsessedWith: "Aesthetic Pinterest boards",
@@ -30,7 +30,7 @@ export const TEAM_DATA: TeamMember[] = [
     id: "t3",
     name: "Nicholas Isaiah",
     role: "WEB DEVELOPMENT",
-    image: "https://images.unsplash.com/photo-1519764622345-23439dd774f7?w=300&q=80",
+    image: "/team/nicholas.jpg",
     contribution:
       '"Building every pixel of this website — from database to deployment."',
     obsessedWith: "Building things that actually work",
