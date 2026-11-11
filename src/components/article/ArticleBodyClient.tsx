@@ -24,21 +24,23 @@ export function ArticleBodyClient({ slug, sections }: ArticleBodyClientProps) {
   }
 
   // Try to get the Indonesian body from translations
-  const idBodies = TRANSLATIONS.id.articleBodies as Record<string, IdArticleBody>;
-  const idBody = idBodies[slug];
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const idBodies = (TRANSLATIONS.id as any).articleBodies as Record<string, unknown>;
+  const idBody = idBodies?.[slug];
 
-  if (!idBody) {
+  if (!idBody || typeof idBody !== "object") {
     // No Indonesian translation available — fall back to English
     return <RenderSections sections={sections} />;
   }
 
   // If the ID body has a full sections array, use it directly
-  if ("sections" in idBody && Array.isArray(idBody.sections)) {
-    return <RenderSections sections={idBody.sections} />;
+  const bodyObj = idBody as Record<string, unknown>;
+  if ("sections" in bodyObj && Array.isArray(bodyObj.sections)) {
+    return <RenderSections sections={bodyObj.sections as ArticleSection[]} />;
   }
 
   // Legacy format: build sections from intro + body + pullQuote
-  const legacy = idBody as { intro: string; pullQuote: string; body: string };
+  const legacy = bodyObj as { intro: string; pullQuote: string; body: string };
   const pullQuoteSection = sections.find((s) => s.type === "pullQuote");
   const paragraphs = legacy.body.split("\n\n").filter(Boolean);
   const midPoint = Math.floor(paragraphs.length / 2);
