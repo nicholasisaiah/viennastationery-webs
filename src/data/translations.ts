@@ -158,7 +158,7 @@ export const TRANSLATIONS = {
       meetHeadline: "Kenali orang-orang di baliknya.",
       meetSub: "Setiap detail yang kamu lihat ada karena seseorang di sini sangat peduli.",
       contribution: "Kontribusi:",
-      obsessed: "Terobsesi dengan:",
+      obsessed: "Tertarik dengan:",
       draftHeadline: "Di antara rancangan dan versi akhir",
       quoteBanner: "\"Kami tidak membuat stationery. Kami membuat momen-momen kecil yang layak untuk diingat.\"",
       timelineBadge: "TIMELINE",
