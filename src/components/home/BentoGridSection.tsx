@@ -122,16 +122,18 @@ export function BentoGridSection() {
             </div>
 
             <div className="flex items-center gap-3 mt-4">
-              <div className="relative w-10 h-10 rounded-full overflow-hidden border-2 border-white shadow-xs">
-                <Image src="/images/pink-peony-accent.png" alt="Team member" fill className="object-cover" sizes="40px" />
+              <div className="flex items-center gap-2 flex-shrink-0">
+                <div className="relative w-10 h-10 rounded-full overflow-hidden border-2 border-white shadow-xs flex-shrink-0">
+                  <Image src="/team/carmen.jpg" alt="Carmen" fill className="object-cover" sizes="40px" />
+                </div>
+                <div className="relative w-10 h-10 rounded-full overflow-hidden border-2 border-white shadow-xs flex-shrink-0">
+                  <Image src="/team/hendri.jpg" alt="Hendri" fill className="object-cover" sizes="40px" />
+                </div>
+                <div className="relative w-10 h-10 rounded-full overflow-hidden border-2 border-white shadow-xs flex-shrink-0">
+                  <Image src="/team/nicholas.jpg" alt="Nicholas" fill className="object-cover" sizes="40px" />
+                </div>
               </div>
-              <div className="relative w-10 h-10 rounded-full overflow-hidden border-2 border-white shadow-xs">
-                <Image src="https://images.unsplash.com/photo-1519764622345-23439dd774f7?w=80&q=80" alt="Team member" fill className="object-cover" sizes="40px" />
-              </div>
-              <div className="relative w-10 h-10 rounded-full overflow-hidden border-2 border-white shadow-xs">
-                <Image src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=80&q=80" alt="Team member" fill className="object-cover" sizes="40px" />
-              </div>
-              <p className="font-nunito text-vienna-text-dark text-xs sm:text-sm ml-2">
+              <p className="font-nunito text-vienna-text-dark text-xs sm:text-sm ml-1">
                 {t("bento.communityDesc")}
               </p>
             </div>
@@ -166,13 +168,16 @@ export function BentoGridSection() {
               </p>
             </div>
 
-            {/* 2 Small Polaroid Photos */}
-            <div className="flex items-center gap-3 mt-4 sm:mt-0 flex-shrink-0">
-              <div className="relative w-20 h-24 rounded-lg overflow-hidden border-2 border-white/20 transform -rotate-3 group-hover:rotate-0 transition-transform duration-300">
-                <Image src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=160&q=80" alt="Team" fill className="object-cover" sizes="80px" />
+            {/* Team Polaroid Photos */}
+            <div className="flex items-center -space-x-3 sm:-space-x-2 mt-4 sm:mt-0 flex-shrink-0">
+              <div className="relative w-16 h-20 sm:w-18 sm:h-24 rounded-lg overflow-hidden border-2 border-white/20 shadow-sm transform -rotate-6 group-hover:-rotate-3 transition-transform duration-300">
+                <Image src="/team/carmen.jpg" alt="Carmen" fill className="object-cover" sizes="80px" />
               </div>
-              <div className="relative w-20 h-24 rounded-lg overflow-hidden border-2 border-white/20 transform rotate-3 group-hover:rotate-0 transition-transform duration-300">
-                <Image src="https://images.unsplash.com/photo-1519764622345-23439dd774f7?w=160&q=80" alt="Team" fill className="object-cover" sizes="80px" />
+              <div className="relative w-16 h-20 sm:w-18 sm:h-24 rounded-lg overflow-hidden border-2 border-white/30 shadow-md transform rotate-1 group-hover:scale-105 transition-transform duration-300 z-10">
+                <Image src="/team/hendri.jpg" alt="Hendri" fill className="object-cover" sizes="80px" />
+              </div>
+              <div className="relative w-16 h-20 sm:w-18 sm:h-24 rounded-lg overflow-hidden border-2 border-white/20 shadow-sm transform rotate-6 group-hover:rotate-3 transition-transform duration-300">
+                <Image src="/team/nicholas.jpg" alt="Nicholas" fill className="object-cover" sizes="80px" />
               </div>
             </div>
           </Link>
