@@ -7,7 +7,7 @@ import { useLanguage } from "@/contexts/LanguageContext";
 export function LovelyLettersNewsletter() {
   const { t, lang } = useLanguage();
   const [email, setEmail] = useState("");
-  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const [status, setStatus] = useState<"idle" | "loading" | "success" | "duplicate" | "error">("idle");
   const [message, setMessage] = useState("");
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -24,6 +24,7 @@ export function LovelyLettersNewsletter() {
     }
 
     setStatus("loading");
+    setMessage("");
 
     try {
       const res = await fetch("/api/newsletter", {
@@ -40,16 +41,16 @@ export function LovelyLettersNewsletter() {
         setStatus("success");
         setMessage(
           lang === "id"
-            ? "Terima kasih sudah berlangganan! Cek inbox kamu ♡"
-            : "Thank you for subscribing! Check your inbox ♡"
+            ? "♡ Terima kasih sudah berlangganan! Cek inbox kamu ♡"
+            : "♡ Thank you for subscribing! Check your inbox ♡"
         );
         setEmail("");
       } else if (res.status === 409) {
-        setStatus("error");
+        setStatus("duplicate");
         setMessage(
           lang === "id"
-            ? "Email ini sudah terdaftar dalam Lovely Letters! ♡"
-            : "This email is already subscribed to Lovely Letters! ♡"
+            ? "✓ Email ini sudah terdaftar dalam Lovely Letters! ♡"
+            : "✓ This email is already subscribed to Lovely Letters! ♡"
         );
       } else {
         setStatus("error");
@@ -150,10 +151,14 @@ export function LovelyLettersNewsletter() {
               </button>
             </form>
 
-            {status !== "idle" && (
+            {status !== "idle" && status !== "loading" && (
               <p
                 className={`text-sm pt-2 font-nunito ${
-                  status === "success" ? "text-green-600 font-semibold" : "text-red-500"
+                  status === "success"
+                    ? "text-green-600 font-semibold"
+                    : status === "duplicate"
+                    ? "text-vienna-rose font-semibold"
+                    : "text-red-500"
                 }`}
                 role="status"
                 aria-live="polite"

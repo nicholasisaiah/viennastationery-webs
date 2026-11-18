@@ -43,12 +43,13 @@ export async function POST(request: Request) {
     const cleanEmail = email.toLowerCase().trim();
 
     // --- insert ---
+    // Note: Do NOT chain .select() here because the anon role only has INSERT
+    // permission via RLS (not SELECT), and INSERT ... RETURNING requires SELECT policy.
     const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
-    const { error, data } = await supabase
+    const { error } = await supabase
       .from("newsletter_subscribers")
-      .insert({ email: cleanEmail, source, is_active: true })
-      .select("id, email, subscribed_at"); // confirm what was inserted
+      .insert({ email: cleanEmail, source, is_active: true });
 
     if (error) {
       // Duplicate email — unique constraint violation
@@ -68,7 +69,7 @@ export async function POST(request: Request) {
       );
     }
 
-    console.log("[newsletter] New subscriber:", data?.[0]?.email);
+    console.log("[newsletter] New subscriber:", cleanEmail);
     return Response.json(
       { success: true, message: "Subscribed successfully" },
       { status: 201 }

@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 interface NewsletterFormProps {
   variant?: "inline" | "card";
@@ -13,6 +14,7 @@ export function NewsletterForm({
   className = "",
   source = "footer",
 }: NewsletterFormProps) {
+  const { lang } = useLanguage();
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error" | "duplicate">("idle");
 
@@ -117,7 +119,7 @@ export function NewsletterForm({
           </button>
         </form>
 
-        {status !== "idle" && (
+        {status !== "idle" && status !== "loading" && (
           <p
             id="newsletter-status-card"
             className={`text-sm mt-3 font-nunito ${
@@ -127,10 +129,16 @@ export function NewsletterForm({
             aria-live="polite"
           >
             {status === "success"
-              ? "♡ Terima kasih sudah berlangganan!"
+              ? lang === "id"
+                ? "♡ Terima kasih sudah berlangganan!"
+                : "♡ Thank you for subscribing!"
               : status === "duplicate"
-              ? "✓ Kamu sudah terdaftar sebelumnya!"
-              : "Terjadi kesalahan. Silakan coba lagi."}
+              ? lang === "id"
+                ? "✓ Kamu sudah terdaftar sebelumnya!"
+                : "✓ You are already subscribed!"
+              : lang === "id"
+              ? "Terjadi kesalahan. Silakan coba lagi."
+              : "Something went wrong. Please try again."}
           </p>
         )}
       </div>
@@ -146,7 +154,7 @@ export function NewsletterForm({
         aria-label="Newsletter signup"
       >
         <label htmlFor="newsletter-email-inline" className="sr-only">
-          Your email address
+          {lang === "id" ? "Alamat email kamu" : "Your email address"}
         </label>
         <input
           id="newsletter-email-inline"
@@ -156,7 +164,7 @@ export function NewsletterForm({
             setEmail(e.target.value);
             if (status !== "idle") setStatus("idle");
           }}
-          placeholder="Your email"
+          placeholder={lang === "id" ? "Email kamu..." : "Your email..."}
           className="
             flex-1 min-w-0
             px-4 py-2.5
@@ -170,7 +178,7 @@ export function NewsletterForm({
             transition-shadow duration-200
           "
           required
-          aria-describedby={status !== "idle" ? "newsletter-status-inline" : undefined}
+          aria-describedby={status !== "idle" && status !== "loading" ? "newsletter-status-inline" : undefined}
         />
         <button
           type="submit"
@@ -223,7 +231,7 @@ export function NewsletterForm({
         </button>
       </form>
 
-      {status !== "idle" && (
+      {status !== "idle" && status !== "loading" && (
         <p
           id="newsletter-status-inline"
           className={`text-xs mt-2 font-nunito ${
@@ -237,10 +245,16 @@ export function NewsletterForm({
           aria-live="polite"
         >
           {status === "success"
-            ? "♡ Terima kasih sudah berlangganan!"
+            ? lang === "id"
+              ? "♡ Terima kasih sudah berlangganan!"
+              : "♡ Thank you for subscribing!"
             : status === "duplicate"
-            ? "✓ Kamu sudah terdaftar sebelumnya!"
-            : "Terjadi kesalahan. Silakan coba lagi."}
+            ? lang === "id"
+              ? "✓ Kamu sudah terdaftar sebelumnya!"
+              : "✓ You are already subscribed!"
+            : lang === "id"
+            ? "Terjadi kesalahan. Silakan coba lagi."
+            : "Something went wrong. Please try again."}
         </p>
       )}
     </div>
